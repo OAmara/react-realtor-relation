@@ -5,5 +5,10 @@ body {
 .App {
   /*text-align: center;*/
   position: fixed;
-  top: 20%;
+  /*top: 5%;*/
+}
+
+.Realtor-Link {
+	margin-top: 5%;
+	text-align: center;
 }

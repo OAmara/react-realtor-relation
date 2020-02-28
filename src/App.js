@@ -6,6 +6,7 @@ import {
 	Link,
 	useParams
 } from 'react-router-dom';
+import { Button } from 'semantic-ui-react'
 import './App.css';
 
 
@@ -36,11 +37,13 @@ useEffect(() => {
 
 	  			<Switch>
 	  				<Route path='/realtor/register'>
-	  					<h4>
+	  					<h5>Return to Client Login:</h5>
 	  						<Link to='/'>
-	  							Client
+			  					<Button color={'twitter'} >
+			  						Client Portal
+			  					</Button>
 	  						</Link>
-	  					</h4>
+
 	  					<RealtorLoginRegisterForm 
 	  						myName={loggedInUser}
 	  					/>
@@ -49,11 +52,15 @@ useEffect(() => {
    						<ClientLoginRegisterForm 
    							myName={loggedInUser}
    						/>
-			  			<h4>
-			  				<Link to='/realtor/register'>
-			  					Realtor Register
-			  				</Link>
-			  			</h4>
+
+   						<div className='Realtor-Link'>
+   							<h5>Realtors Please Login Here:</h5>
+				  				<Link to='/realtor/register'>
+						  			<Button color={'twitter'} className='Link'>
+						  				Realtor Portal
+						  			</Button>
+				  				</Link>
+				  		</div>
 	  				</Route>
 	  			</Switch>
 
