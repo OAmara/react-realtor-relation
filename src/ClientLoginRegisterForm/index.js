@@ -46,7 +46,7 @@ export default function ClientLoginRegisterForm(props) {
 				// Register Form Field
 			}
 			<div className='Client-Register'>
-				<Form onSubmit={null}>
+				<Form onSubmit={props.handleFormSubmit}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Label className='Label'>Email:</Label>
@@ -55,8 +55,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='email'
 								name='email'
 								placeholder='Enter Email'
-								// value={null}
-								onChange={null}
+								value={props.formBody.email}
+								onChange={props.handleFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
@@ -66,8 +66,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='username'
 								placeholder='Enter Email'
-								// value={null}
-								onChange={null}
+								value={props.formBody.username}
+								onChange={props.handleFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
@@ -77,8 +77,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='number'
 								name='password'
 								placeholder='Enter Password'
-								// value={null}
-								onChange={null}
+								value={props.formBody.password}
+								onChange={props.handleFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>
@@ -90,8 +90,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='firstName'
 								placeholder='Your First Name'
-								// value={null}
-								onChange={null}
+								value={props.formBody.firstName}
+								onChange={props.handleFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
@@ -101,8 +101,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='lastName'
 								placeholder='Your Last Name'
-								// value={null}
-								onChange={null}
+								value={props.formBody.lastName}
+								onChange={props.handleFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>
@@ -114,8 +114,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='recoveryQuestion'
 								placeholder="Where I'm From."
-								// value={null}
-								onChange={null}
+								value={props.formBody.recoveryQuestion}
+								onChange={props.handleFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
@@ -125,8 +125,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='recoveryAnswer'
 								placeholder='"Country Road"'
-								// value={null}
-								onChange={null}
+								value={props.formBody.recoveryAnswer}
+								onChange={props.handleFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>

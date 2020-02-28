@@ -17,19 +17,36 @@ import './App.css';
 import ClientLoginRegisterForm from './ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from './RealtorLoginRegisterForm'
 
-function App() {
-// user info retrieved from API on login/ register
-const [loggedInUser, setLoggedInUser] = useState({firstName: 'Omar', lastName: 'Amara'})
-// determination if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
-const [isClient, setIsCLient] = useState(null)
-//* This will be filled with information posted from all 4 forms!
-const [postFormBody, setPostFormBody] = useState({})
+function App(props) {
+	// user info retrieved from API on login/ register
+	const [loggedInUser, setLoggedInUser] = useState({firstName: 'Omar', lastName: 'Amara'})
+	// determination if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
+	const [isClient, setIsCLient] = useState(null)
+	//* This will be filled with information posted from all 4 forms!
+	const [formBody, setFormBody] = useState({
+		email: "",
+		username: "bb",
+		lastName: "bb",
+		recoveryAnswer: "webb",
+		firstName: "",
+		password: "245345",
+		recoveryQuestion: "wwer"
+	})
 
 
-useEffect(() => {
-	document.title = loggedInUser.firstName + ' ' + loggedInUser.lastName
-})
+	useEffect(() => {
+		document.title = loggedInUser.firstName + ' ' + loggedInUser.lastName
+	})
 
+	function handleFormChange(e) {
+		setFormBody({
+				...formBody,
+				[e.target.name]: e.target.value
+		});		
+	}
+
+  	console.log(formBody);
+  	console.log(formBody.firstName);
   	return (
     	<div className="App">
 	  		<Router>
@@ -51,6 +68,8 @@ useEffect(() => {
 	  				<Route path='/'>
    						<ClientLoginRegisterForm 
    							myName={loggedInUser}
+   							handleFormChange={handleFormChange}
+   							formBody={formBody}
    						/>
 
    						<div className='Realtor-Link'>
