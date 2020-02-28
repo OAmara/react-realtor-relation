@@ -4,7 +4,8 @@ export default function RealtorLoginRegisterForm() {
 
 	return(
 		<React.Fragment>
-			<h1>Realtor Register Component is alive!</h1>
+			<h1>Realtor Register Component</h1>
+	
 		</React.Fragment>
 	)
 }

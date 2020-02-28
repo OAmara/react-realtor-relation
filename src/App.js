@@ -20,19 +20,29 @@ useEffect(() => {
 
   	return (
     	<div className="App">
-   			<ClientLoginRegisterForm />
-
 	  		<Router>
 
-	  			<h4>
-	  				<Link to='/realtor/register'>
-	  					Realtor Registration
-	  				</Link>
-	  			</h4>
 
 	  			<Switch>
 	  				<Route path='/realtor/register'>
-	  					<RealtorLoginRegisterForm />
+	  					<h4>
+	  						<Link to='/'>
+	  							Client
+	  						</Link>
+	  					</h4>
+	  					<RealtorLoginRegisterForm 
+
+	  					/>
+	  				</Route>
+	  				<Route path='/'>
+   						<ClientLoginRegisterForm 
+
+   						/>
+			  			<h4>
+			  				<Link to='/realtor/register'>
+			  					Realtor Register
+			  				</Link>
+			  			</h4>
 	  				</Route>
 	  			</Switch>
 
