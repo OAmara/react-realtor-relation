@@ -5,8 +5,15 @@ export default class ClientLoginRegisterForm extends Component {
 		super(props)
 
 		this.state = {
-
+			nameToBeLoggedInUser: 'Omar',
+			lastNameToBeLoggedInUser: 'Amara',
+			loggedInUser: {},
+			
 		}
+	}
+
+	componentDidMount() {
+		document.title = this.state.nameToBeLoggedInUser + ' ' + this.state.lastNameToBeLoggedInUser
 	}
 
 	render() {
