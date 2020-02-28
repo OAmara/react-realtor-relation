@@ -51,4 +51,10 @@ useEffect(() => {
   	);
 }
 
+// Example of useParams to be implemented
+// function ComponentName() {
+//   let { firstName, lastName } = useParams();
+//   return(<h2>Hello {firstName} {lastName}!</h2>)
+// }
+
 export default App;
