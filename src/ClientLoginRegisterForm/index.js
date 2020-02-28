@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function ClientLoginRegisterForm() {
+export default function ClientLoginRegisterForm(props) {
 
 	return(
 		<React.Fragment>
-			<h1>Client Login Form Rendering</h1>
+			<h2>Hello {props.myName.firstName + " " + props.myName.lastName}, let's find you a realtor!</h2>
 		</React.Fragment>
 	)
 }

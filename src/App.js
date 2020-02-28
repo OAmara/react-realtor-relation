@@ -7,6 +7,11 @@ import {
 	useParams
 } from 'react-router-dom';
 import './App.css';
+
+
+// import logo image as variable to pass in props. Create lib folder, then import//
+
+
 /* -- Components -- */
 import ClientLoginRegisterForm from './ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from './RealtorLoginRegisterForm'
@@ -31,12 +36,12 @@ useEffect(() => {
 	  						</Link>
 	  					</h4>
 	  					<RealtorLoginRegisterForm 
-
+	  						myName={loggedInUser}
 	  					/>
 	  				</Route>
 	  				<Route path='/'>
    						<ClientLoginRegisterForm 
-
+   							myName={loggedInUser}
    						/>
 			  			<h4>
 			  				<Link to='/realtor/register'>
