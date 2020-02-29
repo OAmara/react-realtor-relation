@@ -1,14 +1,34 @@
+/* Whole App */
 body {
-	background-color: honeydew;
+	background-color: rgba(224, 255, 224, 0.2);
 }
-
 .App {
   /*text-align: center;*/
-  position: fixed;
+  /*position: fixed;*/
   /*top: 5%;*/
 }
 
+/* Home Auth Links */
 .Realtor-Link {
 	margin-top: 5%;
 	text-align: center;
+	background-color: lightgrey;
+}
+.Client-Link {
+	text-align: center;
+	background-color: lightgrey;
+}
+
+/* Forms */
+.Label {
+	/*width: 20%;*/
+	/*height: 30%;*/
+}
+Form {
+	border: 1px solid grey;
+	border-radius: 5px;
+	background-color: rgba(90, 190, 215, 0.2);
+}
+.Client-Register-Form {
+	margin-top: 20%;
 }

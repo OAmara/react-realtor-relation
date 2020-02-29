@@ -80,12 +80,14 @@ function App(props) {
 
 	  			<Switch>
 	  				<Route path='/realtor-register'>
-	  					<h5>Return to Client Login:</h5>
-	  						<Link to='/'>
-			  					<Button onClick={resetForms} color={'twitter'} >
-			  						Client Portal
-			  					</Button>
-	  						</Link>
+	  					<div className='Client-Link'>
+		  					<h5>Return to Client Login:</h5>
+		  						<Link to='/'>
+				  					<Button onClick={resetForms} color={'twitter'} >
+				  						Client Portal
+				  					</Button>
+		  						</Link>
+		  				</div>
 
 	  					<RealtorLoginRegisterForm 
 	  						myName={loggedInUser}
@@ -105,7 +107,7 @@ function App(props) {
    						/>
 
    						<div className='Realtor-Link'>
-   							<h5>Realtors Please Login Here:</h5>
+   							<h5>Realtors, Login Here:</h5>
 				  				<Link to='/realtor-register'>
 						  			<Button onClick={resetForms} color={'twitter'} className='Link'>
 						  				Realtor Portal
