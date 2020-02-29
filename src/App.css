@@ -1,6 +1,6 @@
 /* Whole App */
 body {
-	background-color: rgba(224, 255, 224, 0.2);
+	background-color: rgba(134, 165, 164, 0.2);
 }
 .App {
   /*text-align: center;*/
@@ -10,9 +10,12 @@ body {
 
 /* Home Auth Links */
 .Realtor-Link {
+	position: fixed;
+	width: 100%;
 	margin-top: 5%;
 	text-align: center;
 	background-color: lightgrey;
+	bottom: 0;
 }
 .Client-Link {
 	text-align: center;
@@ -24,11 +27,30 @@ body {
 	/*width: 20%;*/
 	/*height: 30%;*/
 }
-Form {
+.Login-Form {
 	border: 1px solid grey;
 	border-radius: 5px;
-	background-color: rgba(90, 190, 215, 0.2);
+	background-color: rgba(64, 135, 165, 0.8);
 }
-.Client-Register-Form {
-	margin-top: 20%;
+.Logo {
+	height: 100%;
+	width: 130%;
+}
+/* Register Main Body */
+.Register-Main {
+	display: flex;
+	justify-content: space-between;
+}
+.Register-Form {
+	margin-top: 10%;
+	margin-bottom: 15%;
+	width: 55%;
+	border-left: 1px solid lightcyan;
+	border-right: 1px solid lightgrey;
+}
+.About-Us {
+	background-color: rgb(236, 240, 240);
+	width: 43%;
+	border-left: 1px solid grey;
+	text-align: center;
 }

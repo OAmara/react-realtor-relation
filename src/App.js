@@ -20,11 +20,10 @@ import RealtorLoginRegisterForm from './RealtorLoginRegisterForm'
 function App(props) {
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState({firstName: 'Omar', lastName: 'Amara'})
-	// determination if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
+	// determines if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
 	const [isClient, setIsCLient] = useState(null)
 	//* This will be filled with information posted from all login forms!
-	// Commented out prefilled fields below prevents warning for uncontrolled input, this solution would be to utilize
-		// seperste state for each form and prefill each state with expected forms.
+	// Commented fields below prevents uncontrolled input warning when inserted. Seperate states with fields would be needed for each form.
 	const [loginForm, setLoginForm] = useState({
 		// email: "",
 		// username: "",
@@ -78,15 +77,12 @@ function App(props) {
 		} else if(form === 'register') {
 			console.log('registerForm in App.js: ', registerForm);
 		}
-
+		// may need additional conditional logic to fetch between all 4 forms. That rhymed!
 	}
 
-  	// console.log(loginForm);
-  	// console.log(registerForm);
   	return (
     	<div className="App">
 	  		<Router>
-
 	  			<Switch>
 	  				<Route path='/realtor-register'>
 	  					<div className='Client-Link'>
@@ -97,7 +93,6 @@ function App(props) {
 				  					</Button>
 		  						</Link>
 		  				</div>
-
 	  					<RealtorLoginRegisterForm 
 	  						myName={loggedInUser}
 	  						loginForm={loginForm}
@@ -107,7 +102,9 @@ function App(props) {
 	  						handleAllFormSubmission={handleAllFormSubmission}
 	  					/>
 	  				</Route>
+
 	  				<Route path='/'>
+	  				<div>
    						<ClientLoginRegisterForm 
    							myName={loggedInUser}
    							loginForm={loginForm}
@@ -125,9 +122,9 @@ function App(props) {
 						  			</Button>
 				  				</Link>
 				  		</div>
+				  	</div>
 	  				</Route>
 	  			</Switch>
-
 	  		</Router>
     	</div>
   	);
