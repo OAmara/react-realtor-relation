@@ -107,14 +107,11 @@ export default function ClientLoginRegisterForm(props) {
 						<Form.Group widths='equal'>
 							<Form.Field>
 								<Label className='Label'>Recovery Question:</Label>
-								<Input
-									required
-									type='text'
-									name='recoveryQuestion'
-									placeholder="Where I'm From."
-									value={props.registerForm.recoveryQuestion}
-									onChange={props.handleRegisterFormChange}
-								/>
+								<select name='recoveryQuestion' value={props.registerForm.recoveryQuestion} onChange={props.handleRegisterFormChange}>
+									<option value='Where were you born?'>Where were you born?</option>
+									<option value="What is your mother's maiden name?">What is your Mother's Maiden Name?</option>
+									<option value='Which elementary school did you attend?'>Which Elementary School did you attend?</option>
+								</select>
 							</Form.Field>
 							<Form.Field>
 								<Label className='Label'>Recovery Answer:</Label>
@@ -142,10 +139,4 @@ export default function ClientLoginRegisterForm(props) {
 		</React.Fragment>
 	)
 }
- 
-// 
-// 	recoveryQuestion: type: [String],
-// 	"Where were you born?","What is your mother's maiden name?", "Which elementary Schoold did you graduate from?"]
-
-// 	recoveryAnswer: type: String,	hometown: type: String		zipcode: type: String,
 

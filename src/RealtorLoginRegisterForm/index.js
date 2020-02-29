@@ -81,4 +81,28 @@ export default function RealtorLoginRegisterForm(props) {
 			</div>
 		</React.Fragment>
 	)
-}
+}/*
+	company: {
+		name: {
+		},
+		location: {
+			street1: {
+			},
+			street2: {
+			},
+			city: {
+			},
+			state: {
+			},
+			zipcode: {
+			}
+		},
+		phone: {
+			minlength: 10,
+		}
+	},
+	username:	firstName:   lastName:   email:   brokerLicenseNumber:    websiteURL:    password:
+	phoneNumber: {
+		minlength: 10,
+	},
+*/

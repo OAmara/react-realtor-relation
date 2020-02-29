@@ -30,7 +30,7 @@ body {
 .Login-Form {
 	border: 1px solid grey;
 	border-radius: 5px;
-	background-color: rgba(64, 135, 165, 0.8);
+	background-color: rgba(64, 135, 165, 0.9);
 }
 .Logo {
 	height: 100%;
@@ -42,7 +42,7 @@ body {
 	justify-content: space-between;
 }
 .Register-Form {
-	margin-top: 10%;
+	margin-top: 9%;
 	margin-bottom: 15%;
 	width: 55%;
 	border-left: 1px solid lightcyan;

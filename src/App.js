@@ -80,6 +80,7 @@ function App(props) {
 		// may need additional conditional logic to fetch between all 4 forms. That rhymed!
 	}
 
+	console.log(registerForm);
   	return (
     	<div className="App">
 	  		<Router>
