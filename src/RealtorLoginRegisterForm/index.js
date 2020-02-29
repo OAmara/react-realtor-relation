@@ -6,9 +6,8 @@ export default function RealtorLoginRegisterForm(props) {
 	return(
 		<React.Fragment>
 			<h2>Welcome {props.myName.firstName + " " + props.myName.lastName}, are you a realtor?</h2>
-						{
-				// Login Form Field
-			}
+
+			{/* Login Form Field*/}
 			<div>
 				<Form onSubmit={null}>
 					<Form.Group widths='equal'>
@@ -37,9 +36,8 @@ export default function RealtorLoginRegisterForm(props) {
 					</Form.Group>
 				</Form>
 			</div>
-			{
-				// Register Form Field
-			}
+			
+			{/* Register Form Field */}
 			<div className='Client-Register'>
 				<Form onSubmit={null}>
 					<Form.Group widths='equal'>
@@ -50,19 +48,19 @@ export default function RealtorLoginRegisterForm(props) {
 								type='text'
 								name='username'
 								placeholder='Enter Username'
-								// value={null}
-								onChange={null}
+								value={props.registerForm.username}
+								onChange={props.handleRegisterFormChange}
 							/>
 							</Form.Field>
 							<Form.Field>
 							<Label className='Label'>Password:</Label>
 							<Input
 								required
-								type='number'
+								type='text'
 								name='password'
 								placeholder='Enter Password'
-								// value={null}
-								onChange={null}
+								value={props.registerForm.password}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>

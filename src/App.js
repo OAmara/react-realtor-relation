@@ -22,31 +22,57 @@ function App(props) {
 	const [loggedInUser, setLoggedInUser] = useState({firstName: 'Omar', lastName: 'Amara'})
 	// determination if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
 	const [isClient, setIsCLient] = useState(null)
-	//* This will be filled with information posted from all 4 forms!
-	const [formBody, setFormBody] = useState({
-		email: "",
-		username: "bb",
-		lastName: "bb",
-		recoveryAnswer: "webb",
-		firstName: "",
-		password: "245345",
-		recoveryQuestion: "wwer"
+	//* This will be filled with information posted from all login forms!
+	const [loginForm, setLoginForm] = useState({
+		// email: "",
+		// username: "",
+		// lastName: "",
+		// recoveryAnswer: "",
+		// firstName: "",
+		// password: "",
+		// recoveryQuestion: ""
 	})
+	// This will be filled with info from both register froms!
+	const [registerForm, setRegisterForm] = useState({})
 
 
 	useEffect(() => {
 		document.title = loggedInUser.firstName + ' ' + loggedInUser.lastName
 	})
 
-	function handleFormChange(e) {
-		setFormBody({
-				...formBody,
-				[e.target.name]: e.target.value
+	// clears forms when switching components
+	function resetForms() {
+		setRegisterForm({})
+	}
+
+	function handleLoginFormChange(e) {
+		setLoginForm({
+			...loginForm,
+			[e.target.name]: e.target.value
 		});		
 	}
 
-  	console.log(formBody);
-  	console.log(formBody.firstName);
+	// OR: 
+	/*
+	const handleLoginFormChange = (e) {
+		setLoginFormBody({
+			...loginFormBody,
+			[e.target.name]: e.target.value
+		})
+	}
+	*/
+
+	function handleRegisterFormChange(e) {
+		setRegisterForm({
+			...registerForm,
+			[e.target.name]: e.target.value
+		})
+	}
+
+  	console.log(loginForm);
+  	console.log(loginForm.firstName);
+  	console.log(registerForm);
+  	console.log(registerForm.firstName);
   	return (
     	<div className="App">
 	  		<Router>
@@ -56,26 +82,30 @@ function App(props) {
 	  				<Route path='/realtor/register'>
 	  					<h5>Return to Client Login:</h5>
 	  						<Link to='/'>
-			  					<Button color={'twitter'} >
+			  					<Button onClick={resetForms} color={'twitter'} >
 			  						Client Portal
 			  					</Button>
 	  						</Link>
 
 	  					<RealtorLoginRegisterForm 
 	  						myName={loggedInUser}
+	  						handleRegisterFormChange={handleRegisterFormChange}
+	  						registerForm={registerForm}
 	  					/>
 	  				</Route>
 	  				<Route path='/'>
    						<ClientLoginRegisterForm 
    							myName={loggedInUser}
-   							handleFormChange={handleFormChange}
-   							formBody={formBody}
+   							handleLoginFormChange={handleLoginFormChange}
+   							loginForm={loginForm}
+   							handleRegisterFormChange={handleRegisterFormChange}
+   							registerForm={registerForm}
    						/>
 
    						<div className='Realtor-Link'>
    							<h5>Realtors Please Login Here:</h5>
 				  				<Link to='/realtor/register'>
-						  			<Button color={'twitter'} className='Link'>
+						  			<Button onClick={resetForms} color={'twitter'} className='Link'>
 						  				Realtor Portal
 						  			</Button>
 				  				</Link>
@@ -90,8 +120,8 @@ function App(props) {
 
 // Example of useParams to be implemented
 // function ComponentName() {
-//   let { firstName, lastName } = useParams();
-//   return(<h2>Hello {firstName} {lastName}!</h2>)
+//   let { firstName, lastName } = useParams();			//--> sets param for that route?
+//   return(<h2>Hello {firstName} {lastName}!</h2>)		//--> shows params on page
 // }
 
 export default App;

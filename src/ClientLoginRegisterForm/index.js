@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { } from 'react'
 import { Form, Label, Input, Button } from 'semantic-ui-react'
 import './index.css'
 
@@ -23,8 +23,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='email'
 								name='email'
 								placeholder='Enter Email'
-								// value={null}
-								onChange={null}
+								value={props.loginForm.email}
+								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
 						<Form.Field >
@@ -34,8 +34,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='password'
 								placeholder='Enter Password'
-								// value={null}
-								onChange={null}
+								value={props.loginForm.password}
+								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
 						<Button color={'vk'} type='Submit'>Login</Button>
@@ -46,7 +46,7 @@ export default function ClientLoginRegisterForm(props) {
 				// Register Form Field
 			}
 			<div className='Client-Register'>
-				<Form onSubmit={props.handleFormSubmit}>
+				<Form onSubmit={props.handleLoginFormSubmit}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Label className='Label'>Email:</Label>
@@ -55,8 +55,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='email'
 								name='email'
 								placeholder='Enter Email'
-								value={props.formBody.email}
-								onChange={props.handleFormChange}
+								value={props.registerForm.email}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
@@ -66,19 +66,19 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='username'
 								placeholder='Enter Email'
-								value={props.formBody.username}
-								onChange={props.handleFormChange}
+								value={props.registerForm.username}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
 							<Label className='Label'>Password:</Label>
 							<Input
 								required
-								type='number'
+								type='text'
 								name='password'
 								placeholder='Enter Password'
-								value={props.formBody.password}
-								onChange={props.handleFormChange}
+								value={props.registerForm.password}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>
@@ -90,8 +90,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='firstName'
 								placeholder='Your First Name'
-								value={props.formBody.firstName}
-								onChange={props.handleFormChange}
+								value={props.registerForm.firstName}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
@@ -101,8 +101,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='lastName'
 								placeholder='Your Last Name'
-								value={props.formBody.lastName}
-								onChange={props.handleFormChange}
+								value={props.registerForm.lastName}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>
@@ -114,8 +114,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='recoveryQuestion'
 								placeholder="Where I'm From."
-								value={props.formBody.recoveryQuestion}
-								onChange={props.handleFormChange}
+								value={props.registerForm.recoveryQuestion}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 						<Form.Field>
@@ -125,8 +125,8 @@ export default function ClientLoginRegisterForm(props) {
 								type='text'
 								name='recoveryAnswer'
 								placeholder='"Country Road"'
-								value={props.formBody.recoveryAnswer}
-								onChange={props.handleFormChange}
+								value={props.registerForm.recoveryAnswer}
+								onChange={props.handleRegisterFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>
