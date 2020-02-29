@@ -94,15 +94,21 @@ function App(props) {
 		let apiUrl = null
 		if(whichForm === 'client') {
 			apiUrl = process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/register'
-
 		} else if(whichForm === 'realtor') {
-			console.log('Realtor is trying to fetch register route!');
-
+			apiUrl = process.env.React_APP_MEN_API_URL + '/api/v1.0/realtors/register'
 		}
 		try {
 			const registerResponse = await fetch(apiUrl, {
-
+				method: 'POST',
+				body: JSON.stringify(registerFormBody),
+				headers: {
+					'Content-Type': 'application/json'
+				},
 			})
+			console.log(registerResponse);
+			const registerJson = await registerResponse.json()
+			console.log(registerJson);
+
 
 
 		} catch(err) {
@@ -110,9 +116,10 @@ function App(props) {
 				// can crearte custom error
 				console.error(err)
 			}
-		}
-			
+		}	
 	}
+
+	
 
 	useEffect(() => {
 		document.title = 'Estate: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName?registerForm.lastName:loggedInUser.lastName)

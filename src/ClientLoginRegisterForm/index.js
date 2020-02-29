@@ -9,7 +9,7 @@ export default function ClientLoginRegisterForm(props) {
 	return(
 		<React.Fragment>
 			<div className='Login-Form'>
-				<h2>Hello {props.myName.firstName + " " + props.myName.lastName}, let's find you a Realtor!</h2>
+				<h2>Hello {props.myName.firstName + " " + props.myName.lastName}, let's find a Realtor!</h2>
 				{/* Login Form Field */}
 				<Form onSubmit={() => props.handleAllFormSubmission('login', 'client')}>
 					<Form.Group widths='equal'>
