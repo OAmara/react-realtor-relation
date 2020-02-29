@@ -18,25 +18,25 @@ export default function RealtorLoginRegisterForm(props) {
 								type='email'
 								name='email'
 								placeholder='Enter Email'
-								// value={null}
-								onChange={null}
+								value={props.loginForm.email}
+								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
 						<Form.Field >
 							<Input
 								required
 								label='Password'
-								type='text'
+								type='password'
 								name='password'
 								placeholder='Enter Password'
-								// value={null}
-								onChange={null}
+								value={props.loginForm.password}
+								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
 					</Form.Group>
 				</Form>
 			</div>
-			
+
 			{/* Register Form Field */}
 			<div className='Client-Register'>
 				<Form onSubmit={null}>
@@ -56,7 +56,7 @@ export default function RealtorLoginRegisterForm(props) {
 							<Label className='Label'>Password:</Label>
 							<Input
 								required
-								type='text'
+								type='password'
 								name='password'
 								placeholder='Enter Password'
 								value={props.registerForm.password}

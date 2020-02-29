@@ -23,6 +23,8 @@ function App(props) {
 	// determination if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
 	const [isClient, setIsCLient] = useState(null)
 	//* This will be filled with information posted from all login forms!
+	// Commented out prefilled fields below prevents warning for uncontrolled input, this solution would be to utilize
+		// seperste state for each form and prefill each state with expected forms.
 	const [loginForm, setLoginForm] = useState({
 		// email: "",
 		// username: "",
@@ -43,6 +45,7 @@ function App(props) {
 	// clears forms when switching components
 	function resetForms() {
 		setRegisterForm({})
+		setLoginForm({})
 	}
 
 	function handleLoginFormChange(e) {
@@ -70,16 +73,13 @@ function App(props) {
 	}
 
   	console.log(loginForm);
-  	console.log(loginForm.firstName);
   	console.log(registerForm);
-  	console.log(registerForm.firstName);
   	return (
     	<div className="App">
 	  		<Router>
 
-
 	  			<Switch>
-	  				<Route path='/realtor/register'>
+	  				<Route path='/realtor-register'>
 	  					<h5>Return to Client Login:</h5>
 	  						<Link to='/'>
 			  					<Button onClick={resetForms} color={'twitter'} >
@@ -89,22 +89,24 @@ function App(props) {
 
 	  					<RealtorLoginRegisterForm 
 	  						myName={loggedInUser}
-	  						handleRegisterFormChange={handleRegisterFormChange}
+	  						loginForm={loginForm}
+	  						handleLoginFormChange={handleLoginFormChange}
 	  						registerForm={registerForm}
+	  						handleRegisterFormChange={handleRegisterFormChange}
 	  					/>
 	  				</Route>
 	  				<Route path='/'>
    						<ClientLoginRegisterForm 
    							myName={loggedInUser}
-   							handleLoginFormChange={handleLoginFormChange}
    							loginForm={loginForm}
-   							handleRegisterFormChange={handleRegisterFormChange}
+   							handleLoginFormChange={handleLoginFormChange}
    							registerForm={registerForm}
+   							handleRegisterFormChange={handleRegisterFormChange}
    						/>
 
    						<div className='Realtor-Link'>
    							<h5>Realtors Please Login Here:</h5>
-				  				<Link to='/realtor/register'>
+				  				<Link to='/realtor-register'>
 						  			<Button onClick={resetForms} color={'twitter'} className='Link'>
 						  				Realtor Portal
 						  			</Button>

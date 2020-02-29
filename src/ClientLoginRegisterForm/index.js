@@ -31,7 +31,7 @@ export default function ClientLoginRegisterForm(props) {
 							<Input
 								required
 								label='Password'
-								type='text'
+								type='password'
 								name='password'
 								placeholder='Enter Password'
 								value={props.loginForm.password}
@@ -74,7 +74,7 @@ export default function ClientLoginRegisterForm(props) {
 							<Label className='Label'>Password:</Label>
 							<Input
 								required
-								type='text'
+								type='password'
 								name='password'
 								placeholder='Enter Password'
 								value={props.registerForm.password}
