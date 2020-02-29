@@ -72,8 +72,17 @@ function App(props) {
 		})
 	}
 
-  	console.log(loginForm);
-  	console.log(registerForm);
+	function handleAllFormSubmission(form) {
+		if(form === 'login') {
+			console.log('loginForm in App.js: ', loginForm);
+		} else if(form === 'register') {
+			console.log('registerForm in App.js: ', registerForm);
+		}
+
+	}
+
+  	// console.log(loginForm);
+  	// console.log(registerForm);
   	return (
     	<div className="App">
 	  		<Router>
@@ -95,6 +104,7 @@ function App(props) {
 	  						handleLoginFormChange={handleLoginFormChange}
 	  						registerForm={registerForm}
 	  						handleRegisterFormChange={handleRegisterFormChange}
+	  						handleAllFormSubmission={handleAllFormSubmission}
 	  					/>
 	  				</Route>
 	  				<Route path='/'>
@@ -104,6 +114,7 @@ function App(props) {
    							handleLoginFormChange={handleLoginFormChange}
    							registerForm={registerForm}
    							handleRegisterFormChange={handleRegisterFormChange}
+   							handleAllFormSubmission={handleAllFormSubmission}
    						/>
 
    						<div className='Realtor-Link'>

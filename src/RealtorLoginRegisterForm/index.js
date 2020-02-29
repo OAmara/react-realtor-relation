@@ -9,7 +9,7 @@ export default function RealtorLoginRegisterForm(props) {
 
 			{/* Login Form Field*/}
 			<div>
-				<Form onSubmit={null}>
+				<Form onSubmit={() => props.handleAllFormSubmission('login')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Input
@@ -39,7 +39,7 @@ export default function RealtorLoginRegisterForm(props) {
 
 			{/* Register Form Field */}
 			<div className='Client-Register'>
-				<Form onSubmit={null}>
+				<Form onSubmit={() => props.handleAllFormSubmission('register')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Label className='Label'>Username:</Label>

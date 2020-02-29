@@ -11,7 +11,7 @@ export default function ClientLoginRegisterForm(props) {
 			<h2>Hello {props.myName.firstName + " " + props.myName.lastName}, let's find you a realtor!</h2>
 			{/* Login Form Field */}
 			<div>
-				<Form onSubmit={null}>
+				<Form onSubmit={() => props.handleAllFormSubmission('login')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Input
@@ -42,7 +42,7 @@ export default function ClientLoginRegisterForm(props) {
 
 			{/* Register Form Field */}
 			<div className='Client-Register-Form'>
-				<Form onSubmit={props.handleLoginFormSubmit}>
+				<Form onSubmit={() => props.handleAllFormSubmission('register')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Label className='Label'>Email:</Label>
