@@ -5,7 +5,6 @@ export default function RealtorLoginRegisterForm(props) {
 
 	return(
 		<React.Fragment>
-
 			<div className='Register-Main'>
 				{/* Register Form Field */}
 				<div className='Realtor-Register-Form'>
@@ -179,21 +178,23 @@ export default function RealtorLoginRegisterForm(props) {
 							</Form.Field>
 						</Form.Group>
 						<Button color={'vk'} type='Submit'>Register</Button>
+					<h2>Welcome {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, are you a Realtor?</h2>
 					</Form>
 				</div>
 				<div className='About-Us'>
+					<img className='Realtor-Logo' alt='ReState Logo' src={props.logo} />
 					<h3>Who We Are</h3>
 					<p>What We Our</p>
 					<p>How We Can Help</p>
-					<h5>Realtor Register Instructions</h5>
-					<p>Rules of Conduct</p>
+					<h4>Realtor Register Instructions</h4>
+					<p>Rules and Code of Conduct</p>
 					<p>How the Realtor Portal works and how it helps organize clients...</p>
+					<h6>To register a Realtor Account you must have a Real Estate Broker License that is valid</h6>
+					<p>Visit: <a href='https://www.idfpr.com/DRE.asp for license verification'>IDFPR</a> for License Verification</p>
 					<p>learn more</p>
 				</div>
 			</div>
-			<div className='Login-Form'>
-				<h2>Welcome {props.myName.firstName + " " + props.myName.lastName}, are you a Real Estate Broker?</h2>
-
+			<div className='Login-Form' id='Realtor-Login-Form'>
 				{/* Login Form Field*/}
 				<Form onSubmit={() => props.handleAllFormSubmission('login', 'realtor')}>
 					<Form.Group widths='equal'>
@@ -203,7 +204,7 @@ export default function RealtorLoginRegisterForm(props) {
 								label='Email'
 								type='email'
 								name='email'
-								placeholder='Enter Email'
+								placeholder='Enter Username or Email'
 								value={props.loginForm.email}
 								onChange={props.handleLoginFormChange}
 							/>
@@ -219,7 +220,7 @@ export default function RealtorLoginRegisterForm(props) {
 								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
-						<Button color={'vk'} type='Submit'>Login</Button>
+						<Button size={'mini'} color={'vk'} type='Submit'>Login</Button>
 					</Form.Group>
 				</Form>
 			</div>

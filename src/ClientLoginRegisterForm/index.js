@@ -9,7 +9,7 @@ export default function ClientLoginRegisterForm(props) {
 	return(
 		<React.Fragment>
 			<div className='Login-Form'>
-				<h2>Hello {props.myName.firstName + " " + props.myName.lastName}, let's find a Realtor!</h2>
+				
 				{/* Login Form Field */}
 				<Form onSubmit={() => props.handleAllFormSubmission('login', 'client')}>
 					<Form.Group widths='equal'>
@@ -19,7 +19,7 @@ export default function ClientLoginRegisterForm(props) {
 								label='Email'
 								type='email'
 								name='email'
-								placeholder='Enter Email'
+								placeholder='Enter Username or Email'
 								value={props.loginForm.email}
 								onChange={props.handleLoginFormChange}
 							/>
@@ -35,8 +35,7 @@ export default function ClientLoginRegisterForm(props) {
 								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
-						<Button color={'vk'} type='Submit'>Login</Button>
-						<img className='Logo' alt='logo goes here' href=''/>
+						<Button size={'mini'} color={'vk'} type='Submit'>Login</Button>
 					</Form.Group>
 				</Form>
 			</div>
@@ -130,11 +129,13 @@ export default function ClientLoginRegisterForm(props) {
 							</Form.Field>
 						</Form.Group>
 						<Button color={'vk'} type='Submit'>Register</Button>
+						<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, let's find us a Realtor!</h2>
 					</Form>
 				</div>
 				<div className='About-Us'>
+					<img className='Realtor-Logo' alt='ReState Logo' src={props.logo} />
 					<h3>Who We Are</h3>
-					<p>What We Our</p>
+					<p>What We Are</p>
 					<p>How We Can Help</p>
 					<h5>Mission</h5>
 					<p>learn more</p>

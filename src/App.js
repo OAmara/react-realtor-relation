@@ -8,14 +8,13 @@ import {
 } from 'react-router-dom';
 import { Button } from 'semantic-ui-react'
 import './App.css';
-
-
-// import logo image as variable to pass in props. Create lib folder, then import//
-
-
 /* -- Components -- */
 import ClientLoginRegisterForm from './ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from './RealtorLoginRegisterForm'
+
+// imported logo image to pass as variable.
+const mainLogo = require('./lib/restate.png')
+const realtorLogo = require('./lib/restateRealtors.png')
 
 function App(props) {
 	const names = [{
@@ -45,6 +44,8 @@ function App(props) {
 	})
 	// This will be filled with info from both register froms!
 	const [registerForm, setRegisterForm] = useState({})
+	// logo to be passed in state
+	const [logo, setLogo] = useState(mainLogo)
 
 	// clears forms when switching components. Choose Random Name!
 	function resetForms() {
@@ -152,8 +153,8 @@ function App(props) {
 	  			<Switch>
 	  				<Route path='/realtor-register'>
 	  					<div className='Client-Link'>
-		  					<h5>Return to Client Login:</h5>
 		  						<Link to='/'>
+		  						<h5>Return to Client Login:</h5>
 				  					<Button onClick={resetForms} color={'twitter'} >
 				  						Client Portal
 				  					</Button>
@@ -166,6 +167,8 @@ function App(props) {
 	  						registerForm={registerForm}
 	  						handleRegisterFormChange={handleRegisterFormChange}
 	  						handleAllFormSubmission={handleAllFormSubmission}
+	  						logo={realtorLogo}
+	  						loggedInUser={loggedInUser}
 	  					/>
 	  				</Route>
 
@@ -178,6 +181,8 @@ function App(props) {
    							registerForm={registerForm}
    							handleRegisterFormChange={handleRegisterFormChange}
    							handleAllFormSubmission={handleAllFormSubmission}
+   							logo={logo}
+   							loggedInUser={loggedInUser}
    						/>
 
    						<div className='Realtor-Link'>
