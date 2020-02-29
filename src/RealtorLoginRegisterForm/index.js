@@ -8,7 +8,7 @@ export default function RealtorLoginRegisterForm(props) {
 
 			<div className='Register-Main'>
 				{/* Register Form Field */}
-				<div className='Register-Form'>
+				<div className='Realtor-Register-Form'>
 					<Form onSubmit={() => props.handleAllFormSubmission('register')}>
 						<Form.Group widths='equal'>
 							<Form.Field>

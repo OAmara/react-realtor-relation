@@ -18,8 +18,18 @@ import ClientLoginRegisterForm from './ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from './RealtorLoginRegisterForm'
 
 function App(props) {
+	const names = [{
+			firstName: 'Benjamin', lastName: 'Franklin'
+		},{
+			firstName: 'George', lastName: 'Washington'
+		},{
+			firstName: 'Abraham', lastName: 'Lincoln'
+		},{
+			firstName: 'John', lastName: 'Adams'
+	}]
+	let randomName = Math.floor(Math.random() * names.length)
 	// user info retrieved from API on login/ register
-	const [loggedInUser, setLoggedInUser] = useState({firstName: 'Omar', lastName: 'Amara'})
+	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 	// determines if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
 	const [isClient, setIsCLient] = useState(null)
 	//* This will be filled with information posted from all login forms!
@@ -36,15 +46,11 @@ function App(props) {
 	// This will be filled with info from both register froms!
 	const [registerForm, setRegisterForm] = useState({})
 
-
-	useEffect(() => {
-		document.title = loggedInUser.firstName + ' ' + loggedInUser.lastName
-	})
-
-	// clears forms when switching components
+	// clears forms when switching components. Choose Random Name!
 	function resetForms() {
 		setRegisterForm({})
 		setLoginForm({})
+		setLoggedInUser(names[randomName])
 	}
 
 	function handleLoginFormChange(e) {
@@ -71,14 +77,46 @@ function App(props) {
 		})
 	}
 
-	function handleAllFormSubmission(form) {
+	function handleAllFormSubmission(form, whichForm) {
 		if(form === 'login') {
 			console.log('loginForm in App.js: ', loginForm);
+
 		} else if(form === 'register') {
-			console.log('registerForm in App.js: ', registerForm);
+			 console.log('registerForm in App.js: ', registerForm);
+			register(registerForm, whichForm)
+
 		}
 		// may need additional conditional logic to fetch between all 4 forms. That rhymed!
 	}
+
+	const register = async (registerFormBody, whichForm) => {
+		console.log('\n', registerFormBody, whichForm);
+		let apiUrl = null
+		if(whichForm === 'client') {
+			apiUrl = process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/register'
+
+		} else if(whichForm === 'realtor') {
+			console.log('Realtor is trying to fetch register route!');
+
+		}
+		try {
+			const registerResponse = await fetch(apiUrl, {
+
+			})
+
+
+		} catch(err) {
+			if(err) {
+				// can crearte custom error
+				console.error(err)
+			}
+		}
+			
+	}
+
+	useEffect(() => {
+		document.title = 'Estate: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName?registerForm.lastName:loggedInUser.lastName)
+	})
 
 	console.log(registerForm);
   	return (

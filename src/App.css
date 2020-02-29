@@ -28,7 +28,7 @@ body {
 	/*height: 30%;*/
 }
 .Login-Form {
-	border: 1px solid grey;
+	border: 1px ridge grey;
 	border-radius: 5px;
 	background-color: rgba(64, 135, 165, 0.9);
 }
@@ -41,9 +41,18 @@ body {
 	display: flex;
 	justify-content: space-between;
 }
-.Register-Form {
-	margin-top: 9%;
-	margin-bottom: 15%;
+.Client-Register-Form {
+	margin-top: 7%;
+	margin-bottom: 14%;
+	width: 55%;
+	border-top: 1px groove rgba(180, 180, 180, 0.7);
+	border-right: 1px groove grey;
+	border-bottom: 1px groove lightgrey;
+	border-left: 1px solid lightcyan;
+}
+.Realtor-Register-Form {
+	margin-top: 5%;
+	margin-bottom: 5%;
 	width: 55%;
 	border-left: 1px solid lightcyan;
 	border-right: 1px solid lightgrey;
@@ -51,6 +60,6 @@ body {
 .About-Us {
 	background-color: rgb(236, 240, 240);
 	width: 43%;
-	border-left: 1px solid grey;
+	border-left: 2px ridge grey;
 	text-align: center;
 }

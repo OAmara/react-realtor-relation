@@ -11,7 +11,7 @@ export default function ClientLoginRegisterForm(props) {
 			<div className='Login-Form'>
 				<h2>Hello {props.myName.firstName + " " + props.myName.lastName}, let's find you a Realtor!</h2>
 				{/* Login Form Field */}
-				<Form onSubmit={() => props.handleAllFormSubmission('login')}>
+				<Form onSubmit={() => props.handleAllFormSubmission('login', 'client')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Input
@@ -43,8 +43,12 @@ export default function ClientLoginRegisterForm(props) {
 
 			{/* Register Form Field */}
 			<div className='Register-Main'>	
-				<div className='Register-Form'>
-					<Form onSubmit={() => props.handleAllFormSubmission('register')}>
+				<div className='Client-Register-Form'>
+					<Form onSubmit={
+						// recoveryQuestion default on submission, due to select not defaulting unless changed.
+						props.registerForm.recoveryQuestion ? props.registerForm.recoveryQuestion : props.registerForm.recoveryQuestion='Where were you born?',
+						() => props.handleAllFormSubmission('register', 'client')
+					}>
 						<Form.Group widths='equal'>
 							<Form.Field>
 								<Label className='Label'>Email:</Label>
@@ -107,7 +111,7 @@ export default function ClientLoginRegisterForm(props) {
 						<Form.Group widths='equal'>
 							<Form.Field>
 								<Label className='Label'>Recovery Question:</Label>
-								<select name='recoveryQuestion' value={props.registerForm.recoveryQuestion} onChange={props.handleRegisterFormChange}>
+								<select required name='recoveryQuestion' value={props.registerForm.recoveryQuestion} onChange={props.handleRegisterFormChange}>
 									<option value='Where were you born?'>Where were you born?</option>
 									<option value="What is your mother's maiden name?">What is your Mother's Maiden Name?</option>
 									<option value='Which elementary school did you attend?'>Which Elementary School did you attend?</option>
