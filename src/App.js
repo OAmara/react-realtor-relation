@@ -53,6 +53,7 @@ function App(props) {
 		setLoggedInUser(names[randomName])
 	}
 
+	// handles loginForm state
 	function handleLoginFormChange(e) {
 		setLoginForm({
 			...loginForm,
@@ -60,16 +61,7 @@ function App(props) {
 		});		
 	}
 
-	// OR: 
-	/*
-	const handleLoginFormChange = (e) {
-		setLoginFormBody({
-			...loginFormBody,
-			[e.target.name]: e.target.value
-		})
-	}
-	*/
-
+	// handles registerForm state
 	function handleRegisterFormChange(e) {
 		setRegisterForm({
 			...registerForm,
@@ -77,27 +69,27 @@ function App(props) {
 		})
 	}
 
+	// handles all 4 login/register form submission for client/realtor
 	function handleAllFormSubmission(form, whichForm) {
 		if(form === 'login') {
-			console.log('loginForm in App.js: ', loginForm);
-
+			// calls login function and passes state and which from submitted as arguments.
+			login(loginForm, whichForm)
 		} else if(form === 'register') {
-			 console.log('registerForm in App.js: ', registerForm);
 			register(registerForm, whichForm)
-
 		}
-		// may need additional conditional logic to fetch between all 4 forms. That rhymed!
 	}
 
 	const register = async (registerFormBody, whichForm) => {
 		console.log('\n', registerFormBody, whichForm);
-		let apiUrl = null
+		let apiUrl = process.env.REACT_APP_MEN_API_URL
 		if(whichForm === 'client') {
-			apiUrl = process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/register'
+			apiUrl += '/api/v1.0/clients/register'
 		} else if(whichForm === 'realtor') {
-			apiUrl = process.env.React_APP_MEN_API_URL + '/api/v1.0/realtors/register'
+			apiUrl += '/api/v1.0/realtors/register'
+			console.log('hello');
 		}
 		try {
+			console.log(apiUrl);
 			const registerResponse = await fetch(apiUrl, {
 				method: 'POST',
 				body: JSON.stringify(registerFormBody),
@@ -119,7 +111,35 @@ function App(props) {
 		}	
 	}
 
-	
+	const login = async (loginFormBody, whichForm) => {
+		console.log('\n', loginFormBody, whichForm);
+		let apiUrl = process.env.REACT_APP_MEN_API_URL
+		if(whichForm === 'client') {
+			apiUrl += '/api/v1.0/clients/login'
+		} else if(whichForm === 'realtor') {
+			apiUrl += '/api/v1.0/realtors/login'
+		}
+		try {
+			const loginResponse = await fetch(apiUrl, {
+				method: 'POST',
+				body: JSON.stringify(loginFormBody),
+				headers: {
+					'Content-Type': 'application/json'
+				},
+			})
+			console.log(loginResponse);
+			const loginJson = await loginResponse.json()
+			console.log(loginJson);
+
+
+
+		} catch(err) {
+			if(err) {
+				// can crearte custom error
+				console.error(err)
+			}
+		}	
+	}
 
 	useEffect(() => {
 		document.title = 'Estate: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName?registerForm.lastName:loggedInUser.lastName)

@@ -9,7 +9,7 @@ export default function RealtorLoginRegisterForm(props) {
 			<div className='Register-Main'>
 				{/* Register Form Field */}
 				<div className='Realtor-Register-Form'>
-					<Form onSubmit={() => props.handleAllFormSubmission('register')}>
+					<Form onSubmit={() => props.handleAllFormSubmission('register', 'realtor')}>
 						<Form.Group widths='equal'>
 							<Form.Field>
 								<Label className='Label'>Email:</Label>
@@ -77,6 +77,7 @@ export default function RealtorLoginRegisterForm(props) {
 									placeholder='Enter Phone Number'
 									value={props.registerForm.phoneNumber}
 									onChange={props.handleRegisterFormChange}
+									minLength='10'
 									maxLength='11'
 								/>
 							</Form.Field>
@@ -121,10 +122,12 @@ export default function RealtorLoginRegisterForm(props) {
 								<Input
 									required
 									type='text'
-									name='companyNumber'
-									placeholder='Compnay Number'
-									value={props.registerForm.lastName}
+									name='companyPhone'
+									placeholder='Company Number'
+									value={props.registerForm.companyPhone}
 									onChange={props.handleRegisterFormChange}
+									minLength='10'
+									maxLength='11'
 								/>
 							</Form.Field>
 							<Form.Field>
@@ -192,7 +195,7 @@ export default function RealtorLoginRegisterForm(props) {
 				<h2>Welcome {props.myName.firstName + " " + props.myName.lastName}, are you a Real Estate Broker?</h2>
 
 				{/* Login Form Field*/}
-				<Form onSubmit={() => props.handleAllFormSubmission('login')}>
+				<Form onSubmit={() => props.handleAllFormSubmission('login', 'realtor')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Input
