@@ -11,6 +11,7 @@ import './App.css';
 /* -- Components -- */
 import ClientLoginRegisterForm from './ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from './RealtorLoginRegisterForm'
+import ClientContainer from './ClientContainer'
 
 // imported logo image to pass as variable.
 const mainLogo = require('./lib/restate.png')
@@ -165,12 +166,15 @@ function App(props) {
   					(isClient === true) 
   					? 
   					<React.Fragment>
-	  					<Link to='/clients/home'>
-	  						{loggedInUser.firstName} Home
+	  					<Link to='/clients/'>
+	  						<p>{loggedInUser.firstName} Home</p>
 	  					</Link>
+	  					<ClientContainer 
+	  						loggedInUser={loggedInUser}
+	  					/>
 		  				<Switch>
-			  				<Route path='/clients/home'>
-			  					bye
+			  				<Route path='/clients/'>
+			  					
 			  				</Route>
 			  			</Switch>
 		  			</React.Fragment>
@@ -191,7 +195,7 @@ function App(props) {
 			  		<React.Fragment>
 			  			<Switch>
 
-			  				<Route path='/realtors/login-register'>
+			  				<Route path='/realtors-auth'>
 			  					<div className='Client-Link'>
 			  						<Link to='/'>
 			  						<Divider fitted horizontal>Return to Client Login:
@@ -224,7 +228,7 @@ function App(props) {
 		   							loggedInUser={loggedInUser}
 		   						/>
 		   						<div className='Realtor-Link'>
-					  				<Link to='/realtors/login-register'>
+					  				<Link to='/realtors-auth'>
 							  			<Divider fitted horizontal>Realtor's Login Here:<Button compact fluid onClick={resetForms} color={'twitter'} className='Link'>
 							  				Realtor Portal
 							  			</Button></Divider>
