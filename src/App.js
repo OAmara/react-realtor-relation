@@ -153,7 +153,7 @@ function App(props) {
 	}
 
 	useEffect(() => {
-		 document.title = 'Estate: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
+		 document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
 	})
 
 	console.log(loggedInUser);
@@ -161,51 +161,79 @@ function App(props) {
   	return (
     	<div className="App">
 	  		<Router>
-	  			<Switch>
-	  				<Route path='/realtor-register'>
-	  					<div className='Client-Link'>
-	  						<Link to='/'>
-	  						<Divider fitted horizontal>Return to Client Login:
-			  					<Button compact fluid circular onClick={resetForms} color={'twitter'} >
-			  						Client Portal
-			  					</Button></Divider>
-	  						</Link>
-	  					</div>
-	  					<RealtorLoginRegisterForm 
-	  						myName={loggedInUser}
-	  						loginForm={loginForm}
-	  						handleLoginFormChange={handleLoginFormChange}
-	  						registerForm={registerForm}
-	  						handleRegisterFormChange={handleRegisterFormChange}
-	  						handleAllFormSubmission={handleAllFormSubmission}
-	  						logo={realtorLogo}
-	  						loggedInUser={loggedInUser}
-	  					/>
-	  				</Route>
+  				{
+  					(isClient === true) 
+  					? 
+  					<React.Fragment>
+	  					<Link to='/clients/home'>
+	  						{loggedInUser.firstName} Home
+	  					</Link>
+		  				<Switch>
+			  				<Route path='/clients/home'>
+			  					bye
+			  				</Route>
+			  			</Switch>
+		  			</React.Fragment>
+	  				:
+	  				(isClient === false)
+	  				?
+	  				<React.Fragment>
+	  					<Link to='/realtors/home'>
+	  						{loggedInUser.lastName} Home
+	  					</Link>
+	  					<Switch>
+			  				<Route path='/realtors/home'>
+			  					hello
+			  				</Route>
+			  			</Switch>
+		  			</React.Fragment>
+	  				:
+			  		<React.Fragment>
+			  			<Switch>
 
-	  				<Route path='/'>
-	  				<div>
-   						<ClientLoginRegisterForm 
-   							myName={loggedInUser}
-   							loginForm={loginForm}
-   							handleLoginFormChange={handleLoginFormChange}
-   							registerForm={registerForm}
-   							handleRegisterFormChange={handleRegisterFormChange}
-   							handleAllFormSubmission={handleAllFormSubmission}
-   							logo={logo}
-   							loggedInUser={loggedInUser}
-   						/>
+			  				<Route path='/realtors/login-register'>
+			  					<div className='Client-Link'>
+			  						<Link to='/'>
+			  						<Divider fitted horizontal>Return to Client Login:
+					  					<Button compact fluid circular onClick={resetForms} color={'twitter'} >
+					  						Client Portal
+					  					</Button></Divider>
+			  						</Link>
+			  					</div>
+			  					<RealtorLoginRegisterForm 
+			  						myName={loggedInUser}
+			  						loginForm={loginForm}
+			  						handleLoginFormChange={handleLoginFormChange}
+			  						registerForm={registerForm}
+			  						handleRegisterFormChange={handleRegisterFormChange}
+			  						handleAllFormSubmission={handleAllFormSubmission}
+			  						logo={realtorLogo}
+			  						loggedInUser={loggedInUser}
+			  					/>
+			  				</Route>
 
-   						<div className='Realtor-Link'>
-			  				<Link to='/realtor-register'>
-					  			<Divider fitted horizontal>Realtor's Login Here:<Button compact fluid onClick={resetForms} color={'twitter'} className='Link'>
-					  				Realtor Portal
-					  			</Button></Divider>
-			  				</Link>
-				  		</div>
-				  	</div>
-	  				</Route>
-	  			</Switch>
+			  				<Route path='/'>
+		   						<ClientLoginRegisterForm 
+		   							myName={loggedInUser}
+		   							loginForm={loginForm}
+		   							handleLoginFormChange={handleLoginFormChange}
+		   							registerForm={registerForm}
+		   							handleRegisterFormChange={handleRegisterFormChange}
+		   							handleAllFormSubmission={handleAllFormSubmission}
+		   							logo={logo}
+		   							loggedInUser={loggedInUser}
+		   						/>
+		   						<div className='Realtor-Link'>
+					  				<Link to='/realtors/login-register'>
+							  			<Divider fitted horizontal>Realtor's Login Here:<Button compact fluid onClick={resetForms} color={'twitter'} className='Link'>
+							  				Realtor Portal
+							  			</Button></Divider>
+					  				</Link>
+						  		</div>
+			  				</Route>
+		  				</Switch>
+	  				</React.Fragment>
+	  			}
 	  		</Router>
     	</div>
   	);

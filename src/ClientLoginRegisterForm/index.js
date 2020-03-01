@@ -51,92 +51,90 @@ export default function ClientLoginRegisterForm(props) {
 								props.registerForm.recoveryQuestion ? props.registerForm.recoveryQuestion : props.registerForm.recoveryQuestion='Where were you born?',
 								(e) => props.handleAllFormSubmission(e, 'register', 'client')
 							}>
-							<Segment size='small' stacked color='blue'>
-								<Form.Group widths='equal'>
-									<Form.Field>
-										<Label className='Label'>Email:</Label>
-										<Input
-											required
-											type='email'
-											name='email'
-											placeholder='Enter Email'
-											value={props.registerForm.email}
-											onChange={props.handleRegisterFormChange}
-										/>
-									</Form.Field>
-									<Form.Field>
-										<Label className='Label'>Username:</Label>
-										<Input
-											required
-											type='text'
-											name='username'
-											placeholder='Enter Email'
-											value={props.registerForm.username}
-											onChange={props.handleRegisterFormChange}
-										/>
-									</Form.Field>
-									<Form.Field>
-										<Label className='Label'>Password:</Label>
-										<Input
-											required
-											type='password'
-											name='password'
-											placeholder='Enter Password'
-											value={props.registerForm.password}
-											onChange={props.handleRegisterFormChange}
-										/>
-									</Form.Field>
-								</Form.Group>
-								<Form.Group widths='equal'>
-									<Form.Field>
-										<Label className='Label'>First Name:</Label>
-										<Input
-											required
-											type='text'
-											name='firstName'
-											placeholder='Your First Name'
-											value={props.registerForm.firstName}
-											onChange={props.handleRegisterFormChange}
-										/>
-									</Form.Field>
-									<Form.Field>
-										<Label className='Label'>Last Name:</Label>
-										<Input
-											required
-											type='text'
-											name='lastName'
-											placeholder='Your Last Name'
-											value={props.registerForm.lastName}
-											onChange={props.handleRegisterFormChange}
-										/>
-									</Form.Field>
-								</Form.Group>
-								<Form.Group widths='equal'>
-									<Form.Field>
-										<Label className='Label'>Recovery Question:</Label>
-										<select required name='recoveryQuestion' value={props.registerForm.recoveryQuestion} onChange={props.handleRegisterFormChange}>
-											<option value='Where were you born?'>Where were you born?</option>
-											<option value="What is your mother's maiden name?">What is your Mother's Maiden Name?</option>
-											<option value='Which elementary school did you attend?'>Which Elementary School did you attend?</option>
-										</select>
-									</Form.Field>
-									<Form.Field>
-										<Label className='Label'>Recovery Answer:</Label>
-										<Input
-											required
-											type='text'
-											name='recoveryAnswer'
-											placeholder='"Country Road"'
-											value={props.registerForm.recoveryAnswer}
-											onChange={props.handleRegisterFormChange}
-										/>
-									</Form.Field>
-								</Form.Group>
-								<Button size='tiny' color={'vk'} floated='right' type='Submit'>Register</Button>
-
-
-								<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find us a Realtor!</h2>
-							</Segment>
+								<Segment size='small' stacked color='blue'>
+									<Form.Group widths='equal'>
+										<Form.Field>
+											<Label className='Label'>Email:</Label>
+											<Input
+												required
+												type='email'
+												name='email'
+												placeholder='Enter Email'
+												value={props.registerForm.email}
+												onChange={props.handleRegisterFormChange}
+											/>
+										</Form.Field>
+										<Form.Field>
+											<Label className='Label'>Username:</Label>
+											<Input
+												required
+												type='text'
+												name='username'
+												placeholder='Enter Email'
+												value={props.registerForm.username}
+												onChange={props.handleRegisterFormChange}
+											/>
+										</Form.Field>
+										<Form.Field>
+											<Label className='Label'>Password:</Label>
+											<Input
+												required
+												type='password'
+												name='password'
+												placeholder='Enter Password'
+												value={props.registerForm.password}
+												onChange={props.handleRegisterFormChange}
+											/>
+										</Form.Field>
+									</Form.Group>
+									<Form.Group widths='equal'>
+										<Form.Field>
+											<Label className='Label'>First Name:</Label>
+											<Input
+												required
+												type='text'
+												name='firstName'
+												placeholder='Your First Name'
+												value={props.registerForm.firstName}
+												onChange={props.handleRegisterFormChange}
+											/>
+										</Form.Field>
+										<Form.Field>
+											<Label className='Label'>Last Name:</Label>
+											<Input
+												required
+												type='text'
+												name='lastName'
+												placeholder='Your Last Name'
+												value={props.registerForm.lastName}
+												onChange={props.handleRegisterFormChange}
+											/>
+										</Form.Field>
+									</Form.Group>
+									<Form.Group widths='equal'>
+										<Form.Field>
+											<Label className='Label'>Recovery Question:</Label>
+											<select required name='recoveryQuestion' value={props.registerForm.recoveryQuestion} onChange={props.handleRegisterFormChange}>
+												<option value='Where were you born?'>Where were you born?</option>
+												<option value="What is your mother's maiden name?">What is your Mother's Maiden Name?</option>
+												<option value='Which elementary school did you attend?'>Which Elementary School did you attend?</option>
+											</select>
+										</Form.Field>
+										<Form.Field>
+											<Label className='Label'>Recovery Answer:</Label>
+											<Input
+												required
+												type='text'
+												name='recoveryAnswer'
+												placeholder='"Country Road"'
+												value={props.registerForm.recoveryAnswer}
+												onChange={props.handleRegisterFormChange}
+											/>
+										</Form.Field>
+									</Form.Group>
+									<Button size='tiny' color={'vk'} floated='right' type='Submit'>Register</Button>
+									<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find us a Realtor!</h2>
+								</Segment>
 							</Form>
 						</Segment>
 					</Grid.Column>
