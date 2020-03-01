@@ -11,7 +11,7 @@ export default function ClientLoginRegisterForm(props) {
 			<div className='Login-Form'>
 				
 				{/* Login Form Field */}
-				<Form onSubmit={() => props.handleAllFormSubmission('login', 'client')}>
+				<Form onSubmit={(e) => props.handleAllFormSubmission(e, 'login', 'client')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Input
@@ -46,7 +46,7 @@ export default function ClientLoginRegisterForm(props) {
 					<Form onSubmit={
 						// recoveryQuestion default on submission, due to select not defaulting unless changed.
 						props.registerForm.recoveryQuestion ? props.registerForm.recoveryQuestion : props.registerForm.recoveryQuestion='Where were you born?',
-						() => props.handleAllFormSubmission('register', 'client')
+						(e) => props.handleAllFormSubmission(e, 'register', 'client')
 					}>
 						<Form.Group widths='equal'>
 							<Form.Field>
@@ -129,7 +129,7 @@ export default function ClientLoginRegisterForm(props) {
 							</Form.Field>
 						</Form.Group>
 						<Button color={'vk'} type='Submit'>Register</Button>
-						<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, let's find us a Realtor!</h2>
+						<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find us a Realtor!</h2>
 					</Form>
 				</div>
 				<div className='About-Us'>

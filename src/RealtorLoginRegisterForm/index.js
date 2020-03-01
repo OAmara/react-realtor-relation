@@ -8,7 +8,7 @@ export default function RealtorLoginRegisterForm(props) {
 			<div className='Register-Main'>
 				{/* Register Form Field */}
 				<div className='Realtor-Register-Form'>
-					<Form onSubmit={() => props.handleAllFormSubmission('register', 'realtor')}>
+					<Form onSubmit={(e) => props.handleAllFormSubmission(e, 'register', 'realtor')}>
 						<Form.Group widths='equal'>
 							<Form.Field>
 								<Label className='Label'>Email:</Label>
@@ -196,7 +196,7 @@ export default function RealtorLoginRegisterForm(props) {
 			</div>
 			<div className='Login-Form' id='Realtor-Login-Form'>
 				{/* Login Form Field*/}
-				<Form onSubmit={() => props.handleAllFormSubmission('login', 'realtor')}>
+				<Form onSubmit={(e) => props.handleAllFormSubmission(e, 'login', 'realtor')}>
 					<Form.Group widths='equal'>
 						<Form.Field>
 							<Input

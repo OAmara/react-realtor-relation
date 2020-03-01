@@ -71,7 +71,8 @@ function App(props) {
 	}
 
 	// handles all 4 login/register form submission for client/realtor
-	function handleAllFormSubmission(form, whichForm) {
+	function handleAllFormSubmission(e, form, whichForm) {
+		// e.preventDefault()
 		if(form === 'login') {
 			// calls login function and passes state and which from submitted as arguments.
 			login(loginForm, whichForm)
@@ -81,7 +82,6 @@ function App(props) {
 	}
 
 	const register = async (registerFormBody, whichForm) => {
-		console.log('\n', registerFormBody, whichForm);
 		let apiUrl = process.env.REACT_APP_MEN_API_URL
 		if(whichForm === 'client') {
 			apiUrl += '/api/v1.0/clients/register'
@@ -90,7 +90,6 @@ function App(props) {
 			console.log('hello');
 		}
 		try {
-			console.log(apiUrl);
 			const registerResponse = await fetch(apiUrl, {
 				method: 'POST',
 				body: JSON.stringify(registerFormBody),
@@ -98,12 +97,18 @@ function App(props) {
 					'Content-Type': 'application/json'
 				},
 			})
-			console.log(registerResponse);
+
 			const registerJson = await registerResponse.json()
 			console.log(registerJson);
 
-
-
+			if(registerResponse.status === 201) {
+				setLoggedInUser(registerJson.data)
+				if(whichForm === 'client') {
+					setIsCLient(true)
+				} else if (whichForm === 'realtor') {
+					setIsCLient(false)
+				}
+			}
 		} catch(err) {
 			if(err) {
 				// can crearte custom error
@@ -113,7 +118,6 @@ function App(props) {
 	}
 
 	const login = async (loginFormBody, whichForm) => {
-		console.log('\n', loginFormBody, whichForm);
 		let apiUrl = process.env.REACT_APP_MEN_API_URL
 		if(whichForm === 'client') {
 			apiUrl += '/api/v1.0/clients/login'
@@ -128,12 +132,18 @@ function App(props) {
 					'Content-Type': 'application/json'
 				},
 			})
-			console.log(loginResponse);
+
 			const loginJson = await loginResponse.json()
 			console.log(loginJson);
 
-
-
+			if (loginResponse.status === 200) {
+				setLoggedInUser(loginJson.data)
+				if(whichForm === 'client') {
+					setIsCLient(true)
+				} else if (whichForm === 'realtor') {
+					setIsCLient(false)
+				}
+			}
 		} catch(err) {
 			if(err) {
 				// can crearte custom error
@@ -143,10 +153,11 @@ function App(props) {
 	}
 
 	useEffect(() => {
-		document.title = 'Estate: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName?registerForm.lastName:loggedInUser.lastName)
+		 document.title = 'Estate: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
 	})
 
-	console.log(registerForm);
+	console.log(loggedInUser);
+	console.log(isClient);
   	return (
     	<div className="App">
 	  		<Router>
