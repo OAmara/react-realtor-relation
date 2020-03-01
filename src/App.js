@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	useParams
-} from 'react-router-dom';
-import { Button, Divider } from 'semantic-ui-react'
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 /* -- Components -- */
-import ClientLoginRegisterForm from './ClientLoginRegisterForm'
-import RealtorLoginRegisterForm from './RealtorLoginRegisterForm'
-import ClientContainer from './ClientContainer'
+import Routes from './routes';
 
 // imported logo image to pass as variable.
 const mainLogo = require('./lib/restate.png')
@@ -26,6 +17,10 @@ function App(props) {
 			firstName: 'Abraham', lastName: 'Lincoln'
 		},{
 			firstName: 'John', lastName: 'Adams'
+		},{
+			firstName: 'Franklin', lastName: 'Roosevelt'
+		},{
+			firstName: 'John F.', lastName: 'Kennedy'
 	}]
 	let randomName = Math.floor(Math.random() * names.length)
 	// user info retrieved from API on login/ register
@@ -33,8 +28,10 @@ function App(props) {
 	// determines if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
 	const [isClient, setIsCLient] = useState(null)
 	//* This will be filled with information posted from all login forms!
+	const [loginForm, setLoginForm] = useState({})
+	// This will be filled with info from both register froms!
 	// Commented fields below prevents uncontrolled input warning when inserted. Seperate states with fields would be needed for each form.
-	const [loginForm, setLoginForm] = useState({
+	const [registerForm, setRegisterForm] = useState({
 		// email: "",
 		// username: "",
 		// lastName: "",
@@ -43,8 +40,6 @@ function App(props) {
 		// password: "",
 		// recoveryQuestion: ""
 	})
-	// This will be filled with info from both register froms!
-	const [registerForm, setRegisterForm] = useState({})
 	// logo to be passed in state
 	const [logo, setLogo] = useState(mainLogo)
 
@@ -160,84 +155,23 @@ function App(props) {
 	console.log(loggedInUser);
 	console.log(isClient);
   	return (
-    	<div className="App">
-	  		<Router>
-  				{
-  					(isClient === true) 
-  					? 
-  					<React.Fragment>
-	  					<Link to='/clients/'>
-	  						<p>{loggedInUser.firstName} Home</p>
-	  					</Link>
-	  					<ClientContainer 
-	  						loggedInUser={loggedInUser}
-	  					/>
-		  				<Switch>
-			  				<Route path='/clients/'>
-			  					
-			  				</Route>
-			  			</Switch>
-		  			</React.Fragment>
-	  				:
-	  				(isClient === false)
-	  				?
-	  				<React.Fragment>
-	  					<Link to='/realtors/home'>
-	  						{loggedInUser.lastName} Home
-	  					</Link>
-	  					<Switch>
-			  				<Route path='/realtors/home'>
-			  					hello
-			  				</Route>
-			  			</Switch>
-		  			</React.Fragment>
-	  				:
-			  		<React.Fragment>
-			  			<Switch>
-
-			  				<Route path='/realtors-auth'>
-			  					<div className='Client-Link'>
-			  						<Link to='/'>
-			  						<Divider fitted horizontal>Return to Client Login:
-					  					<Button compact fluid circular onClick={resetForms} color={'twitter'} >
-					  						Client Portal
-					  					</Button></Divider>
-			  						</Link>
-			  					</div>
-			  					<RealtorLoginRegisterForm 
-			  						myName={loggedInUser}
-			  						loginForm={loginForm}
-			  						handleLoginFormChange={handleLoginFormChange}
-			  						registerForm={registerForm}
-			  						handleRegisterFormChange={handleRegisterFormChange}
-			  						handleAllFormSubmission={handleAllFormSubmission}
-			  						logo={realtorLogo}
-			  						loggedInUser={loggedInUser}
-			  					/>
-			  				</Route>
-
-			  				<Route path='/'>
-		   						<ClientLoginRegisterForm 
-		   							myName={loggedInUser}
-		   							loginForm={loginForm}
-		   							handleLoginFormChange={handleLoginFormChange}
-		   							registerForm={registerForm}
-		   							handleRegisterFormChange={handleRegisterFormChange}
-		   							handleAllFormSubmission={handleAllFormSubmission}
-		   							logo={logo}
-		   							loggedInUser={loggedInUser}
-		   						/>
-		   						<div className='Realtor-Link'>
-					  				<Link to='/realtors-auth'>
-							  			<Divider fitted horizontal>Realtor's Login Here:<Button compact fluid onClick={resetForms} color={'twitter'} className='Link'>
-							  				Realtor Portal
-							  			</Button></Divider>
-					  				</Link>
-						  		</div>
-			  				</Route>
-		  				</Switch>
-	  				</React.Fragment>
-	  			}
+		<div className='App'>
+	  		<Router >
+	  			<Routes 
+	  				// Try spread operating props instead of writing out each. ex = render={props=><RealtorLoginRegisterForm {...props}/>}
+		   			myName={loggedInUser}
+					loginForm={loginForm}
+					handleLoginFormChange={handleLoginFormChange}
+					registerForm={registerForm}
+					handleRegisterFormChange={handleRegisterFormChange}
+					handleAllFormSubmission={handleAllFormSubmission}
+					logo={logo}
+					loggedInUser={loggedInUser}
+					resetForms={resetForms}
+					setLogo={setLogo}
+					realtorLogo={realtorLogo}
+					isClient={isClient}
+	  			/>
 	  		</Router>
     	</div>
   	);

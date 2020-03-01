@@ -133,7 +133,7 @@ export default function ClientLoginRegisterForm(props) {
 										</Form.Field>
 									</Form.Group>
 									<Button size='tiny' color={'vk'} floated='right' type='Submit'>Register</Button>
-									<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find us a Realtor!</h2>
+									<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find a Realtor!</h2>
 								</Segment>
 							</Form>
 						</Segment>
