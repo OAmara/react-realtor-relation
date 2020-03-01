@@ -10,19 +10,14 @@ body {
 
 /* Home Auth Links */
 .Realtor-Link {
-	position: fixed;
-	width: 100%;
-	margin-top: 5%;
-	text-align: center;
-	background-color: lightgrey;
+	position: sticky;
 	bottom: 0;
+	z-index: 10;
 }
 .Client-Link {
-	text-align: center;
-	background-color: lightgrey;
-}
-.Client-Link h5{
-	margin-bottom: 0;
+	position: sticky;
+	top: 0;
+	z-index: 10;
 }
 
 /* Forms */
@@ -33,45 +28,46 @@ body {
 .Login-Form {
 	border: 1px ridge grey;
 	border-radius: 5px;
-	background-color: rgba(64, 135, 165, 0.9);
+	background-color: rgba(64, 135, 185, 0.9);
 	padding-top: 1%;
 }
 .Login-Form Button{
 	height: 10%;
 	padding-right: 100%;
 }
+#Client-Login-Form {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
 #Realtor-Login-Form {
-	position: fixed;
-	width: 100%;
-	text-align: center;
+	position: sticky;
 	bottom: 0;
+	z-index: 10;
 }
 
-/* Register Main Body */
-.Register-Main {
-	display: flex;
-	justify-content: space-between;
-}
 .Client-Register-Form {
-	margin-top: 7%;
-	margin-bottom: 14%;
+	background-color: rgb(236, 240, 240);
+	margin-top: 8%;
+	margin-bottom: 8%;
 	width: 55%;
-	border-top: 1px groove rgba(180, 180, 180, 0.7);
-	border-right: 1px groove grey;
-	border-bottom: 1px groove lightgrey;
-	border-left: 1px solid lightcyan;
+	border-left: 2px solid lightgrey;
+	border-top: 1.5px ridge lightgrey;
+	border-bottom: 2px groove lightgrey;
 }
 .Realtor-Register-Form {
 	/*margin-top: 5%;*/
-	margin-bottom: 15%;
+	background-color: rgb(236, 240, 240);
+	margin-top: 8%;
+	margin-bottom: 8%;
 	width: 55%;
-	border-left: 1px solid lightcyan;
-	border-right: 1px solid lightgrey;
+	border-top: 1.5px ridge lightgrey;
+	border-bottom: 2px groove lightgrey;
 }
 .About-Us {
 	background-color: rgb(236, 240, 240);
 	width: 43%;
-	border-left: 2px ridge grey;
+
 	text-align: center;
 }
 .About-US h3{

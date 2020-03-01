@@ -6,7 +6,7 @@ import {
 	Link,
 	useParams
 } from 'react-router-dom';
-import { Button } from 'semantic-ui-react'
+import { Button, Divider } from 'semantic-ui-react'
 import './App.css';
 /* -- Components -- */
 import ClientLoginRegisterForm from './ClientLoginRegisterForm'
@@ -164,13 +164,13 @@ function App(props) {
 	  			<Switch>
 	  				<Route path='/realtor-register'>
 	  					<div className='Client-Link'>
-		  						<Link to='/'>
-		  						<h5>Return to Client Login:</h5>
-				  					<Button onClick={resetForms} color={'twitter'} >
-				  						Client Portal
-				  					</Button>
-		  						</Link>
-		  				</div>
+	  						<Link to='/'>
+	  						<Divider fitted horizontal>Return to Client Login:
+			  					<Button compact fluid circular onClick={resetForms} color={'twitter'} >
+			  						Client Portal
+			  					</Button></Divider>
+	  						</Link>
+	  					</div>
 	  					<RealtorLoginRegisterForm 
 	  						myName={loggedInUser}
 	  						loginForm={loginForm}
@@ -197,12 +197,11 @@ function App(props) {
    						/>
 
    						<div className='Realtor-Link'>
-   							<h5>Realtors, Login Here:</h5>
-				  				<Link to='/realtor-register'>
-						  			<Button onClick={resetForms} color={'twitter'} className='Link'>
-						  				Realtor Portal
-						  			</Button>
-				  				</Link>
+			  				<Link to='/realtor-register'>
+					  			<Divider fitted horizontal>Realtor's Login Here:<Button compact fluid onClick={resetForms} color={'twitter'} className='Link'>
+					  				Realtor Portal
+					  			</Button></Divider>
+			  				</Link>
 				  		</div>
 				  	</div>
 	  				</Route>
