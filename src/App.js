@@ -26,7 +26,7 @@ function App(props) {
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(true)// ***Set to null, true/false for testing
+	const [isClient, setIsCLient] = useState(null)// ***Set to null, true/false for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 	// This will be filled with info from both register froms!
@@ -81,7 +81,6 @@ function App(props) {
 			apiUrl += '/api/v1.0/clients/register'
 		} else if(whichForm === 'realtor') {
 			apiUrl += '/api/v1.0/realtors/register'
-			console.log('hello');
 		}
 		try {
 			const registerResponse = await fetch(apiUrl, {
@@ -147,18 +146,25 @@ function App(props) {
 	}
 
 	const logout = async () => {
-			//may need to logically change route if isClient=true/ false
+		// back-end should store this in main server file??
+		let apiUrl = process.env.REACT_APP_MEN_API_URL
+		if(isClient === true) {
+			apiUrl += '/api/v1.0/clients/logout'
+		} else if(isClient === false) {
+			apiUrl += '/api/v1.0/realtors/logout'
+		}
 		try {
 			const logoutResponse = await fetch(apiUrl)
-			await logoutResponse.json()
+			const logoutJson = await logoutResponse.json()
 
 			if(logoutResponse.status === 200) {
-				
+				console.log(logoutJson.message);
+				setIsCLient(null)
+				setLoggedInUser(names[randomName])
 			}
 		} catch(err) {
 			console.error(err)
 		}
-		console.log('fetch call to logout, then change state to loggedInUser={}, isClient=null');
 	}
 
 	useEffect(() => {
