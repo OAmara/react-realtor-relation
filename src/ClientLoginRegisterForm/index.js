@@ -148,7 +148,10 @@ export default function ClientLoginRegisterForm(props) {
 						<Image className='Realtor-Logo' src={props.logo} centered size='small'/>
 						<h3>Who We Are</h3>
 						<p>What We Are</p>
-						<p>How We Can Help</p>
+						<p>How We Can Help..</p>
+						<p>We give power to the home seekers! Only Clients can start a conversation, only a Client can seek to hire a realtor</p>
+						<p>Here you get no spam mail, no bother from individual realtor ads!</p>
+						<p>You choose the content, you choose your realtor, we help you find them!</p>
 						<h5>Mission</h5>
 						<p>learn more</p>
 

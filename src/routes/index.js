@@ -21,6 +21,12 @@ export default function Routes(props) {
 		}
 	}
 
+	// Chat function to create a message,
+		//
+	// Chat function to delete a message
+		//
+	// ^ Should both these be in Chat Container??
+
 	return(
 // 		<Switch>
 // 			<Route path='/' exact component={ClientLoginRegisterForm} />
@@ -30,7 +36,6 @@ export default function Routes(props) {
 // 
 // 			{/* Redirect if not signed in */}
 // 			<Route component={SignIn} />
-// 
 // 		</Switch>
 
 		// Already in Router from App.js render
@@ -84,6 +89,7 @@ export default function Routes(props) {
 							/>
 						</Route>
 		  			</Switch>
+		  			{/* ChatContainer Exists In All Components listed in switch above */}
 					<ChatContainer />
 	  			</React.Fragment>
   				:

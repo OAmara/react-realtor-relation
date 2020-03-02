@@ -35,9 +35,6 @@ export default function RealtorList(props) {
 	// Retrieves: Contract realtor/ client, changes state of loggedInUser in App.js
 	const contractRealtor = async (_id) => {
 		try{
-			 // if(props.loggedInUser.currentRealtor.length > 0){
-			 // 	await props.terminateContract()
-			 // }
 			const contractResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/contract/' + _id, {
 				credentials: 'include',
 				method: 'PUT',
@@ -45,9 +42,7 @@ export default function RealtorList(props) {
 					'Content-type': 'application/json'
 				},
 			})
-			console.log(contractResponse);
 			const contractJson = await contractResponse.json()
-			console.log(contractJson);
 
 			// change loggedInUser in App.js without having to query or log back in.
 			if(contractResponse.status/* === 201*/) {
@@ -62,7 +57,24 @@ export default function RealtorList(props) {
 		} catch(err) {
 			console.error(err)
 		}
+	}
 
+	const createChatThread = async (realtorId) => {
+		try {
+			const chatResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/' + realtorId, {
+				credentials: 'include',
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+			})
+			console.log(chatResponse);
+			const chatJson = await chatResponse.json()
+			console.log(chatJson);
+
+		} catch(err) {
+			console.error(err)
+		}
 	}
 
 	useEffect(
@@ -80,16 +92,14 @@ export default function RealtorList(props) {
 			{
 				(realtors.length>0)
 				?
-				<Segment stacked color="black">
-				{
 					realtors.map(({_id, firstName, lastName, email, phoneNumber, companyName, street1, city, state, zipcode, websiteURL, companyPhone}) => (
 						<Segment raised key={_id}>
-							<Segment color='orange'>
+							<Segment raised color='orange'>
 								{
 									// first condition is used for testing since cannot use .length if undefined...
 									(props.loggedInUser.currentRealtor && props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
 									?
-									<Button onClick={sayHi} animated='fade' inverted color={'orange'} size='medium' floated='right'>
+									<Button onClick={sayHi} animated='vertical' inverted color={'blue'} size='medium' floated='right'>
 										<Button.Content visible><Icon name='home'/></Button.Content>
 										<Button.Content hidden>
 											{greetRealtor}
@@ -104,15 +114,25 @@ export default function RealtorList(props) {
 									</Button>
 								}
 								<h2>{firstName} {lastName}</h2>
+								<Segment>
+								{// insert logic to not be able to create a message thread with realtor if already created, or maybe when clicked it will open modal containing chat??
+									(props.loggedInUser)
+									?
+									<Button onClick={() => createChatThread(_id)} animated inverted color='orange' floated='right' size='small'>
+										<Button.Content visible><Icon name='mail'/></Button.Content>
+										<Button.Content hidden>Say Hi!</Button.Content>
+									</Button>
+									:
+									<Button>Bye</Button>
+								}
 								<h4 className='underline'>Contact Info:</h4>
 								<p>Email: {email}, Phone: {phoneNumber}</p>
 								<p>Works with {companyName}, located on {street1} in {city}, {state} {zipcode}</p>
 								<p>Find out more about realtor @ <a className='underline' src={null}>{websiteURL}</a> or contact {companyName} at <a src={null}>{companyPhone}</a></p>
+								</Segment>
 							</Segment>
 						</Segment>
 					))
-				}
-				</Segment>
 				:
 				<p>Realtors Are Listed Here</p>
 			}
