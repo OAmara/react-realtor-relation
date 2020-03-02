@@ -3,8 +3,10 @@ import { Segment, Button, Form, Icon } from 'semantic-ui-react'
 
 export default function RealtorList(props) {
 
+	// State for Realtor List from getRealtors() fetch
 	const [realtors, setRealtors] = useState({})
 
+	// Retrieves realtor index, then set realtors state.
 	const getRealtors = async () => {
 		try{
 			const realtorsResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/realtors/list', {
@@ -23,8 +25,10 @@ export default function RealtorList(props) {
 
 	}
 
+	// Retrieves: Contract realtor/ client, changes state of loggedInUser in App.js
 	const contractRealtor = async (_id) => {
 		console.log('Realtor`s _id: ', _id);
+		props.updateLoggedInUser('adding this id to currentRealtor: ', _id)
 		//^^ Use this to hit contract realtor route in API!!
 	}
 

@@ -59,6 +59,7 @@ export default function Routes(props) {
 		  				<Route path='/clients/realtor-list'>
 	  						<RealtorList 
 	  							loggedInUser={props.loggedInUser}
+	  							updateLoggedInUser={props.updateLoggedInUser}
 	  						/>
 		  				</Route>
 

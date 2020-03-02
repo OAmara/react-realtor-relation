@@ -41,7 +41,7 @@ function App(props) {
 		// recoveryQuestion: ""
 	})
 
-	// clears forms when switching components. Choose Random Name!
+	// clears forms when switching auth components. Chooses a new Random Name!
 	function resetForms() {
 		setRegisterForm({})
 		setLoginForm({})
@@ -49,6 +49,7 @@ function App(props) {
 	}
 
 	// handles loginForm state
+	// to prevent uncontrolled warning, try indicating specific fields here as well as useState(...)
 	function handleLoginFormChange(e) {
 		setLoginForm({
 			...loginForm,
@@ -171,25 +172,42 @@ function App(props) {
 		 document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
 	})
 
+	/* -- State Changing Functions -- */
+	// these can be replaced by using global variables for state such as loggedInUser
+
+	// Change/ setLoggedInUser
+	function updateLoggedInUser(updatedUser) {
+		// may need to update api if utilizable content/ sensitive info is being displayed here.
+		console.log('\n\ncurrent loggedInUser info: ', loggedInUser);
+		console.log('^\nChange loggedInUser to this: ', updatedUser);
+
+		// setLoggedInUser(updatedUser)
+	}
+
 	console.log(loggedInUser);
 	console.log(isClient);
   	return (
 		<div className='App'>
 	  		<Router >
 	  			<Routes 
-	  				// Try spread operating props instead of writing out each. ex = render={props=><RealtorLoginRegisterForm {...props}/>}
+	  				/*---> Try spread operating props instead of writing out each. ex = render={props=><RealtorLoginRegisterForm {...props}/>} */
+		   			/* Important auth logged in state properties */ //--> consider global variables for these!
+					isClient={isClient}
 		   			myName={loggedInUser}
+					loggedInUser={loggedInUser}
+					/* Auth methods */
 					loginForm={loginForm}
-					handleLoginFormChange={handleLoginFormChange}
 					registerForm={registerForm}
+					resetForms={resetForms}
+					handleLoginFormChange={handleLoginFormChange}
 					handleRegisterFormChange={handleRegisterFormChange}
 					handleAllFormSubmission={handleAllFormSubmission}
-					logo={mainLogo}
-					loggedInUser={loggedInUser}
-					resetForms={resetForms}
-					realtorLogo={realtorLogo}
-					isClient={isClient}
 					logout={logout}
+					/* client/realtor logos */
+					logo={mainLogo}
+					realtorLogo={realtorLogo}
+					/* strictly children methods to update (should be global) variables*/
+					updateLoggedInUser={updateLoggedInUser}
 	  			/>
 	  		</Router>
     	</div>
