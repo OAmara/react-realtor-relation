@@ -79,7 +79,7 @@ export default function RealtorLoginRegisterForm(props) {
 										value={props.registerForm.phoneNumber}
 										onChange={props.handleRegisterFormChange}
 										minLength='10'
-										maxLength='11'
+										maxLength='12'
 									/>
 								</Form.Field>
 							</Form.Group>
@@ -128,7 +128,7 @@ export default function RealtorLoginRegisterForm(props) {
 										value={props.registerForm.companyPhone}
 										onChange={props.handleRegisterFormChange}
 										minLength='10'
-										maxLength='11'
+										maxLength='12'
 									/>
 								</Form.Field>
 								<Form.Field>
