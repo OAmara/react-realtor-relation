@@ -4,7 +4,7 @@ import './App.css';
 /* -- Components -- */
 import Routes from './routes';
 
-// imported logo image to pass as variable.
+// imported logo image to pass as variable in props.
 const mainLogo = require('./lib/restate.png')
 const realtorLogo = require('./lib/restateRealtors.png')
 
@@ -40,8 +40,6 @@ function App(props) {
 		// password: "",
 		// recoveryQuestion: ""
 	})
-	// logo to be passed in state
-	const [logo, setLogo] = useState(mainLogo)
 
 	// clears forms when switching components. Choose Random Name!
 	function resetForms() {
@@ -148,6 +146,21 @@ function App(props) {
 		}	
 	}
 
+	const logout = async () => {
+			//may need to logically change route if isClient=true/ false
+		try {
+			const logoutResponse = await fetch(apiUrl)
+			await logoutResponse.json()
+
+			if(logoutResponse.status === 200) {
+				
+			}
+		} catch(err) {
+			console.error(err)
+		}
+		console.log('fetch call to logout, then change state to loggedInUser={}, isClient=null');
+	}
+
 	useEffect(() => {
 		 document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
 	})
@@ -165,11 +178,12 @@ function App(props) {
 					registerForm={registerForm}
 					handleRegisterFormChange={handleRegisterFormChange}
 					handleAllFormSubmission={handleAllFormSubmission}
-					logo={logo}
+					logo={mainLogo}
 					loggedInUser={loggedInUser}
 					resetForms={resetForms}
 					realtorLogo={realtorLogo}
 					isClient={isClient}
+					logout={logout}
 	  			/>
 	  		</Router>
     	</div>

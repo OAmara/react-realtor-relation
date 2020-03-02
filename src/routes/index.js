@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
-import { Button, Divider, Segment, Sticky, Image, Icon } from 'semantic-ui-react'
+import { Button, Divider, Segment, Sticky, Image, Icon, Menu } from 'semantic-ui-react'
 
 import ClientLoginRegisterForm from '../ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from '../RealtorLoginRegisterForm'
@@ -31,21 +31,28 @@ export default function Routes(props) {
 					{/* Automatically Redirects to /clients when isClient===true */}
 					<Redirect to='/clients'/>
 					<Sticky>
-						<Segment raised size='mini' color='blue'>
-							<Link to='/clients'>
-								<Button animated='fade'>
-									<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
-									<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon name='home' /></Button.Content>
-								</Button>
-							</Link>
-							<Link to='/clients/realtor-list'>
-								<Button animated='fade'>
-									<Button.Content visible>Realtor List</Button.Content>
-									<Button.Content hidden>Realtor <Icon name='list' /></Button.Content>
-								</Button>
-							</Link>
+						<Menu>
+							<Menu.Item>
+								<Link to='/clients'>
+									<Button animated='fade'>
+										<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
+										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon name='home' /></Button.Content>
+									</Button>
+								</Link>
+							</Menu.Item>
+							<Menu.Item>
+								<Link to='/clients/realtor-list'>
+									<Button animated='fade'>
+										<Button.Content visible>Realtor List</Button.Content>
+										<Button.Content hidden>Realtor <Icon name='list' /></Button.Content>
+									</Button>
+								</Link>
+							</Menu.Item>
+							<Menu.Item position='right'>
+								<Button onClick={props.logout} >Log-Out</Button>
+							</Menu.Item>
 							<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
-						</Segment>
+						</Menu>
 					</Sticky>
 
 	  				<Switch>
