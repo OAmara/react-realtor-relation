@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Label, Input, Button, Image, Segment, Grid, Divider } from 'semantic-ui-react'
+import { Form, Label, Input, Button, Image, Segment, Grid, Divider, Icon } from 'semantic-ui-react'
 
 // Place styles here to overwrite semantic. If overwrite does not work, try utilizing {Styled Components}
 // ^ read docs for install and implementation.
@@ -34,7 +34,10 @@ export default function ClientLoginRegisterForm(props) {
 								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
-						<Button size={'mini'} color={'vk'} type='Submit'>Login</Button>
+						<Button size={'mini'} color={'vk'} animated type='Submit'>
+							<Button.Content visible>Login</Button.Content>
+							<Button.Content hidden><Icon name='sign-in' /></Button.Content>
+						</Button>
 					</Form.Group>
 				</Form>
 			</div>
@@ -131,7 +134,10 @@ export default function ClientLoginRegisterForm(props) {
 											/>
 										</Form.Field>
 									</Form.Group>
-									<Button size='tiny' color={'vk'} floated='right' type='Submit'>Register</Button>
+									<Button size='tiny' color={'vk'} floated='right' animated='vertical' type='Submit'>
+										<Button.Content visible>Register</Button.Content>
+										<Button.Content hidden><Icon name='paper plane' /></Button.Content>
+									</Button>
 									<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find a Realtor!</h2>
 								</Segment>
 							</Form>

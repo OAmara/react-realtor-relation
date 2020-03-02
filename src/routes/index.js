@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
-import { Button, Divider, Segment, Sticky, Image } from 'semantic-ui-react'
+import { Button, Divider, Segment, Sticky, Image, Icon } from 'semantic-ui-react'
 
 import ClientLoginRegisterForm from '../ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from '../RealtorLoginRegisterForm'
@@ -33,10 +33,16 @@ export default function Routes(props) {
 					<Sticky>
 						<Segment raised size='mini' color='blue'>
 							<Link to='/clients'>
-								<Button>{props.loggedInUser.firstName}'s Home</Button>
+								<Button animated='fade'>
+									<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
+									<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon name='home' /></Button.Content>
+								</Button>
 							</Link>
 							<Link to='/clients/realtor-list'>
-								<Button>Realtor List</Button>
+								<Button animated='fade'>
+									<Button.Content visible>Realtor List</Button.Content>
+									<Button.Content hidden>Realtor <Icon name='list' /></Button.Content>
+								</Button>
 							</Link>
 							<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
 						</Segment>
@@ -88,9 +94,11 @@ export default function Routes(props) {
 		  					<div className='Client-Link'>
 		  						<Link to='/'>
 		  						<Divider fitted horizontal>Return to Client Login:
-				  					<Button compact fluid circular onClick={props.resetForms} color={'twitter'} >
-				  						Client Portal
-				  					</Button></Divider>
+				  					<Button compact fluid circular onClick={props.resetForms} animated='fade' color={'twitter'} >
+				  						<Button.Content visible>Client Portal</Button.Content>
+				  						<Button.Content hidden><Icon name='users' /></Button.Content>
+				  					</Button>
+				  				</Divider>
 		  						</Link>
 		  					</div>
 		  					<RealtorLoginRegisterForm 
@@ -119,9 +127,12 @@ export default function Routes(props) {
 	   						/>
 	   						<div className='Realtor-Link'>
 				  				<Link to='/realtors'>
-						  			<Divider fitted horizontal>Realtor's Login Here:<Button compact fluid onClick={props.resetForms} color={'twitter'} className='Link'>
-						  				Realtor Portal
-						  			</Button></Divider>
+						  			<Divider fitted horizontal>Realtor's Login Here:
+							  			<Button compact fluid onClick={props.resetForms} color={'twitter'} animated='fade' className='Link'>
+							  				<Button.Content visible>Realtor Portal</Button.Content>
+							  				<Button.Content hidden><Icon name='briefcase' /></Button.Content>
+							  			</Button>
+						  			</Divider>
 				  				</Link>
 					  		</div>
 		  				</Route>

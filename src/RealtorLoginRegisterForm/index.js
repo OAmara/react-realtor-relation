@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Label, Button, Image, Grid, Segment } from 'semantic-ui-react'
+import { Form, Input, Label, Button, Image, Grid, Segment, Icon } from 'semantic-ui-react'
 
 export default function RealtorLoginRegisterForm(props) {
 
@@ -179,7 +179,10 @@ export default function RealtorLoginRegisterForm(props) {
 									/>
 								</Form.Field>
 							</Form.Group>
-							<Button color={'vk'} floated='right' type='Submit'>Register</Button>
+							<Button size='tiny' color={'vk'} floated='right' animated='vertical' type='Submit'>
+								<Button.Content visible>Register</Button.Content>
+								<Button.Content hidden><Icon name='paper plane' /></Button.Content>
+							</Button>
 						<h2>Welcome {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, are you a Realtor?</h2>
 						</Form>
 					</Segment>
@@ -224,7 +227,10 @@ export default function RealtorLoginRegisterForm(props) {
 								onChange={props.handleLoginFormChange}
 							/>
 						</Form.Field>
-						<Button size={'mini'} color={'vk'} type='Submit'>Login</Button>
+						<Button size={'mini'} color={'vk'} animated type='Submit'>
+							<Button.Content visible>Login</Button.Content>
+							<Button.Content hidden><Icon name='sign-in' /></Button.Content>
+						</Button>
 					</Form.Group>
 				</Form>
 			</div>
