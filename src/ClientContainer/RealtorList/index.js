@@ -9,9 +9,8 @@ export default function RealtorList(props) {
 	// Retrieves realtor index, then set realtors state.
 	const getRealtors = async () => {
 		try{
-			const realtorsResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/realtors/list', {
+			const realtorsResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/realtors/list')
 
-			})
 			console.log('realtorsResponse: ', realtorsResponse);
 			const realtorsJson = await realtorsResponse.json()
 			console.log('\nrealtorsJson: ', realtorsJson);
@@ -27,9 +26,25 @@ export default function RealtorList(props) {
 
 	// Retrieves: Contract realtor/ client, changes state of loggedInUser in App.js
 	const contractRealtor = async (_id) => {
-		console.log('Realtor`s _id: ', _id);
-		props.updateLoggedInUser('adding this id to currentRealtor: ', _id)
-		//^^ Use this to hit contract realtor route in API!!
+		try{
+			const contractResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/contract/' + _id, {
+				credentials: 'include',
+				method: 'PUT',
+				headers: {
+					'Content-type': 'application/json'
+				},
+			})
+			console.log(contractResponse);
+			const contractJson = await contractResponse.json()
+			console.log(contractJson);
+
+			//if status.200? :
+			props.updateLoggedInUser(contractJson.data)
+			//^^ Use this to update loggedInUser in state in app.js!!
+		} catch(err) {
+			console.error(err)
+		}
+
 	}
 
 	useEffect(
@@ -52,9 +67,12 @@ export default function RealtorList(props) {
 						<Segment color='orange'>
 							{
 								// (props.loggedInUser.currentRealtor[0].email === email)
-								// ?
-								// <h1>Your Realtor</h1>
-								// :
+								(props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
+								?
+								<h1>Your Realtor</h1>
+								:
+											// try to use currentRealtor.length>0...
+											// also try using an if statement instead!
 								<Button onClick={() => contractRealtor(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
 									<Button.Content visible>Hire Realtor</Button.Content>
 									<Button.Content hidden>

@@ -85,6 +85,7 @@ function App(props) {
 		}
 		try {
 			const registerResponse = await fetch(apiUrl, {
+				credentials: 'include',
 				method: 'POST',
 				body: JSON.stringify(registerFormBody),
 				headers: {
@@ -120,6 +121,7 @@ function App(props) {
 		}
 		try {
 			const loginResponse = await fetch(apiUrl, {
+				credentials: 'include',
 				method: 'POST',
 				body: JSON.stringify(loginFormBody),
 				headers: {
