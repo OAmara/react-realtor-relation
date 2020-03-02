@@ -20,6 +20,13 @@ body {
 	z-index: 10;
 }
 
+/* replace redundant classes with same properties to this proptery */
+.Bottom-Sticky {
+	position: sticky;
+	bottom: 0;
+	z-index: 10;
+}
+
 /* Forms */
 .Label {
 	/*width: 20%;*/

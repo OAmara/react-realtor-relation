@@ -30,7 +30,7 @@ export default function Routes(props) {
 					{/* Automatically Redirects to /clients when isClient===true */}
 					<Redirect to='/clients'/>
 					<Sticky>
-						<Menu borderless>
+						<Menu>
 							<Menu.Item>
 								<Link to='/clients'>
 									<Button animated='fade'>

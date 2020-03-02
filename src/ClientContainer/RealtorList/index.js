@@ -121,9 +121,9 @@ export default function RealtorList(props) {
 									<Button>Bye</Button>
 								}
 								<h4>Contact Info:</h4>
-								<p>Email: {email}, Phone: {phoneNumber}</p>
-								<p>Works with {companyName}, located on {street1} in {city}, {state} {zipcode}</p>
-								<p>Find out more about realtor @ <span className='underline'>{websiteURL}</span> or contact {companyName} at <span className='underline'>{companyPhone}</span></p>
+								<p><Icon name='mail'/>Email: {email}, <Icon name='phone'/>Phone: {phoneNumber}</p>
+								<p><Icon name='marker'/>Works at {companyName}, located on {street1} in {city}, {state} {zipcode}</p>
+								<p><Icon name='linkify'/><span className='underline'>{websiteURL}</span> Find out more about Realtor by visiting their site or by calling {companyName} <small><Icon name='phone'/></small><span className='underline'>{companyPhone}</span></p>
 								</Segment>
 							</Segment>
 						</Segment>
