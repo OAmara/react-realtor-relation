@@ -9,6 +9,18 @@ import RealtorList from '../ClientContainer/RealtorList'
 import ChatContainer from '../ChatContainer'
 
 export default function Routes(props) {
+
+	// To terminate Contract/Relationship.
+	const terminateContract = async (clientId) => {
+	// maybe for Client use: loggedInUser.currentRealtor[0]._id
+	// maybe for Realtor use: loggedInUser.clients.map..._id (OR) map in realtor's portal then send the index or id through as argument(clientId)
+		try{
+			console.log('Hitting the terminateContract method: ', props.loggedInUser.currentRealtor[0]._id);
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
 	return(
 // 		<Switch>
 // 			<Route path='/' exact component={ClientLoginRegisterForm} />
@@ -60,6 +72,7 @@ export default function Routes(props) {
 	  						<RealtorList 
 	  							loggedInUser={props.loggedInUser}
 	  							updateLoggedInUser={props.updateLoggedInUser}
+	  							terminateContract={terminateContract}
 	  						/>
 		  				</Route>
 

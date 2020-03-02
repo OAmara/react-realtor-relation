@@ -35,6 +35,9 @@ export default function RealtorList(props) {
 	// Retrieves: Contract realtor/ client, changes state of loggedInUser in App.js
 	const contractRealtor = async (_id) => {
 		try{
+			 // if(props.loggedInUser.currentRealtor.length > 0){
+			 // 	await props.terminateContract()
+			 // }
 			const contractResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/contract/' + _id, {
 				credentials: 'include',
 				method: 'PUT',
@@ -77,37 +80,39 @@ export default function RealtorList(props) {
 			{
 				(realtors.length>0)
 				?
-				realtors.map(({_id, firstName, lastName, email, phoneNumber, companyName, street1, city, state, zipcode, websiteURL, companyPhone}) => (
-					<Segment raised key={_id}>
-						<Segment color='orange'>
-							{
-								// (props.loggedInUser.currentRealtor[0].email === email)
-								(props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
-								?
-								<Button onClick={sayHi} animated='fade' inverted color={'orange'} size='medium' floated='right'>
-									<Button.Content visible><Icon name='home'/></Button.Content>
-									<Button.Content hidden>
-										{greetRealtor}
-									</Button.Content>
-								</Button>
-								:
-											// try to use currentRealtor.length>0...
-											// also try using an if statement instead!
-								<Button onClick={() => contractRealtor(_id), sayHi} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
-									<Button.Content visible>Hire Realtor</Button.Content>
-									<Button.Content hidden>
-										<Icon name='handshake'/>
-									</Button.Content>
-								</Button>
-							}
-							<h2>{firstName} {lastName}</h2>
-							<h4>Contact Info:</h4>
-							<p>Email: {email}, Phone: {phoneNumber}</p>
-							<p>Part of {companyName}; located on {street1} in {city}, {state} {zipcode}</p>
-							<p>Find out more @ {websiteURL} or contact {companyName} at {companyPhone}</p>
+				<Segment stacked color="black">
+				{
+					realtors.map(({_id, firstName, lastName, email, phoneNumber, companyName, street1, city, state, zipcode, websiteURL, companyPhone}) => (
+						<Segment raised key={_id}>
+							<Segment color='orange'>
+								{
+									// first condition is used for testing since cannot use .length if undefined...
+									(props.loggedInUser.currentRealtor && props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
+									?
+									<Button onClick={sayHi} animated='fade' inverted color={'orange'} size='medium' floated='right'>
+										<Button.Content visible><Icon name='home'/></Button.Content>
+										<Button.Content hidden>
+											{greetRealtor}
+										</Button.Content>
+									</Button>
+									:
+									<Button onClick={() => contractRealtor(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
+										<Button.Content visible>Hire Realtor</Button.Content>
+										<Button.Content hidden>
+											<Icon name='handshake'/>
+										</Button.Content>
+									</Button>
+								}
+								<h2>{firstName} {lastName}</h2>
+								<h4 className='underline'>Contact Info:</h4>
+								<p>Email: {email}, Phone: {phoneNumber}</p>
+								<p>Works with {companyName}, located on {street1} in {city}, {state} {zipcode}</p>
+								<p>Find out more about realtor @ <a className='underline' src={null}>{websiteURL}</a> or contact {companyName} at <a src={null}>{companyPhone}</a></p>
+							</Segment>
 						</Segment>
-					</Segment>
-				))
+					))
+				}
+				</Segment>
 				:
 				<p>Realtors Are Listed Here</p>
 			}
