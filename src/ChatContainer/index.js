@@ -1,11 +1,13 @@
-import React from 'react'
-import { Segment, Modal, Form, Label, Sticky, Menu, Input } from 'semantic-ui-react'
+import React, { useEffect } from 'react'
+import { /*Segment, Modal, Sticky*/ Form, Label, Menu, Input } from 'semantic-ui-react'
 
-export default function ChatContainer() {
+export default function ChatContainer({chatList}) {
 
+	useEffect(() => {
+		// chatList()
+	})
 
-
-	{/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */}
+	/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */
 	return(
 		<div className="Messaging-Footer">
 			<Menu>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Segment, Button, Form, Icon } from 'semantic-ui-react'
+import { Segment, Button, Icon } from 'semantic-ui-react'
 
 export default function RealtorList(props) {
 
@@ -19,17 +19,14 @@ export default function RealtorList(props) {
 		try{
 			const realtorsResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/realtors/list')
 
-			console.log('realtorsResponse: ', realtorsResponse);
 			const realtorsJson = await realtorsResponse.json()
 			console.log('\nrealtorsJson: ', realtorsJson);
 			if(realtorsResponse.status === 200) {
 				setRealtors(realtorsJson.data)
 			}
-
 		} catch(err) {
 			console.error(err)
 		}
-
 	}
 
 	// Retrieves: Contract realtor/ client, changes state of loggedInUser in App.js
@@ -72,18 +69,16 @@ export default function RealtorList(props) {
 			const chatJson = await chatResponse.json()
 			console.log(chatJson);
 
+			props.chatList()
 		} catch(err) {
 			console.error(err)
 		}
 	}
 
-	useEffect(
-		() => {
+	useEffect(() => {
 			getRealtors()	
-		},
-		// empty array tells useEffect to only execute on mount. Adding item/state specifies which one to update on, even after mount. i.e.[realtors]
-		[]
-	)
+	// empty array below tells useEffect to only execute on mount. Adding item/state specifies which one to update on, even after mount. i.e.[realtors]
+	},[])
 
 	console.log(realtors);
 	return(
@@ -125,10 +120,10 @@ export default function RealtorList(props) {
 									:
 									<Button>Bye</Button>
 								}
-								<h4 className='underline'>Contact Info:</h4>
+								<h4>Contact Info:</h4>
 								<p>Email: {email}, Phone: {phoneNumber}</p>
 								<p>Works with {companyName}, located on {street1} in {city}, {state} {zipcode}</p>
-								<p>Find out more about realtor @ <a className='underline' src={null}>{websiteURL}</a> or contact {companyName} at <a src={null}>{companyPhone}</a></p>
+								<p>Find out more about realtor @ <span className='underline'>{websiteURL}</span> or contact {companyName} at <span className='underline'>{companyPhone}</span></p>
 								</Segment>
 							</Segment>
 						</Segment>

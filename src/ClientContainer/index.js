@@ -2,10 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Segment } from  'semantic-ui-react'
 
-import RealtorList from './RealtorList'
-
 export default function ClientContainer(props) {
-
 
 	const links = { width: 250, height: 200 }
 

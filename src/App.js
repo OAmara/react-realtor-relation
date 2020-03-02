@@ -40,6 +40,11 @@ function App(props) {
 		// password: "",
 		// recoveryQuestion: ""
 	})
+	// Chat threads/ messages
+	const [chatThreads, setChatThreads] = useState({})
+
+
+	/* -- Auth Related Functions -- */
 
 	// clears forms when switching auth components. Chooses a new Random Name!
 	function resetForms() {
@@ -170,6 +175,40 @@ function App(props) {
 		}
 	}
 
+
+	/* -- Routed Component Methods -- */
+
+		// To terminate Contract/Relationship.
+	const terminateContract = async (clientId) => {
+	// maybe for Client use: loggedInUser.currentRealtor[0]._id
+	// maybe for Realtor use: loggedInUser.clients.map..._id (OR) map in realtor's portal then send the index or id through as argument(clientId)
+		try{
+			console.log('Hitting the terminateContract method: ', props.loggedInUser.currentRealtor[0]._id);
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
+	const chatList = async () => {
+		try {
+			const chatResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/',{
+				credentials: 'include'
+			})
+			const chatJson = await chatResponse.json()
+			if(chatResponse.status === 200) {
+				setChatThreads(chatJson.data)
+			}
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
+	// Chat function to create a message,
+		//
+	// Chat function to delete a message
+		//
+	// ^ Should both these be in Chat Container??
+
 	useEffect(() => {
 		 document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
 	})
@@ -177,7 +216,7 @@ function App(props) {
 	/* -- State Changing Functions -- */
 	// these can be replaced by using global variables for state such as loggedInUser
 
-	// Change/ setLoggedInUser
+	// Change/setLoggedInUser
 	function updateLoggedInUser(updatedUser) {
 		// may need to update api if utilizable content/ sensitive info is being displayed here.
 		console.log('\n\ncurrent loggedInUser info: ', loggedInUser);
@@ -198,6 +237,7 @@ function App(props) {
 					isClient={isClient}
 		   			myName={loggedInUser}
 					loggedInUser={loggedInUser}
+					chatThreads={chatThreads}
 					/* Auth methods */
 					loginForm={loginForm}
 					registerForm={registerForm}
@@ -211,6 +251,8 @@ function App(props) {
 					realtorLogo={realtorLogo}
 					/* strictly children methods to update (should be global) variables*/
 					updateLoggedInUser={updateLoggedInUser}
+					chatList={chatList}
+					terminateContract={terminateContract}
 	  			/>
 	  		</Router>
     	</div>

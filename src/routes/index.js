@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
-import { Button, Divider, Segment, Sticky, Image, Icon, Menu } from 'semantic-ui-react'
+import { Button, Divider, Sticky, Image, Icon, Menu } from 'semantic-ui-react'
 
 import ClientLoginRegisterForm from '../ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from '../RealtorLoginRegisterForm'
@@ -9,24 +9,6 @@ import RealtorList from '../ClientContainer/RealtorList'
 import ChatContainer from '../ChatContainer'
 
 export default function Routes(props) {
-
-	// To terminate Contract/Relationship.
-	const terminateContract = async (clientId) => {
-	// maybe for Client use: loggedInUser.currentRealtor[0]._id
-	// maybe for Realtor use: loggedInUser.clients.map..._id (OR) map in realtor's portal then send the index or id through as argument(clientId)
-		try{
-			console.log('Hitting the terminateContract method: ', props.loggedInUser.currentRealtor[0]._id);
-		} catch(err) {
-			console.error(err)
-		}
-	}
-
-	// Chat function to create a message,
-		//
-	// Chat function to delete a message
-		//
-	// ^ Should both these be in Chat Container??
-
 	return(
 // 		<Switch>
 // 			<Route path='/' exact component={ClientLoginRegisterForm} />
@@ -48,7 +30,7 @@ export default function Routes(props) {
 					{/* Automatically Redirects to /clients when isClient===true */}
 					<Redirect to='/clients'/>
 					<Sticky>
-						<Menu>
+						<Menu borderless>
 							<Menu.Item>
 								<Link to='/clients'>
 									<Button animated='fade'>
@@ -66,7 +48,10 @@ export default function Routes(props) {
 								</Link>
 							</Menu.Item>
 							<Menu.Item position='right'>
-								<Button onClick={props.logout} >Log-Out</Button>
+								<Button animated onClick={props.logout}>
+									<Button.Content visible>Log-<Icon name='sign-out'/></Button.Content>
+									<Button.Content hidden>Out-<Icon name='sign-out'/></Button.Content>
+								</Button>
 							</Menu.Item>
 							<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
 						</Menu>
@@ -77,7 +62,9 @@ export default function Routes(props) {
 	  						<RealtorList 
 	  							loggedInUser={props.loggedInUser}
 	  							updateLoggedInUser={props.updateLoggedInUser}
-	  							terminateContract={terminateContract}
+	  							terminateContract={props.terminateContract}
+	  							chatList={props.chatList}
+	  							chatThreads={props.chatThreads}
 	  						/>
 		  				</Route>
 
@@ -86,11 +73,15 @@ export default function Routes(props) {
 								loggedInUser={props.loggedInUser}
 								logo={props.logo}
 								isClient={props.isClient}
+								chatThreads={props.chatThreads}
 							/>
 						</Route>
 		  			</Switch>
 		  			{/* ChatContainer Exists In All Components listed in switch above */}
-					<ChatContainer />
+					<ChatContainer
+						chatList={props.chatList}
+						chatThreads={props.chatThreads}
+					/>
 	  			</React.Fragment>
   				:
 
