@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { Button, Divider, Segment, Sticky, Image } from 'semantic-ui-react'
 
 import ClientLoginRegisterForm from '../ClientLoginRegisterForm'
@@ -28,34 +28,36 @@ export default function Routes(props) {
 				(props.isClient === true) 
 				? 
 				<React.Fragment>
-				<Sticky>
-					<Segment raised size='mini' color='blue'>
-						<Link to='/clients'>
-							<Button>{props.loggedInUser.firstName}'s Home</Button>
-						</Link>
-						<Link to='/clients/realtor-list'>
-							<Button>Realtor List</Button>
-						</Link>
-						<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
-					</Segment>
-				</Sticky>
+					{/* Automatically Redirects to /clients when isClient===true */}
+					<Redirect to='/clients'/>
+					<Sticky>
+						<Segment raised size='mini' color='blue'>
+							<Link to='/clients'>
+								<Button>{props.loggedInUser.firstName}'s Home</Button>
+							</Link>
+							<Link to='/clients/realtor-list'>
+								<Button>Realtor List</Button>
+							</Link>
+							<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
+						</Segment>
+					</Sticky>
 
-  				<Switch>
-	  				<Route path='/clients/realtor-list'>
-  						<RealtorList 
-  							loggedInUser={props.loggedInUser}
-  						/>
-	  				</Route>
+	  				<Switch>
+		  				<Route path='/clients/realtor-list'>
+	  						<RealtorList 
+	  							loggedInUser={props.loggedInUser}
+	  						/>
+		  				</Route>
 
-	  				<Route path='/clients'>
-  						<ClientContainer 
-							loggedInUser={props.loggedInUser}
-							logo={props.logo}
-							isClient={props.isClient}
-						/>
-					</Route>
-	  			</Switch>
-				<ChatContainer />
+		  				<Route path='/clients'>
+	  						<ClientContainer 
+								loggedInUser={props.loggedInUser}
+								logo={props.logo}
+								isClient={props.isClient}
+							/>
+						</Route>
+		  			</Switch>
+					<ChatContainer />
 	  			</React.Fragment>
   				:
 
@@ -63,6 +65,8 @@ export default function Routes(props) {
   				(props.isClient === false)
   				?
   				<React.Fragment>
+  					{/* Automatically Redirects to /clients when isClient===true */}
+					<Redirect to='/realtors/home'/>
   					<Link to='/realtors/home'>
   						{props.loggedInUser.lastName} Home
   					</Link>
