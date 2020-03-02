@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
-import { Button, Divider, Segment, Sticky } from 'semantic-ui-react'
+import { Button, Divider, Segment, Sticky, Image } from 'semantic-ui-react'
 
 import ClientLoginRegisterForm from '../ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from '../RealtorLoginRegisterForm'
@@ -30,12 +30,13 @@ export default function Routes(props) {
 				<React.Fragment>
 				<Sticky>
 					<Segment raised size='mini' color='blue'>
-						<Link to='/clients/'>
+						<Link to='/clients'>
 							<Button>{props.loggedInUser.firstName}'s Home</Button>
 						</Link>
 						<Link to='/clients/realtor-list'>
 							<Button>Realtor List</Button>
 						</Link>
+						<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
 					</Segment>
 				</Sticky>
 
@@ -46,7 +47,7 @@ export default function Routes(props) {
   						/>
 	  				</Route>
 
-	  				<Route path='/clients/'>
+	  				<Route path='/clients'>
   						<ClientContainer 
 							loggedInUser={props.loggedInUser}
 							logo={props.logo}

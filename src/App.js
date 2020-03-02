@@ -25,8 +25,8 @@ function App(props) {
 	let randomName = Math.floor(Math.random() * names.length)
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
-	// determines if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
-	const [isClient, setIsCLient] = useState(true)
+	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
+	const [isClient, setIsCLient] = useState(null)// ***Set to null, true/false for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 	// This will be filled with info from both register froms!
@@ -168,7 +168,6 @@ function App(props) {
 					logo={logo}
 					loggedInUser={loggedInUser}
 					resetForms={resetForms}
-					setLogo={setLogo}
 					realtorLogo={realtorLogo}
 					isClient={isClient}
 	  			/>
