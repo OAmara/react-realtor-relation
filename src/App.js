@@ -183,7 +183,8 @@ function App(props) {
 		console.log('\n\ncurrent loggedInUser info: ', loggedInUser);
 		console.log('^\nChange loggedInUser to this: ', updatedUser);
 
-		// setLoggedInUser(updatedUser)
+		// let updateUser = updatedUser
+		setLoggedInUser(updatedUser)
 	}
 
 	console.log(loggedInUser);

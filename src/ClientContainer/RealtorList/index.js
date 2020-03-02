@@ -6,6 +6,14 @@ export default function RealtorList(props) {
 	// State for Realtor List from getRealtors() fetch
 	const [realtors, setRealtors] = useState({})
 
+	/* Randome !Necessities */
+	// Realtor Greeting for hire button!
+	const [greetRealtor, setGreetRealtor] = useState('Your Realtor')
+	// not necessary, but nice
+	function sayHi() {
+		(greetRealtor === 'Your Realtor')?setGreetRealtor('Hello!'):setGreetRealtor('Your Realtor')
+	}
+
 	// Retrieves realtor index, then set realtors state.
 	const getRealtors = async () => {
 		try{
@@ -38,9 +46,16 @@ export default function RealtorList(props) {
 			const contractJson = await contractResponse.json()
 			console.log(contractJson);
 
-			//if status.200? :
-			props.updateLoggedInUser(contractJson.data)
-			//^^ Use this to update loggedInUser in state in app.js!!
+			// change loggedInUser in App.js without having to query or log back in.
+			if(contractResponse.status/* === 201*/) {
+				let updateUser = props.loggedInUser
+				updateUser.currentRealtor = []
+				updateUser.currentRealtor.push(contractJson.data)
+				console.log(updateUser);
+				props.updateLoggedInUser(updateUser)
+			}
+			console.log(props.loggedInUser);
+			getRealtors()
 		} catch(err) {
 			console.error(err)
 		}
@@ -69,14 +84,19 @@ export default function RealtorList(props) {
 								// (props.loggedInUser.currentRealtor[0].email === email)
 								(props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
 								?
-								<h1>Your Realtor</h1>
+								<Button onClick={sayHi} animated='fade' inverted color={'orange'} size='medium' floated='right'>
+									<Button.Content visible><Icon name='home'/></Button.Content>
+									<Button.Content hidden>
+										{greetRealtor}
+									</Button.Content>
+								</Button>
 								:
 											// try to use currentRealtor.length>0...
 											// also try using an if statement instead!
-								<Button onClick={() => contractRealtor(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
+								<Button onClick={() => contractRealtor(_id), sayHi} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
 									<Button.Content visible>Hire Realtor</Button.Content>
 									<Button.Content hidden>
-										<Icon name='home'/>
+										<Icon name='handshake'/>
 									</Button.Content>
 								</Button>
 							}
