@@ -26,7 +26,7 @@ function App(props) {
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 	// determines if User is a Client or Realtor: Can also be used as loggedIn authentication if not null.(true, false)
-	const [isClient, setIsCLient] = useState(null)
+	const [isClient, setIsCLient] = useState(true)
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 	// This will be filled with info from both register froms!

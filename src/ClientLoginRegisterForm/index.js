@@ -9,7 +9,6 @@ export default function ClientLoginRegisterForm(props) {
 	return(
 		<React.Fragment>
 			<div className='Login-Form' id='Client-Login-Form'>
-				
 				{/* Login Form Field */}
 				<Form onSubmit={(e) => props.handleAllFormSubmission(e, 'login', 'client')}>
 					<Form.Group widths='equal'>

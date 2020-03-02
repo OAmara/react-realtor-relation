@@ -1,10 +1,11 @@
 import React from 'react'
-import { Segment, Modal, Form, Label } from 'semantic-ui-react'
+import { Segment, Modal, Form, Label, Sticky } from 'semantic-ui-react'
 
 export default function ChatContainer() {
 
 
 
+	{/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */}
 	return(
 		<div className="Messaging-Footer">
 			<Segment>
