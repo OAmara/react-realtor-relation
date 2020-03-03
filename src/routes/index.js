@@ -81,6 +81,7 @@ export default function Routes(props) {
 					<ChatContainer
 						chatList={props.chatList}
 						chatThreads={props.chatThreads}
+						isClient={props.isClient}
 					/>
 	  			</React.Fragment>
   				:
