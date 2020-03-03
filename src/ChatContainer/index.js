@@ -26,9 +26,9 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 		[e.target.name]: e.target.value})
 	}
 
-	const handleMessageSubmit = (id) => {
-		console.log('messageBody to be submitted to create message route: ', messageBody);
-		createMessage(messageBody, id)
+	const handleMessageSubmit = (chatId) => {
+		createMessage(messageBody, chatId)
+		setMessageBody({body: ''})
 	}
 
 	console.log(messageBody);
@@ -49,15 +49,21 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 											{/*
 											(messages.length > 0)
 											?
-												(messages.forEach((message) => {
+												messages.forEach((message) => {
 													<p>
-														<small>message</small>
+														<small>message.body</small>
 													</p>
-												}))
+												})
 											:
 											<p>hello</p>
 											*/}
-											<p>{messages}</p>
+											{
+											(messages.length > 0)
+											?
+											<p>{messages[0].body}</p>
+											:
+											null
+											}
 											<Form onSubmit={() => handleMessageSubmit(_id)}>
 											<Input
 												size='mini'

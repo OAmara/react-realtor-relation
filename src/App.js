@@ -26,7 +26,7 @@ function App(props) {
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(true)// ***Set to null, true/false for testing
+	const [isClient, setIsCLient] = useState(null)// ***Set to null, true/false for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 	// This will be filled with info from both register froms!
@@ -183,7 +183,9 @@ function App(props) {
 	// maybe for Client use: loggedInUser.currentRealtor[0]._id
 	// maybe for Realtor use: loggedInUser.clients.map..._id (OR) map in realtor's portal then send the index or id through as argument(clientId)
 		try{
-			console.log('Hitting the terminateContract method: ', props.loggedInUser.currentRealtor[0]._id);
+			console.log('Hitting the terminateContract method: ', props.loggedInUser.currentRealtor[0]._id,{
+				credentials: 'include'
+			});
 		} catch(err) {
 			console.error(err)
 		}
@@ -203,19 +205,31 @@ function App(props) {
 		}
 	}
 
-	const createMessage = async (body, clientId) => {
+	const createMessage = async (messageBody, chatId) => {
 		try{
-			console.log('body in createMessage: ', body);
-			console.log('clientId in createMessage: ', clientId);
-			 // const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats')
+			console.log('body in createMessage: ', messageBody);
+			console.log('clientId in createMessage: ', chatId);
+ 			const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/messages/' + chatId, {
+ 				credentials: 'include',
+ 				method: 'POST',
+ 				body: JSON.stringify(messageBody),
+ 				headers: {
+ 					'Content-Type': 'application/json'
+ 				},
+ 			})
+ 			console.log('messageResponse in createMessage: ', messageResponse);
+ 			const messageJson = await messageResponse.json()
+ 			console.log('messageJson in createMessage: ', messageJson);
+ 
+ 			if(messageResponse.status === 201){
+ 				chatList()
+ 			}
 
 		} catch(err) {
 			console.error(err)
 		}
 	}
 
-	// Chat function to create a message,
-		//
 	// Chat function to delete a message
 		//
 	// ^ Should both these be in Chat Container??
