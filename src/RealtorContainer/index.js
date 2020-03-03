@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Segment, Header } from  'semantic-ui-react'
 
-export default function ClientContainer(props) {
+export default function RealtorContainer(props) {
 
 	const links = { width: 250, height: 200 }
 
@@ -14,14 +14,14 @@ export default function ClientContainer(props) {
 					<h1>{props.loggedInUser.firstName}'s Profile</h1>
 				</Segment>
 			</Link>
-			<Link to='/clients/realtor-list'>
+			<Link to='/realtor/client-list'>
 				<Segment circular size='large' style={links} >
-						<h1>(works)Realtor List</h1>
+						<h1>(works)Client List</h1>
 				</Segment>
 			</Link>
 			<Link>
 				<Segment circular style={links}>
-					<h1>{props.loggedInUser.firstName}'s Searches!</h1>
+					<h1>Client's Searches!</h1>
 				</Segment>
 			</Link>
 			<Link>

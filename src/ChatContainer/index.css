@@ -1,0 +1,22 @@
+.top-overflow {
+	/*color: white;*/
+	border-radius: 10px;
+	overflow-y: scroll;
+	height: 85%;
+	width: 85%;
+}
+
+.Client-Message {
+	overflow-y: hidden;
+	color: white;
+	background-color: rgba(0, 0, 255);
+	border-radius: 100px;
+}
+
+.Realtor-Message {
+	color: red;
+}
+
+.Popup {
+	width: 30%;
+}

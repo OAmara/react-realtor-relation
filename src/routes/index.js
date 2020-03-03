@@ -7,6 +7,7 @@ import RealtorLoginRegisterForm from '../RealtorLoginRegisterForm'
 import ClientContainer from '../ClientContainer'
 import RealtorList from '../ClientContainer/RealtorList'
 import ChatContainer from '../ChatContainer'
+import RealtorContainer from '../RealtorContainer'
 
 export default function Routes(props) {
 	return(
@@ -35,7 +36,7 @@ export default function Routes(props) {
 								<Link to='/clients'>
 									<Button animated='fade'>
 										<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
-										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon name='home' /></Button.Content>
+										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='blue' name='home' /></Button.Content>
 									</Button>
 								</Link>
 							</Menu.Item>
@@ -43,14 +44,14 @@ export default function Routes(props) {
 								<Link to='/clients/realtor-list'>
 									<Button animated='fade'>
 										<Button.Content visible>Realtor List</Button.Content>
-										<Button.Content hidden>Realtor <Icon name='list' /></Button.Content>
+										<Button.Content hidden>Realtor <Icon color='orange' name='list' /></Button.Content>
 									</Button>
 								</Link>
 							</Menu.Item>
 							<Menu.Item position='right'>
 								<Button animated onClick={props.logout}>
-									<Button.Content visible>Log-<Icon name='sign-out'/></Button.Content>
-									<Button.Content hidden>Out-<Icon name='sign-out'/></Button.Content>
+									<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>
+									<Button.Content hidden>Out-<Icon color='red' name='sign-out'/></Button.Content>
 								</Button>
 							</Menu.Item>
 							<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
@@ -93,15 +94,41 @@ export default function Routes(props) {
   				<React.Fragment>
   					{/* Automatically Redirects to /clients when isClient===true */}
 					<Redirect to='/realtors/home'/>
-  					<Link to='/realtors/home'>
-  						{props.loggedInUser.lastName} Home
-  					</Link>
+					<Sticky>
+						<Menu>
+							<Menu.Item>
+			  					<Link to='/realtors/home'>
+			  						<Button animated='fade'>
+			  							<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
+			  							<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='blue' name='home' /></Button.Content>
+			  						</Button>
+			  					</Link>
+			  				</Menu.Item>
+			  				<Menu.Item>
+			  					<Link to='/realtors/client-list'>
+			  						<Button animated='fade'>
+			  							<Button.Content visible>Client List</Button.Content>
+			  							<Button.Content hidden>Client <Icon color='orange' name='list' /></Button.Content>
+			  						</Button>
+			  					</Link>
+			  				</Menu.Item>
+			  				<Menu.Item position='right'>
+			  					<Button animated onClick={props.logout}>
+			  						<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>
+			  						<Button.Content hidden>Out-<Icon color='red' name='sign-out'/></Button.Content>
+			  					</Button>
+			  				</Menu.Item>
+			  				<Image className='Realtor-Logo' src={props.realtorLogo} avatar floated='right' size='tiny'/>
+			  			</Menu>
+			  		</Sticky>
+
   					<Switch>
 		  				<Route path='/realtors/home'>
-		  					{/* RealtorContainer */}
-		  					isClient={props.isClient}
-		  					loggedInUser={props.loggedInUser}
-		  					logo={props.realtorLogo}
+		  					<RealtorContainer
+			  					isClient={props.isClient}
+			  					loggedInUser={props.loggedInUser}
+			  					logo={props.realtorLogo}
+			  				/>
 		  				</Route>
 		  			</Switch>
 	  			</React.Fragment>
