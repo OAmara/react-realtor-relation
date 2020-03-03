@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { /*Segment, Modal,*/ Sticky, Form, Label, Menu, Input, Button, Grid, Popup, Header, Icon } from 'semantic-ui-react'
 
-export default function ChatContainer({chatList, chatThreads, isClient}) {
+export default function ChatContainer({chatList, chatThreads, isClient, createMessage}) {
 
 	// chat message body
 	const [messageBody, setMessageBody] = useState({body: ''})
+
+	// Is there a way to generate state based on props...
+	// const chatStates = () => {
+	// 	for(let i = 0; i < chatThreads.length; i++){
+	// 		const [messageBody[i], setMessageBody[i]] = useState({body: ''})
+	// 		
+	// 	}
+	// }
 
 	useEffect(() => {
 		 chatList()
@@ -16,6 +24,11 @@ export default function ChatContainer({chatList, chatThreads, isClient}) {
 		setMessageBody({
 		...messageBody,
 		[e.target.name]: e.target.value})
+	}
+
+	const handleMessageSubmit = (id) => {
+		console.log('messageBody to be submitted to create message route: ', messageBody);
+		createMessage(messageBody, id)
 	}
 
 	console.log(messageBody);
@@ -44,16 +57,18 @@ export default function ChatContainer({chatList, chatThreads, isClient}) {
 											:
 											<p>hello</p>
 											*/}
-											{messages}
-											 <Input
-											 	size='mini'
-											 	type='text'
-											 	name='body'
-											 	placeholder='...'
-											 	value={messageBody.body}
-											 	onChange={handleMessageChange}
-											 />
-											 <Button size='mini' icon='telegram plane' compact></Button>
+											<p>{messages}</p>
+											<Form onSubmit={() => handleMessageSubmit(_id)}>
+											<Input
+												size='mini'
+												type='text'
+												name='body'
+												placeholder='...'
+												value={messageBody.body}
+												onChange={handleMessageChange}
+											/>
+											<Button type='Submit' size='mini' icon='telegram plane' compact></Button>
+											</Form>
 									</Grid.Column>
 								</Grid>
 							</Popup>

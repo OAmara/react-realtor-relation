@@ -203,6 +203,17 @@ function App(props) {
 		}
 	}
 
+	const createMessage = async (body, clientId) => {
+		try{
+			console.log('body in createMessage: ', body);
+			console.log('clientId in createMessage: ', clientId);
+			 // const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats')
+
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
 	// Chat function to create a message,
 		//
 	// Chat function to delete a message
@@ -253,6 +264,7 @@ function App(props) {
 					updateLoggedInUser={updateLoggedInUser}
 					chatList={chatList}
 					terminateContract={terminateContract}
+					createMessage={createMessage}
 	  			/>
 	  		</Router>
     	</div>
