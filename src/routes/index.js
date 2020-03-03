@@ -8,6 +8,7 @@ import ClientContainer from '../ClientContainer'
 import RealtorList from '../ClientContainer/RealtorList'
 import ChatContainer from '../ChatContainer'
 import RealtorContainer from '../RealtorContainer'
+import ClientList from '../RealtorContainer/ClientList'
 
 export default function Routes(props) {
 	return(
@@ -123,6 +124,16 @@ export default function Routes(props) {
 			  		</Sticky>
 
   					<Switch>
+  						<Route path='/realtors/client-list'>
+  						 	<ClientList 
+	  							loggedInUser={props.loggedInUser}
+	  							updateLoggedInUser={props.updateLoggedInUser}
+	  							terminateContract={props.terminateContract}
+	  							chatList={props.chatList}
+	  							chatThreads={props.chatThreads}
+	  						/>
+	  					</Route>
+
 		  				<Route path='/realtors/home'>
 		  					<RealtorContainer
 			  					isClient={props.isClient}
@@ -131,6 +142,13 @@ export default function Routes(props) {
 			  				/>
 		  				</Route>
 		  			</Switch>
+		  			{/* ChatContainer Exists In All Components listed in switch above */}
+					<ChatContainer
+						chatList={props.chatList}
+						chatThreads={props.chatThreads}
+						isClient={props.isClient}
+						createMessage={props.createMessage}
+					/>
 	  			</React.Fragment>
   				:
 
