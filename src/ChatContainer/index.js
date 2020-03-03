@@ -40,52 +40,52 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 				{
 					(chatThreads.length > 0 && isClient === true)
 					?
-					 chatThreads.map(({_id, realtor, messages}) => (
-					 	<div key={_id}>
-							<Popup trigger={<Button size='mini' inverted color='orange'>{realtor.firstName} {realtor.lastName}</Button>} flowing hoverable>
-								<Grid centered divided columns={1}>
-									<Grid.Column textAlign='center'>
-										<Header as='h3'>{realtor.firstName}</Header>
-											{/*
-											(messages.length > 0)
-											?
-												messages.forEach((message) => {
-													<p>
-														<small>message.body</small>
-													</p>
-												})
-											:
-											<p>hello</p>
-											*/}
-											{
-											(messages.length > 0)
-											?
-											<p>{messages[0].body}</p>
-											:
-											null
-											}
-											<Form onSubmit={() => handleMessageSubmit(_id)}>
-											<Input
-												size='mini'
-												type='text'
-												name='body'
-												placeholder='...'
-												value={messageBody.body}
-												onChange={handleMessageChange}
-											/>
-											<Button type='Submit' size='mini' icon='telegram plane' compact></Button>
-											</Form>
-									</Grid.Column>
-								</Grid>
-							</Popup>
-					 	</div>
-					 ))
-					 :
-					 (chatThreads.length > 0 && isClient === false)
-					 ?
-					 <Button size='massive'>I work!</Button>
-					 :
-					 <p>Message Threads will be listed Here</p>
+						chatThreads.map(({_id, realtor, messages}) => (
+						 	<div key={_id}>
+								<Popup trigger={<Button size='mini' inverted color='orange'>{realtor.firstName} {realtor.lastName}</Button>} flowing hoverable>
+									<Grid centered divided columns={1}>
+										<Grid.Column textAlign='center'>
+											<Header as='h3'>{realtor.firstName}</Header>
+												<div className='top-overflow'>
+												{
+												(messages.length > 0)
+												?
+													messages.map(({body}) => (
+														<p>{body}</p>
+													))
+												:
+												<p>Say hi!</p>
+												}
+												</div>
+												{// Also write conditions for message[?].isClient === true then color='blue', textAlign='right'....
+												// (messages.length > 0)
+												// ?
+												// <p>{messages[0].body}</p>
+												// :
+												// null
+												}
+												<Form onSubmit={() => handleMessageSubmit(_id)}>
+												<Input
+													size='mini'
+													type='text'
+													name='body'
+													placeholder='...'
+													value={messageBody.body}
+													onChange={handleMessageChange}
+												/>
+												<Button type='Submit' size='mini' icon='telegram plane' compact></Button>
+												</Form>
+										</Grid.Column>
+									</Grid>
+								</Popup>
+						 	</div>
+						))
+					:
+					(chatThreads.length > 0 && isClient === false)
+					?
+						<Button size='massive'>I work!</Button>
+					:
+					<p>Message Threads will be listed Here</p>
 					 //next ternary for if isClient === false
 				}
 				<Menu.Item position='right'>
