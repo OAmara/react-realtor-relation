@@ -122,6 +122,7 @@ export default function Routes(props) {
 								logo={props.logo}
 								isClient={props.isClient}
 								chatThreads={props.chatThreads}
+								openSearchModals={props.openSearchModals}
 							/>
 						</Route>
 		  			</Switch>

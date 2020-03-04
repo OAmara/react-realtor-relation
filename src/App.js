@@ -293,6 +293,7 @@ function App(props) {
 				},
 			})
 			const searchJson = await searchResponse.json()
+			console.log(searchJson.message)
 
 			if(searchJson.status === 201) {
 				// on json status code, once search is created:

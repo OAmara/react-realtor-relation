@@ -4,12 +4,6 @@ import { Modal, Header, Form, Button, Input } from  'semantic-ui-react'
 
 export default function NewSearchFormModal(props) {
 
-	
-
-
-
-
-
 	console.log(props.searchBody)
 	return(
 		<React.Fragment>
