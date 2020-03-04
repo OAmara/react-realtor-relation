@@ -183,9 +183,17 @@ function App(props) {
 	// maybe for Client use: loggedInUser.currentRealtor[0]._id
 	// maybe for Realtor use: loggedInUser.clients.map..._id (OR) map in realtor's portal then send the index or id through as argument(clientId)
 		try{
-			console.log('Hitting the terminateContract method: ', props.loggedInUser.currentRealtor[0]._id,{
-				credentials: 'include'
+			const cutTiesResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/terminate/' + clientId, {
+				credentials: 'include',
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json'
+				},
 			});
+			console.log(cutTiesResponse);
+			const cutTiesJson = await cutTiesResponse.json()
+			console.log(cutTiesJson);
+
 		} catch(err) {
 			console.error(err)
 		}

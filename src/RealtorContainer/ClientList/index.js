@@ -36,7 +36,7 @@ export default function ClientList(props) {
 					clients.map(({_id, firstName, lastName, email, zipcode, currentRealtor}) => (
 						<Segment raised key={_id}>
 							<Segment stacked color='orange'>
-								<Button onClick={null} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
+								<Button onClick={() => props.terminateContract(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
 									<Button.Content visible>Terminate Client</Button.Content>
 									<Button.Content hidden>
 										<Icon name='handshake'/>
