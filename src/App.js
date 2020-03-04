@@ -39,6 +39,8 @@ function App(props) {
 	// Open/Close logic for Search Modals
 	const [toggleNewSearchModal, setToggleNewSearchModal] = useState(false)
 	const [toggleEditSearchModal, setToggleEditSearchModal] = useState(false)
+
+	const [searchBody, setSearchBody] = useState({})
 	// property to universally activate functions within child components. Requires a callback in child to revert to default.
 	// important: always revert to falsy value. Can specify specific usage by changing to value to trigger function in child component.
 	// Usage:
@@ -271,6 +273,13 @@ function App(props) {
 	// ^ Should both these be in Chat Container??
 		//
 
+	function handleChange(e) {
+		setSearchBody({
+			...searchBody,
+			[e.target.name]: e.target.value
+		})
+	}
+
 	// Creates New Search for Client
 	const createClientSearch = async (searchBody) => {
 		try{
@@ -283,19 +292,16 @@ function App(props) {
 					'Content-Type': 'application/json'
 				},
 			})
-
-			console.log(searchResponse);
 			const searchJson = await searchResponse.json()
-			console.log(searchJson)
 
 			if(searchJson.status === 201) {
-				console.log('\n\n\n\tLook at that, we created a search!');
 				// on json status code, once search is created:
 				setActivate('redirect search index')
 				closeSearchModals('close new modal')
 				if(searchResponse.status === 201) {
-					// call this after awaiting json response and conditional to setActivate:
+					// waits for model to close and activate before performing:
 					defaultActivate()
+					setSearchBody({})
 				}
 			}
 
@@ -326,8 +332,6 @@ function App(props) {
 	}
 
 	console.log(loggedInUser);
-	console.log(isClient);
-	console.log('\n\n\t\tThis is activate!', activate);
   	return (
 		<div className='App'>
 	  		<Router >
@@ -361,6 +365,8 @@ function App(props) {
 					openSearchModals={openSearchModals}
 					closeSearchModals={closeSearchModals}
 					createClientSearch={createClientSearch}
+					handleChange={handleChange}
+					searchBody={searchBody}
 	  			/>
 	  		</Router>
     	</div>

@@ -132,6 +132,9 @@ export default function Routes(props) {
 		  				openSearchModals={props.openSearchModals}
 		  				closeSearchModals={props.closeSearchModals}
 		  				createClientSearch={props.createClientSearch}
+		  				activate={props.activate}
+		  				handleChange={props.handleChange}
+						searchBody={props.searchBody}
 		  			/>
 					<ChatContainer
 						chatList={props.chatList}

@@ -4,23 +4,20 @@ import { Modal, Header, Form, Button, Input } from  'semantic-ui-react'
 
 export default function NewSearchFormModal(props) {
 
-	const [searchBody, setSearchBody] = useState({})
+	
 
-	function handleChange(e) {
-		setSearchBody({
-			...searchBody,
-			[e.target.name]: e.target.value
-		})
-	}
 
-	console.log(searchBody)
+
+
+
+	console.log(props.searchBody)
 	return(
 		<React.Fragment>
 			<Modal open={props.toggleNewSearchModal} closeIcon={true} onClose={() => props.closeSearchModals('close new modal')} >
 				
-				<Header as='h4'>Create A New Search:<Header as='h3' textAlign='center' color='red'>{searchBody.name}</Header></Header>
+				<Header as='h4'>Create A New Search:<Header as='h3' textAlign='center' color='red'>{props.searchBody.name}</Header></Header>
 				<Modal.Content>
-					<Form className="NewFormModal" onSubmit={() => props.createClientSearch(searchBody)}>
+					<Form className="NewFormModal" onSubmit={() => props.createClientSearch(props.searchBody)}>
 						<Form.Group widths='equal'>
 							<Form.Input
 								size={'large'}
@@ -29,8 +26,8 @@ export default function NewSearchFormModal(props) {
 								type="text"
 								name="name"
 								placeholder='My Dream Home'
-								value={searchBody.name}
-								onChange={handleChange}
+								value={props.searchBody.name}
+								onChange={props.handleChange}
 							/>
 						</Form.Group>
 						<Form.Group>
@@ -43,8 +40,8 @@ export default function NewSearchFormModal(props) {
 								type="text"
 								name="zipcode"
 								placeholder='Enter Zipcode'
-								value={searchBody.zipcode}
-								onChange={handleChange}
+								value={props.searchBody.zipcode}
+								onChange={props.handleChange}
 								// error
 							/>
 						</Form.Group>
@@ -60,8 +57,8 @@ export default function NewSearchFormModal(props) {
 								type="text"
 								name="sqrft"
 								placeholder='Square Footage'
-								value={searchBody.sqrft}
-								onChange={handleChange}
+								value={props.searchBody.sqrft}
+								onChange={props.handleChange}
 							/>
 						</Form.Group>
 						{
@@ -75,8 +72,8 @@ export default function NewSearchFormModal(props) {
 								type="number"
 								name="upperprice"
 								placeholder='0'
-								value={searchBody.upperprice}
-								onChange={handleChange}
+								value={props.searchBody.upperprice}
+								onChange={props.handleChange}
 							/>
 							<Form.Input
 								size={'small'}
@@ -84,8 +81,8 @@ export default function NewSearchFormModal(props) {
 								type="number"
 								name="lowerprice"
 								placeholder='0'
-								value={searchBody.lowerprice}
-								onChange={handleChange}
+								value={props.searchBody.lowerprice}
+								onChange={props.handleChange}
 							/>
 						</Form.Group>
 						<Modal.Actions>
