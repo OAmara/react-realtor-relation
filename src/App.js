@@ -276,7 +276,7 @@ function App(props) {
 		try{
 			// const searchResponse = await fetch()
 
-
+			console.log('\n\nThis is the body that we are using to create search: ', searchBody)
 
 			// on json status code, once search is created:
 			setActivate('redirect search index')

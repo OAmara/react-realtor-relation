@@ -1,17 +1,32 @@
-import React from 'react'
-import { Modal, Header, Form, Button } from  'semantic-ui-react'
+import React, { useState } from 'react'
+import { Modal, Header, Form, Button, Input } from  'semantic-ui-react'
 
 
 export default function NewSearchFormModal(props) {
-// fetch for createNewSearch located in App.js
 
-	// CHANGE open= to true to have model open. CREATE A STATE TO DO THIS...
+	const [searchBody, setSearchBody] = useState({})
+
+	function handleChange(e) {
+		setSearchBody({
+			...searchBody,
+			[e.target.name]: e.target.value
+		})
+	}
+
+	function handleSubmit(e) {
+
+
+
+	}
+
+	console.log(searchBody)
 	return(
 		<React.Fragment>
 			<Modal open={props.toggleNewSearchModal} closeIcon={true} onClose={() => props.closeSearchModals('close new modal')} >
-				<Header>Save a New Search Paramater to Store Generated Listings</Header>
+				
+				<Header as='h4'>Create A New Search:<Header as='h3' textAlign='center' color='red'>{searchBody.name}</Header></Header>
 				<Modal.Content>
-					<Form className="NewFormModal" onSubmit={() => props.createClientSearch('hello')}>
+					<Form className="NewFormModal" onSubmit={() => props.createClientSearch(searchBody)}>
 						<Form.Group widths='equal'>
 							<Form.Input
 								size={'large'}
@@ -20,8 +35,8 @@ export default function NewSearchFormModal(props) {
 								type="text"
 								name="name"
 								placeholder='My Dream Home'
-								value={null}
-								onChange={null}
+								value={searchBody.name}
+								onChange={handleChange}
 							/>
 						</Form.Group>
 						<Form.Group>
@@ -29,11 +44,13 @@ export default function NewSearchFormModal(props) {
 								size={'small'}
 								label='Zipcode:'
 								required
-								type="number"
+								minLength='5'
+								maxLength='9'
+								type="text"
 								name="zipcode"
 								placeholder='Enter Zipcode'
-								value={null}
-								onChange={null}
+								value={searchBody.zipcode}
+								onChange={handleChange}
 								// error
 							/>
 						</Form.Group>
@@ -44,11 +61,12 @@ export default function NewSearchFormModal(props) {
 							<Form.Input
 								size={'small'}
 								label='Square Feet:'
-								type="number"
+								maxLength='7'
+								type="text"
 								name="sqrft"
 								placeholder='Square Footage'
-								value={null}
-								onChange={null}
+								value={searchBody.sqrft}
+								onChange={handleChange}
 							/>
 						</Form.Group>
 						{
@@ -62,8 +80,8 @@ export default function NewSearchFormModal(props) {
 								type="number"
 								name="upperprice"
 								placeholder='0'
-								value={null}
-								onChange={null}
+								value={searchBody.upperprice}
+								onChange={handleChange}
 							/>
 							<Form.Input
 								size={'small'}
@@ -71,12 +89,12 @@ export default function NewSearchFormModal(props) {
 								type="number"
 								name="lowerprice"
 								placeholder='0'
-								value={null}
-								onChange={null}
+								value={searchBody.lowerprice}
+								onChange={handleChange}
 							/>
 						</Form.Group>
 						<Modal.Actions>
-							<Button inverted color={'google plus'} size={'big'} type="Submit">Create Search</Button>
+							<Button circular floated='right' inverted color={'google plus'} size={'medium'} type="Submit">Create Search</Button>
 						</Modal.Actions>
 					</Form>
 				</Modal.Content>
