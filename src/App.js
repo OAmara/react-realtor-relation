@@ -26,7 +26,7 @@ function App(props) {
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(false)// ***Set to null, true/false for testing
+	const [isClient, setIsCLient] = useState(null)// ***Set to null, true/false for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 	// This will be filled with info from both register froms!
@@ -82,7 +82,7 @@ function App(props) {
 
 	// handles all 4 login/register form submission for client/realtor
 	function handleAllFormSubmission(e, form, whichForm) {
-		// e.preventDefault()
+		e.preventDefault()
 		if(form === 'login') {
 			// calls login function and passes state and which from submitted as arguments.
 			login(loginForm, whichForm)
@@ -111,7 +111,7 @@ function App(props) {
 			const registerJson = await registerResponse.json()
 			console.log(registerJson);
 
-			if(registerResponse.status === 201) {
+			if(registerJson.status === 201) {
 				setLoggedInUser(registerJson.data)
 				if(whichForm === 'client') {
 					setIsCLient(true)
@@ -147,7 +147,7 @@ function App(props) {
 			const loginJson = await loginResponse.json()
 			console.log(loginJson);
 
-			if (loginResponse.status === 200) {
+			if (loginJson.status === 200) {
 				setLoggedInUser(loginJson.data)
 				if(whichForm === 'client') {
 					setIsCLient(true)
