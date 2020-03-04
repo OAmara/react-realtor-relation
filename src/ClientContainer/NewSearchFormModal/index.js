@@ -56,6 +56,7 @@ export default function NewSearchFormModal(props) {
 								size={'small'}
 								label='Square Feet:'
 								maxLength='7'
+								minLength='4'
 								type="text"
 								name="sqrft"
 								placeholder='Square Footage'

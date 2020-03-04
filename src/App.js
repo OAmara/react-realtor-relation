@@ -275,15 +275,32 @@ function App(props) {
 	const createClientSearch = async (searchBody) => {
 		try{
 			console.log('\n\nThis is the body that we are using to create search: ', searchBody)
-			const searchResponse = await fetch()
+			const searchResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/searches/', {
+				credentials: 'include',
+				method: 'POST',
+				body: JSON.stringify(searchBody),
+				headers: {
+					'Content-Type': 'application/json'
+				},
+			})
+
+			console.log(searchResponse);
+			const searchJson = await searchResponse.json()
+			console.log(searchJson)
+
+			if(searchJson.status === 201) {
+				console.log('\n\n\n\tLook at that, we created a search!');
+				// on json status code, once search is created:
+				setActivate('redirect search index')
+				closeSearchModals('close new modal')
+				if(searchResponse.status === 201) {
+					// call this after awaiting json response and conditional to setActivate:
+					defaultActivate()
+				}
+			}
 
 
-			// on json status code, once search is created:
-			setActivate('redirect search index')
-			closeSearchModals('close new modal')
-
-			// call this after awaiting json response and conditional to setActivate:
-			// defaultActivate()
+			//Then clear state for searchBody...
 
 		} catch(err) {
 			console.error(err)
