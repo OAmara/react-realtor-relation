@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Header, Button, Segment, Icon } from  'semantic-ui-react'
+import { Header, Button, Segment, Icon, Grid } from  'semantic-ui-react'
 
 export default function SearchList() {
 
@@ -34,28 +34,37 @@ export default function SearchList() {
 		console.log(searches);
 	return(
 		<React.Fragment>
+			<Header as='h2' textAlign='center' dividing color='black'>See Your List of Searches</Header>
 			{
 				(searches.length > 0)
 				?
-					searches.map(({_id, name, zipcode, sqrft, upperPrice, lowerPrice}) => (
-						<Segment raised key={_id}>
-							<Segment stacked color='teal'>
-								<Button onClick={null} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
-									<Button.Content visible>Delete Search</Button.Content>
-									<Button.Content hidden>
-										<Icon name='list'/>
-									</Button.Content>
-								</Button>
-								<Header as='h2'>{name}</Header>
-								<Segment>
-								{/* insert logic for editSeachModal to open with modal logic in App.js and by using a function to generate search based on {_id} here*/}
-								<p><Icon name='pin'/>Zipcode:{zipcode}</p>
-								<p><Icon name='expand'/>Square Feet:{sqrft}</p>
-								<p><Icon name='money bill alternate outline'/>Price Range:${lowerPrice} - ${upperPrice}</p>
+					<React.Fragment>
+					<Grid columns={2}>
+					{
+						searches.map(({_id, name, zipcode, sqrft, upperPrice, lowerPrice}) => (
+							<Grid.Column>
+								<Segment raised key={_id}>
+									<Segment stacked color='green'>
+										<Button onClick={null} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
+											<Button.Content visible>Delete Search</Button.Content>
+											<Button.Content hidden>
+												<Icon name='list'/>
+											</Button.Content>
+										</Button>
+										<Header as='h2'>{name}</Header>
+										<Segment>
+										{/* insert logic for editSeachModal to open with modal logic in App.js and by using a function to generate search based on {_id} here*/}
+										<p><Icon name='pin'/>Zipcode:{zipcode}</p>
+										<p><Icon name='expand'/>Square Feet:{sqrft}</p>
+										<p><Icon name='money bill alternate outline'/>Price Range:${lowerPrice} - ${upperPrice}</p>
+										</Segment>
+									</Segment>
 								</Segment>
-							</Segment>
-						</Segment>
-					))
+							</Grid.Column>
+						))
+					}
+					</Grid>
+					</React.Fragment>
 				:
 				<Header as='h2' textAlign='center'>Come here to see a list of your searches</Header>
 			}
