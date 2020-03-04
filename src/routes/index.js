@@ -10,19 +10,11 @@ import ChatContainer from '../ChatContainer'
 import RealtorContainer from '../RealtorContainer'
 import ClientList from '../RealtorContainer/ClientList'
 import CurrentRealtorModal from '../ClientContainer/CurrentRealtorModal'
+import NewSearchFormModal from '../ClientContainer/NewSearchFormModal'
+import SearchList from '../ClientContainer/SearchList'
 
 export default function Routes(props) {
 	return(
-// 		<Switch>
-// 			<Route path='/' exact component={ClientLoginRegisterForm} />
-// 			<Route path'/realtors' component={RealtorLoginRegisterForm} />
-// 
-// 			<Route path='/dashboard' component={ClientContainer} isClient />
-// 
-// 			{/* Redirect if not signed in */}
-// 			<Route component={SignIn} />
-// 		</Switch>
-
 		// Already in Router from App.js render
 		<React.Fragment>
 			{
@@ -54,7 +46,26 @@ export default function Routes(props) {
 								<Link to='/clients/my-realtor'>
 									<Button animated='fade'>
 										<Button.Content visible>My Realtor</Button.Content>
-										<Button.Content hidden>My <Icon color='red' name='handshake' /></Button.Content>
+										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='red' name='handshake outline' /></Button.Content>
+									</Button>
+								</Link>
+							</Menu.Item>
+							<Menu.Item>
+								{/* Opens SearchList */}
+								<Link to='/clients/searches/index'>
+									<Button animated='fade'>
+										<Button.Content visible>Search List</Button.Content>
+										<Button.Content hidden>Search <Icon color='green' name='list' /></Button.Content>
+									</Button>
+								</Link>
+							</Menu.Item>
+							<Menu.Item>
+								{/* Opens SearchList */}
+								<Link to='/clients/searches/index'>
+									{/*Open NewSearchFormModal*/}
+									<Button onClick={null} animated='fade'>
+										<Button.Content visible>New Search</Button.Content>
+										<Button.Content hidden>New <Icon color='green' name='home' /></Button.Content>
 									</Button>
 								</Link>
 							</Menu.Item>
@@ -69,6 +80,12 @@ export default function Routes(props) {
 					</Sticky>
 
 	  				<Switch>
+	  					<Route path='/clients/searches/index'>
+	  						<SearchList
+
+	  						/>
+	  					</Route>
+
 	  					<Route path='/clients/my-realtor'>
 	  						<CurrentRealtorModal
 
@@ -94,7 +111,10 @@ export default function Routes(props) {
 							/>
 						</Route>
 		  			</Switch>
-		  			{/* ChatContainer Exists In All Components listed in switch above */}
+		  			{/* ChatContainer... Exists In All Components listed in switch above */}
+		  			<NewSearchFormModal
+
+		  			/>
 					<ChatContainer
 						chatList={props.chatList}
 						chatThreads={props.chatThreads}
