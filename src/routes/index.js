@@ -119,7 +119,7 @@ export default function Routes(props) {
 			  						<Button.Content hidden>Out-<Icon color='red' name='sign-out'/></Button.Content>
 			  					</Button>
 			  				</Menu.Item>
-			  				<Image className='Realtor-Logo' src={props.realtorLogo} avatar floated='right' size='tiny'/>
+			  				<Image className='Realtor-Logo' src={props.realtorLogo} floated='right' size='tiny'/>
 			  			</Menu>
 			  		</Sticky>
 

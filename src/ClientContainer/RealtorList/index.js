@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Segment, Button, Icon } from 'semantic-ui-react'
+import { Segment, Button, Icon, Header } from 'semantic-ui-react'
 
 export default function RealtorList(props) {
 
@@ -83,7 +83,7 @@ export default function RealtorList(props) {
 	console.log(realtors);
 	return(
 		<React.Fragment>
-			<h2>Realtors In Your Area</h2>
+			<Header as='h3' block textAlign='center'>Realtors In Your Area</Header>
 			{
 				(realtors.length>0)
 				?
@@ -129,7 +129,7 @@ export default function RealtorList(props) {
 						</Segment>
 					))
 				:
-				<p>Realtors Are Listed Here</p>
+				<Header as='h2' textAlign='center'>Realtors Are Listed Here</Header>
 			}
 		
 		</React.Fragment>
