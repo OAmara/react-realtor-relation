@@ -274,9 +274,9 @@ function App(props) {
 	// Creates New Search for Client
 	const createClientSearch = async (searchBody) => {
 		try{
-			// const searchResponse = await fetch()
-
 			console.log('\n\nThis is the body that we are using to create search: ', searchBody)
+			const searchResponse = await fetch()
+
 
 			// on json status code, once search is created:
 			setActivate('redirect search index')

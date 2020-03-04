@@ -38,12 +38,15 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 	return(
 		<div className="Bottom-Sticky">
 			<Menu>
+				<Menu.Item>
+					<Header as='h4' dividing color='violet'>Chat:</Header>
+				</Menu.Item>
 				{
 					(chatThreads.length > 0 && isClient === true)
 					?
 						chatThreads.map(({_id, realtor, messages}) => (
 						 	<div key={_id}>
-								<Popup className='Popup' trigger={<Button size='mini' circular inverted color='orange'>{realtor.firstName} {realtor.lastName}</Button>} flowing hoverable>
+								<Popup className='Popup' trigger={<Button size='mini' circular inverted color='violet'>{realtor.firstName} {realtor.lastName}</Button>} flowing hoverable>
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
 											<Header sub textAlign='center' block/*dividing*/ as='h3'><Image circular src='https://i.imgur.com/T60FXNN.jpg?1' />{realtor.firstName} {realtor.lastName}</Header>

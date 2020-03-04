@@ -13,12 +13,6 @@ export default function NewSearchFormModal(props) {
 		})
 	}
 
-	function handleSubmit(e) {
-
-
-
-	}
-
 	console.log(searchBody)
 	return(
 		<React.Fragment>

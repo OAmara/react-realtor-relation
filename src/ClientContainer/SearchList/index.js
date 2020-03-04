@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Header, Button } from  'semantic-ui-react'
 
 export default function SearchList() {
+
+
+	// fetches searches on component mount, update...
+	useEffect(() => {
+		// insert function to retrieve client's searches!
+	},[])
 
 	return(
 		<React.Fragment>

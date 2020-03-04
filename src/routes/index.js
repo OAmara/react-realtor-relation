@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
-import { Button, Divider, Sticky, Image, Icon, Menu } from 'semantic-ui-react'
+import { Button, Divider, Sticky, Image, Icon, Menu, Header } from 'semantic-ui-react'
 
 import ClientLoginRegisterForm from '../ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from '../RealtorLoginRegisterForm'
@@ -72,8 +72,15 @@ export default function Routes(props) {
 									{/*Open NewSearchFormModal*/}
 									<Button onClick={() => props.openSearchModals('open new modal')} animated='fade'>
 										<Button.Content visible>New Search</Button.Content>
-										<Button.Content hidden>New <Icon color='green' name='home' /></Button.Content>
+										<Button.Content hidden>New <Icon color='teal' name='home' /></Button.Content>
 									</Button>
+								</Link>
+							</Menu.Item>
+							<Menu.Item header>
+								<Link >
+
+										<Icon name='settings' />Options
+
 								</Link>
 							</Menu.Item>
 							<Menu.Item position='right'>

@@ -113,7 +113,7 @@ export default function RealtorList(props) {
 								{// insert logic to not be able to create a message thread with realtor if already created, or maybe when clicked it will open modal containing chat??
 									(props.loggedInUser)
 									?
-									<Button onClick={() => createChatThread(_id)} animated circular inverted color='orange' floated='right' size='huge'>
+									<Button onClick={() => createChatThread(_id)} animated circular inverted color='violet' floated='right' size='huge'>
 										<Button.Content visible><Icon name='mail'/></Button.Content>
 										<Button.Content hidden>Say Hi!</Button.Content>
 									</Button>
