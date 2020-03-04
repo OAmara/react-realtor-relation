@@ -131,6 +131,8 @@ export default function Routes(props) {
 	  							terminateContract={props.terminateContract}
 	  							chatList={props.chatList}
 	  							chatThreads={props.chatThreads}
+	  							activate={props.activate}
+	  							defaultActivate={props.defaultActivate}
 	  						/>
 	  					</Route>
 

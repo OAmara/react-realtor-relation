@@ -42,6 +42,16 @@ function App(props) {
 	})
 	// Chat threads/ messages
 	const [chatThreads, setChatThreads] = useState({})
+	// property to universally activate functions within child components. Requires a callback in child to revert to default.
+	// important: always revert to falsy value. Can specify specific usage by changing to value to trigger function in child component.
+	// Usage:
+		// RealtorContainer/ClientList activation --> 'refresh list'
+	const [activate, setActivate] = useState(undefined)
+
+	// function called from child components to default (state)activate
+	function defaultActivate() {
+		setActivate(undefined)
+	}
 
 
 	/* -- Auth Related Functions -- */
@@ -165,6 +175,7 @@ function App(props) {
 			const logoutResponse = await fetch(apiUrl)
 			const logoutJson = await logoutResponse.json()
 
+			// set all state back to default
 			if(logoutResponse.status === 200) {
 				console.log(logoutJson.message);
 				setIsCLient(null)
@@ -180,8 +191,6 @@ function App(props) {
 
 		// To terminate Contract/Relationship.
 	const terminateContract = async (clientId) => {
-	// maybe for Client use: loggedInUser.currentRealtor[0]._id
-	// maybe for Realtor use: loggedInUser.clients.map..._id (OR) map in realtor's portal then send the index or id through as argument(clientId)
 		try{
 			const cutTiesResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/clients/terminate/' + clientId, {
 				credentials: 'include',
@@ -190,10 +199,11 @@ function App(props) {
 					'Content-Type': 'application/json'
 				},
 			});
-			console.log(cutTiesResponse);
 			const cutTiesJson = await cutTiesResponse.json()
-			console.log(cutTiesJson);
-
+			console.log(cutTiesJson.message);
+			if(cutTiesJson.status === 200) {
+				setActivate('refresh list')
+			}
 		} catch(err) {
 			console.error(err)
 		}
@@ -261,6 +271,7 @@ function App(props) {
 
 	console.log(loggedInUser);
 	console.log(isClient);
+	console.log('\n\n\t\tThis is activate!', activate);
   	return (
 		<div className='App'>
 	  		<Router >
@@ -271,6 +282,7 @@ function App(props) {
 		   			myName={loggedInUser}
 					loggedInUser={loggedInUser}
 					chatThreads={chatThreads}
+					activate={activate}
 					/* Auth methods */
 					loginForm={loginForm}
 					registerForm={registerForm}
@@ -287,6 +299,7 @@ function App(props) {
 					chatList={chatList}
 					terminateContract={terminateContract}
 					createMessage={createMessage}
+					defaultActivate={defaultActivate}
 	  			/>
 	  		</Router>
     	</div>

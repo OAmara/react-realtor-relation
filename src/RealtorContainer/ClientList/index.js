@@ -21,6 +21,14 @@ export default function ClientList(props) {
 			console.error(err)
 		}
 	}
+	
+	// Prop. for parent component to activate function. 
+	// Usage:
+		// getClients()
+	if(props.activate === 'refresh list') {
+		getClients()
+		props.defaultActivate()
+	}
 
 	useEffect(() => {
 		getClients()
