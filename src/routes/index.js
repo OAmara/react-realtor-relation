@@ -9,6 +9,7 @@ import RealtorList from '../ClientContainer/RealtorList'
 import ChatContainer from '../ChatContainer'
 import RealtorContainer from '../RealtorContainer'
 import ClientList from '../RealtorContainer/ClientList'
+import CurrentRealtorModal from '../ClientContainer/CurrentRealtorModal'
 
 export default function Routes(props) {
 	return(
@@ -49,6 +50,14 @@ export default function Routes(props) {
 									</Button>
 								</Link>
 							</Menu.Item>
+							<Menu.Item>
+								<Link to='/clients/my-realtor'>
+									<Button animated='fade'>
+										<Button.Content visible>My Realtor</Button.Content>
+										<Button.Content hidden>My <Icon color='red' name='handshake' /></Button.Content>
+									</Button>
+								</Link>
+							</Menu.Item>
 							<Menu.Item position='right'>
 								<Button animated onClick={props.logout}>
 									<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>
@@ -60,6 +69,12 @@ export default function Routes(props) {
 					</Sticky>
 
 	  				<Switch>
+	  					<Route path='/clients/my-realtor'>
+	  						<CurrentRealtorModal
+
+	  						/>
+	  					</Route>
+
 		  				<Route path='/clients/realtor-list'>
 	  						<RealtorList 
 	  							loggedInUser={props.loggedInUser}

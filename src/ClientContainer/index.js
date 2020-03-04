@@ -19,14 +19,14 @@ export default function ClientContainer(props) {
 						<h1>(works)Realtor List</h1>
 				</Segment>
 			</Link>
-			<Link>
+			<Link to='/clients/my-realtor'>
 				<Segment circular style={links}>
-					<h1>{props.loggedInUser.firstName}'s Searches!</h1>
+					<h2>My Realtor</h2>
 				</Segment>
 			</Link>
 			<Link>
 				<Segment circular style={links}>
-					<h2>Navigate Area Here</h2>
+					<h1>{props.loggedInUser.firstName}'s Searches!</h1>
 				</Segment>
 			</Link>
 			<Link>
