@@ -24,8 +24,8 @@ export default function Routes(props) {
 				<React.Fragment>
 					{/* Automatically Redirects to /clients when isClient===true */}
 					<Redirect to='/clients'/>
-					{
-						(props.activate === 'close search modal')
+					{// condition to redirect to Search List after search is created
+						(props.activate === 'redirect search index')
 						?
 						<Redirect to='/clients/searches/index'/>
 						:
@@ -124,6 +124,7 @@ export default function Routes(props) {
 		  				toggleOpenSearchModals={props.toggleOpenSearchModals}
 		  				openSearchModals={props.openSearchModals}
 		  				closeSearchModals={props.closeSearchModals}
+		  				createClientSearch={props.createClientSearch}
 		  			/>
 					<ChatContainer
 						chatList={props.chatList}

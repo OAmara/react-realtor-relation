@@ -1,6 +1,5 @@
 import React from 'react'
 import { Modal, Header, Form, Button } from  'semantic-ui-react'
-import { Redirect } from 'react-router-dom'
 
 
 export default function NewSearchFormModal(props) {
@@ -12,7 +11,7 @@ export default function NewSearchFormModal(props) {
 			<Modal open={props.toggleNewSearchModal} closeIcon={true} onClose={() => props.closeSearchModals('close new modal')} >
 				<Header>Save a New Search Paramater to Store Generated Listings</Header>
 				<Modal.Content>
-					<Form className="NewFormModal" onSubmit={() => props.closeSearchModals('close new modal')}>
+					<Form className="NewFormModal" onSubmit={() => props.createClientSearch('hello')}>
 						<Form.Group widths='equal'>
 							<Form.Input
 								size={'large'}

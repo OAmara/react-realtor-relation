@@ -36,16 +36,17 @@ function App(props) {
 	})
 	// Chat threads/ messages
 	const [chatThreads, setChatThreads] = useState({})
-	// property to universally activate functions within child components. Requires a callback in child to revert to default.
-	// important: always revert to falsy value. Can specify specific usage by changing to value to trigger function in child component.
-	// Usage:
-		// RealtorContainer/ClientList activation --> 'refresh list'
-	const [activate, setActivate] = useState(undefined)
 	// Open/Close logic for Search Modals
 	const [toggleNewSearchModal, setToggleNewSearchModal] = useState(false)
 	const [toggleEditSearchModal, setToggleEditSearchModal] = useState(false)
+	// property to universally activate functions within child components. Requires a callback in child to revert to default.
+	// important: always revert to falsy value. Can specify specific usage by changing to value to trigger function in child component.
+	// Usage:
+		// RealtorContainer/ClientList. activation --> 'refresh list'
+		// in routes & used with createClientSearch. activation --> 'redirect search index'
+	const [activate, setActivate] = useState(undefined)
 
-	/* -- toggle children functionality -- */
+	/* -- toggle child component functionality -- */
 
 	// function called from child components to default (state)activate
 	function defaultActivate() {
@@ -65,7 +66,6 @@ function App(props) {
 	function closeSearchModals(str) {
 		if(str === 'close new modal') {
 			setToggleNewSearchModal(false)
-			setActivate('close search modal')
 		} else if(str === 'close edit modal') {
 			setToggleEditSearchModal(false)
 		}
@@ -269,6 +269,27 @@ function App(props) {
 	// Chat function to delete a message
 		//
 	// ^ Should both these be in Chat Container??
+		//
+
+	// Creates New Search for Client
+	const createClientSearch = async (searchBody) => {
+		try{
+			// const searchResponse = await fetch()
+
+
+
+			// on json status code, once search is created:
+			setActivate('redirect search index')
+			closeSearchModals('close new modal')
+
+			// call this after awaiting json response and conditional to setActivate:
+			// defaultActivate()
+
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
 
 	useEffect(() => {
 		 document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
@@ -322,6 +343,7 @@ function App(props) {
 					toggleNewSearchModal={toggleNewSearchModal}
 					openSearchModals={openSearchModals}
 					closeSearchModals={closeSearchModals}
+					createClientSearch={createClientSearch}
 	  			/>
 	  		</Router>
     	</div>
