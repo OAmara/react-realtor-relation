@@ -64,18 +64,18 @@ export default function NewSearchFormModal(props) {
 								label='Price Range High:'
 								required
 								type="number"
-								name="upperprice"
+								name="upperPrice"
 								placeholder='0'
-								value={props.searchBody.upperprice}
+								value={props.searchBody.upperPrice}
 								onChange={props.handleChange}
 							/>
 							<Form.Input
 								size={'small'}
 								label='Price Range Low:'
 								type="number"
-								name="lowerprice"
+								name="lowerPrice"
 								placeholder='0'
-								value={props.searchBody.lowerprice}
+								value={props.searchBody.lowerPrice}
 								onChange={props.handleChange}
 							/>
 						</Form.Group>
