@@ -1,17 +1,18 @@
 import React from 'react'
 import { Modal, Header, Form, Button } from  'semantic-ui-react'
+import { Redirect } from 'react-router-dom'
 
 
-export default function NewSearchFormModal() {
+export default function NewSearchFormModal(props) {
 // fetch for createNewSearch located in App.js
 
 	// CHANGE open= to true to have model open. CREATE A STATE TO DO THIS...
 	return(
 		<React.Fragment>
-			<Modal open={false} closeIcon={true} onClose={null} >
+			<Modal open={props.toggleNewSearchModal} closeIcon={true} onClose={() => props.closeSearchModals('close new modal')} >
 				<Header>Save a New Search Paramater to Store Generated Listings</Header>
 				<Modal.Content>
-					<Form className="NewFormModal" onSubmit={null}>
+					<Form className="NewFormModal" onSubmit={() => props.closeSearchModals('close new modal')}>
 						<Form.Group widths='equal'>
 							<Form.Input
 								size={'large'}

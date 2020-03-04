@@ -32,13 +32,7 @@ function App(props) {
 	// This will be filled with info from both register froms!
 	// Commented fields below prevents uncontrolled input warning when inserted. Seperate states with fields would be needed for each form.
 	const [registerForm, setRegisterForm] = useState({
-		// email: "",
-		// username: "",
-		// lastName: "",
-		// recoveryAnswer: "",
-		// firstName: "",
-		// password: "",
-		// recoveryQuestion: ""
+		// email: "", username: "", lastName: "", recoveryAnswer: "", firstName: "", password: "", recoveryQuestion: ""
 	})
 	// Chat threads/ messages
 	const [chatThreads, setChatThreads] = useState({})
@@ -47,10 +41,34 @@ function App(props) {
 	// Usage:
 		// RealtorContainer/ClientList activation --> 'refresh list'
 	const [activate, setActivate] = useState(undefined)
+	// Open/Close logic for Search Modals
+	const [toggleNewSearchModal, setToggleNewSearchModal] = useState(false)
+	const [toggleEditSearchModal, setToggleEditSearchModal] = useState(false)
+
+	/* -- toggle children functionality -- */
 
 	// function called from child components to default (state)activate
 	function defaultActivate() {
 		setActivate(undefined)
+	}
+
+	// string argument, toggleSearchModal's state to true
+	function openSearchModals(str) {
+		if(str === 'open new modal') {
+			setToggleNewSearchModal(true)
+		} else if (str === 'open edit modal') {
+			setToggleEditSearchModal(true)
+		}
+	}
+
+	// defaults toggle Search Modals to false
+	function closeSearchModals(str) {
+		if(str === 'close new modal') {
+			setToggleNewSearchModal(false)
+			setActivate('close search modal')
+		} else if(str === 'close edit modal') {
+			setToggleEditSearchModal(false)
+		}
 	}
 
 
@@ -300,6 +318,10 @@ function App(props) {
 					terminateContract={terminateContract}
 					createMessage={createMessage}
 					defaultActivate={defaultActivate}
+					toggleEditSearchModal={toggleEditSearchModal}
+					toggleNewSearchModal={toggleNewSearchModal}
+					openSearchModals={openSearchModals}
+					closeSearchModals={closeSearchModals}
 	  			/>
 	  		</Router>
     	</div>

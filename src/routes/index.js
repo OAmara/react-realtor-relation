@@ -24,6 +24,13 @@ export default function Routes(props) {
 				<React.Fragment>
 					{/* Automatically Redirects to /clients when isClient===true */}
 					<Redirect to='/clients'/>
+					{
+						(props.activate === 'close search modal')
+						?
+						<Redirect to='/clients/searches/index'/>
+						:
+						null
+					}
 					<Sticky>
 						<Menu>
 							<Menu.Item>
@@ -61,9 +68,9 @@ export default function Routes(props) {
 							</Menu.Item>
 							<Menu.Item>
 								{/* Opens SearchList */}
-								<Link to='/clients/searches/index'>
+								<Link >
 									{/*Open NewSearchFormModal*/}
-									<Button onClick={null} animated='fade'>
+									<Button onClick={() => props.openSearchModals('open new modal')} animated='fade'>
 										<Button.Content visible>New Search</Button.Content>
 										<Button.Content hidden>New <Icon color='green' name='home' /></Button.Content>
 									</Button>
@@ -113,7 +120,10 @@ export default function Routes(props) {
 		  			</Switch>
 		  			{/* ChatContainer... Exists In All Components listed in switch above */}
 		  			<NewSearchFormModal
-
+		  				toggleNewSearchModal={props.toggleNewSearchModal}
+		  				toggleOpenSearchModals={props.toggleOpenSearchModals}
+		  				openSearchModals={props.openSearchModals}
+		  				closeSearchModals={props.closeSearchModals}
 		  			/>
 					<ChatContainer
 						chatList={props.chatList}
