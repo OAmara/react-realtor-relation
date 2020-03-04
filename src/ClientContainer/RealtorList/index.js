@@ -76,7 +76,7 @@ export default function RealtorList(props) {
 	}
 
 	useEffect(() => {
-			getRealtors()	
+		getRealtors()	
 	// empty array below tells useEffect to only execute on mount. Adding item/state specifies which one to update on, even after mount. i.e.[realtors]
 	},[])
 
