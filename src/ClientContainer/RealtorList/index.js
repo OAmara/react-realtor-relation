@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Segment, Button, Icon, Header, Grid } from 'semantic-ui-react'
+import { Segment, Button, Icon, Header, Grid, Label } from 'semantic-ui-react'
 
 export default function RealtorList(props) {
 
@@ -8,10 +8,10 @@ export default function RealtorList(props) {
 
 	/* Randome !Necessities */
 	// Realtor Greeting for hire button!
-	const [greetRealtor, setGreetRealtor] = useState('My Realtor')
+	const [greetRealtor, setGreetRealtor] = useState('home')
 	// not necessary, but nice
 	function sayHi() {
-		(greetRealtor === 'My Realtor')?setGreetRealtor('Hello!'):setGreetRealtor('My Realtor')
+		(greetRealtor === 'home')?setGreetRealtor('user secret'):setGreetRealtor('home')
 	}
 
 	// Retrieves realtor index, then set realtors state.
@@ -83,7 +83,7 @@ export default function RealtorList(props) {
 	console.log(realtors);
 	return(
 		<React.Fragment>
-			<Header as='h3' block textAlign='center'>Realtors In Your Area</Header>
+			<Header as='h2' block textAlign='center'>Realtors In Your Area</Header>
 			<Grid columns={2} >
 				{
 					(realtors.length>0)
@@ -96,19 +96,23 @@ export default function RealtorList(props) {
 											// first condition is used for testing since cannot use .length if undefined...
 											(props.loggedInUser.currentRealtor && props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
 											?
-											<Button onClick={sayHi} animated='vertical' inverted color={'blue'} size='large' floated='right'>
-												<Button.Content visible><Icon name='home'/></Button.Content>
-												<Button.Content hidden>
-													{greetRealtor}
-												</Button.Content>
-											</Button>
+												<Label as='a' color='blue' ribbon='left' onClick={sayHi}>
+												<Button animated='fade' color={'blue'} size='large' floated='right'>
+													<Button.Content visible>My Realtor</Button.Content>
+													<Button.Content hidden>
+														<Icon name={greetRealtor}/>
+													</Button.Content>
+												</Button>
+												</Label>
 											:
-											<Button onClick={() => contractRealtor(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
+											<Label as='a' color='red' ribbon='right' onClick={() => contractRealtor(_id)}>
+											<Button  animated='fade' color={'red'} size='tiny' floated='right'>
 												<Button.Content visible>Hire Realtor</Button.Content>
 												<Button.Content hidden>
 													<Icon name='handshake'/>
 												</Button.Content>
 											</Button>
+											</Label>
 										}
 										<h2>{firstName} {lastName}</h2>
 										<Segment>

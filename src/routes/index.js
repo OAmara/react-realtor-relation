@@ -32,7 +32,7 @@ export default function Routes(props) {
 						null
 					}
 					<Sticky>
-						<Menu stackable>
+						<Menu stackable borderless fluid size='mini'>
 							<Menu.Item>
 								<Link to='/clients'>
 									<Button animated='fade'>
