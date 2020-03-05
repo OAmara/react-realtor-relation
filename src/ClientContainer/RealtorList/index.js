@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Segment, Button, Icon, Header } from 'semantic-ui-react'
+import { Segment, Button, Icon, Header, Grid } from 'semantic-ui-react'
 
 export default function RealtorList(props) {
 
@@ -8,10 +8,10 @@ export default function RealtorList(props) {
 
 	/* Randome !Necessities */
 	// Realtor Greeting for hire button!
-	const [greetRealtor, setGreetRealtor] = useState('Your Realtor')
+	const [greetRealtor, setGreetRealtor] = useState('My Realtor')
 	// not necessary, but nice
 	function sayHi() {
-		(greetRealtor === 'Your Realtor')?setGreetRealtor('Hello!'):setGreetRealtor('Your Realtor')
+		(greetRealtor === 'My Realtor')?setGreetRealtor('Hello!'):setGreetRealtor('My Realtor')
 	}
 
 	// Retrieves realtor index, then set realtors state.
@@ -84,54 +84,57 @@ export default function RealtorList(props) {
 	return(
 		<React.Fragment>
 			<Header as='h3' block textAlign='center'>Realtors In Your Area</Header>
-			{
-				(realtors.length>0)
-				?
-					realtors.map(({_id, firstName, lastName, email, phoneNumber, companyName, street1, city, state, zipcode, websiteURL, companyPhone}) => (
-						<Segment raised key={_id}>
-							<Segment raised color='orange'>
-								{
-									// first condition is used for testing since cannot use .length if undefined...
-									(props.loggedInUser.currentRealtor && props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
-									?
-									<Button onClick={sayHi} animated='vertical' inverted color={'blue'} size='medium' floated='right'>
-										<Button.Content visible><Icon name='home'/></Button.Content>
-										<Button.Content hidden>
-											{greetRealtor}
-										</Button.Content>
-									</Button>
-									:
-									<Button onClick={() => contractRealtor(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
-										<Button.Content visible>Hire Realtor</Button.Content>
-										<Button.Content hidden>
-											<Icon name='handshake'/>
-										</Button.Content>
-									</Button>
-								}
-								<h2>{firstName} {lastName}</h2>
-								<Segment>
-								{// insert logic to not be able to create a message thread with realtor if already created, or maybe when clicked it will open modal containing chat??
-									(props.loggedInUser)
-									?
-									<Button onClick={() => createChatThread(_id)} animated circular inverted color='violet' floated='right' size='huge'>
-										<Button.Content visible><Icon name='mail'/></Button.Content>
-										<Button.Content hidden>Say Hi!</Button.Content>
-									</Button>
-									:
-									<Button>Bye</Button>
-								}
-								<h4>Contact Info:</h4>
-								<p><Icon name='mail'/>: {email}, <Icon name='phone'/>: {phoneNumber}</p>
-								<p><Icon name='marker'/>Works at {companyName} on {street1} in {city}, {state} {zipcode}</p>
-								<p><Icon name='linkify'/>: <span className='underline'>{websiteURL}</span> Find out more about Realtor by visiting their site or by calling {companyName} <small><Icon name='phone'/></small><span className='underline'>{companyPhone}</span></p>
+			<Grid columns={2} >
+				{
+					(realtors.length>0)
+					?
+						realtors.map(({_id, firstName, lastName, email, phoneNumber, companyName, street1, city, state, zipcode, websiteURL, companyPhone}) => (
+							<Grid.Column>
+								<Segment raised key={_id}>
+									<Segment raised color='orange'>
+										{
+											// first condition is used for testing since cannot use .length if undefined...
+											(props.loggedInUser.currentRealtor && props.loggedInUser.currentRealtor.length > 0 && props.loggedInUser.currentRealtor[0].email === email)
+											?
+											<Button onClick={sayHi} animated='vertical' inverted color={'blue'} size='large' floated='right'>
+												<Button.Content visible><Icon name='home'/></Button.Content>
+												<Button.Content hidden>
+													{greetRealtor}
+												</Button.Content>
+											</Button>
+											:
+											<Button onClick={() => contractRealtor(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
+												<Button.Content visible>Hire Realtor</Button.Content>
+												<Button.Content hidden>
+													<Icon name='handshake'/>
+												</Button.Content>
+											</Button>
+										}
+										<h2>{firstName} {lastName}</h2>
+										<Segment>
+										{// insert logic to not be able to create a message thread with realtor if already created, or maybe when clicked it will open modal containing chat??
+											(props.loggedInUser)
+											?
+											<Button onClick={() => createChatThread(_id)} animated circular inverted color='violet' floated='right' size='huge'>
+												<Button.Content visible><Icon name='mail'/></Button.Content>
+												<Button.Content hidden>Say Hi!</Button.Content>
+											</Button>
+											:
+											<Button>Bye</Button>
+										}
+										<h4>Contact Info:</h4>
+										<p><Icon name='at'/>: {email}, <Icon name='phone'/>: {phoneNumber}</p>
+										<p><Icon name='marker'/>Works at {companyName} on {street1} in {city}, {state} {zipcode}</p>
+										<p><Icon name='linkify'/>: <span className='underline'>{websiteURL}</span> Find out more about Realtor by visiting their site or by calling {companyName} <small><Icon name='phone'/></small><span className='underline'>{companyPhone}</span></p>
+										</Segment>
+									</Segment>
 								</Segment>
-							</Segment>
-						</Segment>
-					))
-				:
-				<Header as='h2' textAlign='center'>Realtors Are Listed Here</Header>
-			}
-		
+							</Grid.Column>
+						))
+					:
+					<Header as='h2' textAlign='center'>Realtors Are Listed Here</Header>
+				}
+			</Grid>
 		</React.Fragment>
 	)
 }

@@ -49,8 +49,8 @@ export default function ClientContainer(props) {
 				</Grid.Column>
 				<Grid.Column>
 					<Link to='/clients/my-realtor'>
-						<Segment raised circular color='red' style={realtorStyle}>
-							<Header as='h1' block dividing inverted color='red'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader> Realtor</Header>
+						<Segment raised circular color='violet' style={realtorStyle}>
+							<Header as='h1' block dividing inverted color='violet'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader> Realtor</Header>
 						</Segment>
 					</Link>
 				</Grid.Column>
@@ -71,8 +71,8 @@ export default function ClientContainer(props) {
 				<Grid.Column>
 					{/* Create Component here to view all realtor's messaging with and to change message options(like read/sent...booleans in models)*/}
 					<Link to='/clients'>
-						<Segment raised circular color='violet' style={links}>
-							<Header as='h1' dividing block disabled inverted color='violet'>Messaging Options</Header>
+						<Segment raised circular disabled color='violet' style={links}>
+							<Header as='h1' dividing block inverted color='violet'>Messaging Options</Header>
 						</Segment>
 					</Link>
 				</Grid.Column>

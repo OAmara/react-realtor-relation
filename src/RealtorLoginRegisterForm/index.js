@@ -9,7 +9,7 @@ export default function RealtorLoginRegisterForm(props) {
 			<Grid columns={2}>
 				{/* Register Form Field */}
 				<Grid.Column className='Realtor-Register-Form'>
-					<Segment raised size='tiny' color='red'>
+					<Segment raised size='tiny' color='violet'>
 						<Form size='mini' onSubmit={(e) => props.handleAllFormSubmission(e, 'register', 'realtor')}>
 							<Form.Group widths='equal'>
 								<Form.Field>
@@ -181,9 +181,9 @@ export default function RealtorLoginRegisterForm(props) {
 							</Form.Group>
 							<Button size='tiny' color={'vk'} floated='right' animated='vertical' type='Submit'>
 								<Button.Content visible>Register</Button.Content>
-								<Button.Content hidden><Icon name='paper plane' /></Button.Content>
+								<Button.Content hidden><Icon inverted color='violet' name='paper plane' /></Button.Content>
 							</Button>
-						<Header as='h2' disabled color='red'>Welcome {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, are you a Realtor?</Header>
+						<Header as='h2' disabled color='violet'>Welcome {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, are you a Realtor?</Header>
 						</Form>
 					</Segment>
 				</Grid.Column>

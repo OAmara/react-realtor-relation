@@ -53,7 +53,7 @@ export default function Routes(props) {
 								<Link to='/clients/my-realtor'>
 									<Button animated='fade'>
 										<Button.Content visible>My Realtor</Button.Content>
-										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='red' name='handshake outline' /></Button.Content>
+										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='violet' name='handshake outline' /></Button.Content>
 									</Button>
 								</Link>
 							</Menu.Item>

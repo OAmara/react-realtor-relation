@@ -7,15 +7,10 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 	// chat message body
 	const [messageBody, setMessageBody] = useState({body: ''})
 
+	// Determines which popup chatThread to open. Changes to index in popup that is clicked on.
+	// Fun Fact!: If this were Python, it would always open the last chatThread!
 	const [openPopup, setOpenPopup] = useState(-1)
 
-	// Is there a way to generate state based on props...
-	// const chatStates = () => {
-	// 	for(let i = 0; i < chatThreads.length; i++){
-	// 		const [messageBody[i], setMessageBody[i]] = useState({body: ''})
-	// 		
-	// 	}
-	// }
 
 	useEffect(() => {
 		 chatList()
@@ -46,8 +41,6 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 	}
 
 	console.log(messageBody);
-	console.log('\n\n\n\n\nopenPopup: ', openPopup);
-	console.log('\n\n\npopupIndex ', popupIndex);
 
 	/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */
 	return(
@@ -65,7 +58,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 								<Popup open={(openPopup === i)?true:false} eventsEnabled={true} on='click' onOpen={() => setOpenPopup(i)} onClose={() => setOpenPopup(-1)} className='Popup' trigger={<Button size='mini' circular inverted color='violet'>{realtor.firstName} {realtor.lastName}</Button>} flowing >
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
-											<Header sub textAlign='center' block/*dividing*/ as='h3'><Image circular src='https://i.imgur.com/T60FXNN.jpg?1' />{realtor.firstName} {realtor.lastName}</Header>
+											<Header sub textAlign='center' block/*dividing*/ color='violet' as='h3'><Image circular src='https://i.imgur.com/T60FXNN.jpg?1' />{realtor.firstName} {realtor.lastName}</Header>
 												<Segment size='mini' className='top-overflow'>
 												{
 												(messages.length > 0)
@@ -75,18 +68,18 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 														?
 															<Segment vertical size='mini' className='Client-Message' key={_id}>
 																<Button compact onClick={null} animated='fade' floated='right' inverted size='mini'>
-																	<Button.Content visible><Header as='h5' color='violet' textAlign='right'>{body}<Header.Subheader><small><small>{new Date().toLocaleTimeString('en-US')}</small></small></Header.Subheader></Header></Button.Content>
+																	<Button.Content visible><Header as='h5' color='blue' textAlign='right'>{body}<Header.Subheader><small><small>{new Date().toLocaleTimeString('en-US')}</small></small></Header.Subheader></Header></Button.Content>
 																	<Button.Content hidden><Icon color='red' name='delete'/>{body}</Button.Content>
 																</Button>
 															</Segment>
 														:
 														// <Header as='h5' floated='left' className='Realtor-Message'>{body}</Header>
-														<Segment compact raised size='mini' className='Realtor-Message' key={_id}>
-															<Header as='h5' textAlign='left' color='blue'>{body}</Header>
+														<Segment veritcal compact size='mini' className='Realtor-Message' key={_id}>
+															<Header as='h5' color='violet' textAlign='left'>{body}<Header.Subheader><small><small>-{realtor.firstName} @ {new Date().toLocaleTimeString('en-US')}</small></small></Header.Subheader></Header>
 														</Segment>
 													))
 												:
-													<p>Say hi to {realtor.firstName}!</p>
+												<Header as='h4' dividing disabled color='violet'>Say hi to {realtor.firstName}!</Header>
 												}
 												</Segment>
 												<Form onSubmit={() => handleMessageSubmit(_id)}>
@@ -98,7 +91,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 													value={messageBody.body}
 													onChange={handleMessageChange}
 												/>
-												<Button type='Submit' size='mini' icon='telegram plane' inverted color='violet' compact></Button>
+												<Button type='Submit' size='mini' icon='telegram plane' inverted color='blue' compact></Button>
 												</Form>
 										</Grid.Column>
 									</Grid>
