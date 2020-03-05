@@ -25,6 +25,11 @@ export default function SearchList(props) {
 		}
 	}
 
+	if(props.activate === 'get searches') {
+		props.defaultActivate()
+		getSearches()
+	}
+
 	// fetches searches on component mount, update...
 	useEffect(() => {
 		// insert function to retrieve client's searches!

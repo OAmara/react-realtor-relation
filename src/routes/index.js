@@ -97,6 +97,8 @@ export default function Routes(props) {
 	  					<Route path='/clients/searches/index'>
 	  						<SearchList
 	  							openSearchModals={props.openSearchModals}
+	  							activate={props.activate}
+	  							defaultActivate={props.defaultActivate}
 	  						/>
 	  					</Route>
 

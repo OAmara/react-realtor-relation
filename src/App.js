@@ -21,6 +21,8 @@ function App(props) {
 			firstName: 'Franklin', lastName: 'Roosevelt'
 		},{
 			firstName: 'John F.', lastName: 'Kennedy'
+		},{ 
+			firstName: 'Barrack', lastName: 'Obama'
 	}]
 	let randomName = Math.floor(Math.random() * names.length)
 	// user info retrieved from API on login/ register
@@ -301,7 +303,7 @@ function App(props) {
 				closeSearchModals('close new modal')
 				if(searchResponse.status === 201) {
 					// waits for model to close and activate before performing:
-					defaultActivate()
+					setActivate('get searches')
 					setSearchBody({})
 				}
 			}

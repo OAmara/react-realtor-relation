@@ -66,19 +66,15 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 																</Button>
 															</Segment>
 														:
-															<p className='Realtor-Message'>{body}</p>
+														// <Header as='h5' floated='left' className='Realtor-Message'>{body}</Header>
+														<Segment raised size='mini' className='Realtor-Message' key={_id}>
+															<Header as='h3' textAlign='left' disabled color='blue'>{body}</Header>
+														</Segment>
 													))
 												:
 													<p>Say hi to {realtor.firstName}!</p>
 												}
 												</Segment>
-												{// Also write conditions for message[?].isClient === true then color='blue', textAlign='right'....
-												// (messages.length > 0)
-												// ?
-												// <p>{messages[0].body}</p>
-												// :
-												// null
-												}
 												<Form onSubmit={() => handleMessageSubmit(_id)}>
 												<Input
 													size='mini'
@@ -103,7 +99,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 								<Popup className='Popup' trigger={<Button size='mini' circular inverted color='violet'>{client.firstName} {client.lastName}</Button>} flowing hoverable>
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
-											<Header sub textAlign='center' block/*dividing*/ as='h3'><Image circular src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />{client.firstName} {client.lastName}</Header>
+											<Header sub textAlign='center' block/*dividing*/ as='h4'><Image circular src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />{client.firstName} {client.lastName}</Header>
 												<Segment size='mini' className='top-overflow'>
 												{
 												(messages.length > 0)
@@ -111,8 +107,8 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 													messages.map(({_id, body, isSenderClient}) => (
 														!isSenderClient
 														?
-															<Segment stacked size='mini' className='Client-Message' key={_id}>
-																<Button onClick={null} animated='fade' floated='right' size='mini'>
+															<Segment raised size='mini' className='Client-Message' key={_id}>
+																<Button onClick={null} animated='fade' floated='right' compact>
 																	<Button.Content visible>{body}</Button.Content>
 																	<Button.Content hidden>
 																		<Icon color='red' name='delete'/>{body}
@@ -120,19 +116,15 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 																</Button>
 															</Segment>
 														:
-															<p className='Realtor-Message'>{body}</p>
+														// <Header as='h5' floated='left' className='Realtor-Message'>{body}</Header>
+														<Segment raised size='mini' className='Realtor-Message' key={_id}>
+															<Header as='h3' textAlign='left' disabled color='blue'>{body}</Header>
+														</Segment>
 													))
 												:
 													<p>Say hi to {client.firstName}!</p>
 												}
 												</Segment>
-												{// Also write conditions for message[?].isClient === true then color='blue', textAlign='right'....
-												// (messages.length > 0)
-												// ?
-												// <p>{messages[0].body}</p>
-												// :
-												// null
-												}
 												<Form onSubmit={() => handleMessageSubmit(_id)}>
 												<Input
 													size='mini'
