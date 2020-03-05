@@ -45,7 +45,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 					(chatThreads.length > 0 && isClient === true)
 					?
 						chatThreads.map(({_id, realtor, messages}) => (
-						 	<div key={_id}>
+						 	<Menu.Item key={_id}>
 								<Popup className='Popup' trigger={<Button size='mini' circular inverted color='violet'>{realtor.firstName} {realtor.lastName}</Button>} flowing hoverable>
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
@@ -54,21 +54,19 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 												{
 												(messages.length > 0)
 												?
-													messages.map(({_id, body, isSenderClient}) => (
+													messages.map(({_id, body, isSenderClient, timeSent}) => (
 														isSenderClient
 														?
-															<Segment stacked size='mini' className='Client-Message' key={_id}>
-																<Button onClick={null} animated='fade' floated='right' size='mini'>
-																	<Button.Content visible>{body}</Button.Content>
-																	<Button.Content hidden>
-																		<Icon color='red' name='delete'/>{body}
-																	</Button.Content>
+															<Segment vertical size='mini' className='Client-Message' key={_id}>
+																<Button compact onClick={null} animated='fade' floated='right' inverted size='mini'>
+																	<Button.Content visible><Header as='h5' color='violet' textAlign='right'>{body}<Header.Subheader><small><small>{new Date().toLocaleTimeString('en-US')}</small></small></Header.Subheader></Header></Button.Content>
+																	<Button.Content hidden><Icon color='red' name='delete'/>{body}</Button.Content>
 																</Button>
 															</Segment>
 														:
 														// <Header as='h5' floated='left' className='Realtor-Message'>{body}</Header>
-														<Segment raised size='mini' className='Realtor-Message' key={_id}>
-															<Header as='h3' textAlign='left' disabled color='blue'>{body}</Header>
+														<Segment compact raised size='mini' className='Realtor-Message' key={_id}>
+															<Header as='h5' textAlign='left' color='blue'>{body}</Header>
 														</Segment>
 													))
 												:
@@ -84,12 +82,12 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 													value={messageBody.body}
 													onChange={handleMessageChange}
 												/>
-												<Button type='Submit' size='mini' icon='telegram plane' inverted color='blue' compact></Button>
+												<Button type='Submit' size='mini' icon='telegram plane' inverted color='violet' compact></Button>
 												</Form>
 										</Grid.Column>
 									</Grid>
 								</Popup>
-						 	</div>
+						 	</Menu.Item>
 						))
 					:
 					(chatThreads.length > 0 && isClient === false)

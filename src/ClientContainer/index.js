@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Segment, Header } from  'semantic-ui-react'
+import { Segment, Header, Grid } from  'semantic-ui-react'
 
-const links = { width: 400, height: 350 }
-const realtorListStyle = {width: 400, height: 350, backgroundImage: `url(${'https://i.imgur.com/obYScyd.png'})`, backgroundSize: 'cover', opacity: '0.9'}
-const profileStyle = {width: 400, height: 350, backgroundImage: `url(${'https://i.imgur.com/8wOo25s.png'})`, backgroundSize: 'cover',}
-const realtorStyle = {width: 400, height: 350, backgroundImage: `url(${'https://i.imgur.com/8xG8w0F.png'})`, backgroundSize: 'cover',}
-const newSearchStyle = {width: 400, height: 350, backgroundImage: `url(${'https://i.imgur.com/3IIQwnO.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+const links = { width: 450, height: 400 }
+const realtorListStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/obYScyd.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+const profileStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/8wOo25s.png'})`, backgroundSize: 'cover',}
+const realtorStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/8xG8w0F.png'})`, backgroundSize: 'cover',}
+const newSearchStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/3IIQwnO.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+const searchListStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/Fg7ZXna.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 
 export default function ClientContainer(props) {
 
@@ -30,38 +31,52 @@ export default function ClientContainer(props) {
 
 	return(
 		<React.Fragment>
-			<Header as='h1' inverted color='blue' textAlign='center'>Welcome {props.loggedInUser.firstName}</Header>
-			<Link to='/clients'>
-				<Segment raised circular color='blue' style={profileStyle}>
-					<Header as='h1' dividing block  color='blue'><Header as='h3' >{props.loggedInUser.firstName}'s</Header> Profile</Header>
-				</Segment>
-			</Link>
-			<Link to='/clients/realtor-list'>
-				<Segment raised circular /*size='large'*/ dividing color='orange' style={realtorListStyle} >
-						<Header as='h1' block inverted color='orange'><Header as='h3' disabled>{props.loggedInUser.firstName}'s</Header> Realtor List</Header>
-				</Segment>
-			</Link>
-			<Link to='/clients/my-realtor'>
-				<Segment raised circular color='red' dividing style={realtorStyle}>
-					<Header as='h1' block inverted color='red'><Header as='h3' disabled>{props.loggedInUser.firstName}'s</Header> Realtor</Header>
-				</Segment>
-			</Link>
-			<Link>
-				<Segment raised circular color='green' style={links}>
-					<Header as='h1' block color='green'><Header as='h3' disabled>{props.loggedInUser.firstName}'s</Header> Search List</Header>
-				</Segment>
-			</Link>
-			<Link onClick={() => props.openSearchModals('open new modal')}>
-				<Segment raised circular color='teal' style={newSearchStyle}>
-					<Header block as='h1' inverted color='teal'>Create New Search</Header>
-				</Segment>
-			</Link>
-			{/* Create Component here to view all realtor's messaging with and to change message options(like read/sent...booleans in models)*/}
-			<Link to='/clients'>
-				<Segment raised circular color='violet' style={links}>
-					<Header as='h1' disabled block color='violet'>Messaging Options</Header>
-				</Segment>
-			</Link>
+			<Header as='h1' color='blue' dividing textAlign='center'>Welcome {props.loggedInUser.firstName}</Header>
+			<Grid columns={3}>
+				<Grid.Column>
+					<Link to='/clients'>
+						<Segment raised circular color='blue' style={profileStyle}>
+							<Header as='h1' dividing block inverted color='blue'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader> Profile</Header>
+						</Segment>
+					</Link>
+				</Grid.Column>
+				<Grid.Column>
+					<Link to='/clients/realtor-list'>
+						<Segment raised circular /*size='large'*/ color='orange' style={realtorListStyle} >
+								<Header as='h1' block dividing inverted color='orange'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader> Realtor List</Header>
+						</Segment>
+					</Link>
+				</Grid.Column>
+				<Grid.Column>
+					<Link to='/clients/my-realtor'>
+						<Segment raised circular color='red' style={realtorStyle}>
+							<Header as='h1' block dividing inverted color='red'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader> Realtor</Header>
+						</Segment>
+					</Link>
+				</Grid.Column>
+				<Grid.Column>
+					<Link>
+						<Segment raised circular color='green' style={searchListStyle}>
+							<Header as='h1' dividing block inverted color='green'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader> Search List</Header>
+						</Segment>
+					</Link>
+				</Grid.Column>
+				<Grid.Column>
+					<Link onClick={() => props.openSearchModals('open new modal')}>
+						<Segment raised circular color='teal' style={newSearchStyle}>
+							<Header as='h1' dividing block inverted color='teal'>Create New Search</Header>
+						</Segment>
+					</Link>
+				</Grid.Column>
+				<Grid.Column>
+					{/* Create Component here to view all realtor's messaging with and to change message options(like read/sent...booleans in models)*/}
+					<Link to='/clients'>
+						<Segment raised circular color='violet' style={links}>
+							<Header as='h1' dividing block disabled inverted color='violet'>Messaging Options</Header>
+						</Segment>
+					</Link>
+				</Grid.Column>
+			</Grid>
 		</React.Fragment>
 	)
 }
