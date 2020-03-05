@@ -45,9 +45,12 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 	/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */
 	return(
 		<div className="Bottom-Sticky">
-			<Menu>
+			<Menu stackable fluid widths={(chatThreads.length > 0)?chatThreads.length+2:null}/*inverted*/ tabular attached='bottom' size='mini'>
 				<Menu.Item>
-					<Header as='h4' dividing color='violet'>Chats:</Header>
+					<Button animated color='violet' size='large'>
+						<Button.Content visible>Say Hi Here!</Button.Content>
+						<Button.Content hidden><Icon name='mail'/><Icon name='long arrow alternate right'/></Button.Content>
+					</Button>:
 				</Menu.Item>
 				{
 					(chatThreads.length > 0 && isClient === true)
@@ -55,7 +58,17 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 						chatThreads.map(({_id, realtor, messages}, i) => (
 						 	<Menu.Item key={_id}>
 						 		{console.log(i)}
-								<Popup open={(openPopup === i)?true:false} eventsEnabled={true} on='click' onOpen={() => setOpenPopup(i)} onClose={() => setOpenPopup(-1)} className='Popup' trigger={<Button size='mini' circular inverted color='violet'>{realtor.firstName} {realtor.lastName}</Button>} flowing >
+								<Popup 
+									className='Popup' 
+									eventsEnabled={true} open={(openPopup === i)?true:false} on='click' onOpen={() => setOpenPopup(i)} onClose={() => setOpenPopup(-1)} 
+									trigger={
+										<Button animated='fade' compact size='mini' circular inverted color='violet'>
+											<Button.Content visible>{realtor.firstName} {realtor.lastName}</Button.Content>
+											<Button.Content hidden>Realtor {realtor.firstName}</Button.Content>
+										</Button>
+									} 
+									flowing
+								>
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
 											<Header sub textAlign='center' block/*dividing*/ color='violet' as='h3'><Image circular src='https://i.imgur.com/T60FXNN.jpg?1' />{realtor.firstName} {realtor.lastName}</Header>
@@ -79,7 +92,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 														</Segment>
 													))
 												:
-												<Header as='h4' dividing disabled color='violet'>Say hi to {realtor.firstName}!</Header>
+												<Header as='h4' dividing disabled color='blue'>Say hi to {realtor.firstName}!</Header>
 												}
 												</Segment>
 												<Form onSubmit={() => handleMessageSubmit(_id)}>
@@ -149,8 +162,16 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 						 	</div>
 						))
 					:
-					<Header as='h5' textAlign='center'>Message Threads Will Be Listed Here</Header>
-					 //next ternary for if isClient === false
+					<Menu.Item>
+					{
+						(isClient === true)
+						?
+							<Header as='h5' textAlign='center'>Message Threads Will Be Listed Here When You Start a Chat With a Realtor
+							<Header.Subheader>Go to Realtor List to start a chat!</Header.Subheader></Header>
+						:
+							<Header as='h5' textAlign='center'>Message Threads Will Be Listed Here When A Client Starts a Chat With You</Header>
+					}
+					</Menu.Item>
 				}
 				<Menu.Item position='right'>
 					<Input className='icon' icon='search' placeholder='Search...messages' size='mini'/>

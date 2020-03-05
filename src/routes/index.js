@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
-import { Button, Divider, Sticky, Image, Icon, Menu, Header } from 'semantic-ui-react'
+import { Button, Divider, Sticky, Image, Icon, Menu, Header, Dropdown } from 'semantic-ui-react'
 
 import ClientLoginRegisterForm from '../ClientLoginRegisterForm'
 import RealtorLoginRegisterForm from '../RealtorLoginRegisterForm'
@@ -32,7 +32,7 @@ export default function Routes(props) {
 						null
 					}
 					<Sticky>
-						<Menu>
+						<Menu stackable>
 							<Menu.Item>
 								<Link to='/clients'>
 									<Button animated='fade'>
@@ -76,12 +76,18 @@ export default function Routes(props) {
 									</Button>
 								</Link>
 							</Menu.Item>
-							<Menu.Item header>
-								<Link >
-
-										<Icon name='settings' />Options
-
-								</Link>
+							<Menu.Item position='right'>
+								<Header color='blue' as='h6' textAlign='center'>
+									<Icon color='black' name='settings'/>
+									Options
+									<Dropdown>
+										<Dropdown.Menu>
+											<Dropdown.Item>Account</Dropdown.Item>
+											<Dropdown.Item>Hide Chat</Dropdown.Item>
+											<Dropdown.Item>Delete Chat Thread</Dropdown.Item>
+										</Dropdown.Menu>
+									</Dropdown>
+								</Header>
 							</Menu.Item>
 							<Menu.Item position='right'>
 								<Button animated onClick={props.logout}>

@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Segment, Header, Grid } from  'semantic-ui-react'
 
-const links = { width: 450, height: 400 }
-const realtorListStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/obYScyd.png'})`, backgroundSize: 'cover', opacity: '0.9'}
-const profileStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/8wOo25s.png'})`, backgroundSize: 'cover',}
-const realtorStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/8xG8w0F.png'})`, backgroundSize: 'cover',}
-const newSearchStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/3IIQwnO.png'})`, backgroundSize: 'cover', opacity: '0.9'}
-const searchListStyle = {width: 450, height: 400, backgroundImage: `url(${'https://i.imgur.com/Fg7ZXna.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+const links = { width: 450, height: 350 }
+const realtorListStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/obYScyd.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+const profileStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/8wOo25s.png'})`, backgroundSize: 'cover',}
+const realtorStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/8xG8w0F.png'})`, backgroundSize: 'cover',}
+const newSearchStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/3IIQwnO.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+const searchListStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/Fg7ZXna.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 
 export default function ClientContainer(props) {
 
