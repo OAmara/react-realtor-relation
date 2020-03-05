@@ -77,7 +77,7 @@ export default function Routes(props) {
 									</Link>
 								</Menu.Item>
 								<Menu.Item position='right'>
-									<Header color='blue' as='h6' textAlign='center'>
+									<Header color='blue' as='h5' textAlign='center'>
 										<Icon color='black' name='settings'/>
 										Options
 										<Dropdown>
@@ -170,6 +170,9 @@ export default function Routes(props) {
 				  						</Button>
 				  					</Link>
 				  				</Menu.Item>
+
+				  			{/* Place: "{props.loggedInUser.firstName}'s Profile"  here for realtor to edit profile */}
+
 				  				<Menu.Item>
 				  					<Link to='/realtors/client-list'>
 				  						<Button animated='fade'>
@@ -178,6 +181,27 @@ export default function Routes(props) {
 				  						</Button>
 				  					</Link>
 				  				</Menu.Item>
+				  				<Menu.Item>
+									<Link to='/realtors/client/searches'>
+										<Button animated='fade'>
+											<Button.Content visible>Client's Search</Button.Content>
+											<Button.Content hidden>Client's <Icon color='green' name='list' /></Button.Content>
+										</Button>
+									</Link>
+								</Menu.Item>
+				  				<Menu.Item position='right'>
+									<Header color='violet' as='h5' textAlign='center'>
+										<Icon color='black' name='settings'/>
+										Options
+										<Dropdown>
+											<Dropdown.Menu>
+												<Dropdown.Item>Account</Dropdown.Item>
+												<Dropdown.Item>Hide Chat</Dropdown.Item>
+												<Dropdown.Item>Delete Chat Thread</Dropdown.Item>
+											</Dropdown.Menu>
+										</Dropdown>
+									</Header>
+								</Menu.Item>
 				  				<Menu.Item position='right'>
 				  					<Button animated onClick={props.logout}>
 				  						<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>

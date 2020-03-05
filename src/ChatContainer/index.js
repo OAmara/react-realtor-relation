@@ -16,7 +16,6 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 		 chatList()
 	},[])
 
-	console.log('\n\nchatThreads in ChatContainer: ', chatThreads);
 
 	const handleMessageChange = (e) => {
 		setMessageBody({
@@ -40,16 +39,17 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 		}
 	}
 
+	console.log('\n\nchatThreads in ChatContainer: ', chatThreads);
 	console.log(messageBody);
 
 	/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */
 	return(
 		<div className="Bottom-Sticky">
-			<Menu stackable borderless fluid widths={(chatThreads.length > 2)?chatThreads.length+2:null} inverted  /*tabular*/ attached='bottom' size='mini'>
+			<Menu stackable borderless fluid widths={(chatThreads.length > 2)?chatThreads.length+2:null} attached='bottom' size='mini'>
 				<Menu.Item>
-					<Button compact animated color='violet' size='large'>
+					<Button compact animated color={(isClient=== true)?'blue':'violet'} size='large'>
 						<Button.Content visible>Say Hi!</Button.Content>
-						<Button.Content hidden><Icon name='mail'/><Icon name='long arrow alternate right'/></Button.Content>
+						<Button.Content hidden><Icon color={(isClient === true)?'violet':'blue'} name='mail'/><Icon name='long arrow alternate right'/></Button.Content>
 					</Button>:
 				</Menu.Item>
 				{
@@ -121,9 +121,9 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 									className='Popup' 
 									eventsEnabled={true} open={(openPopup === i)?true:false} on='click' onOpen={() => setOpenPopup(i)} onClose={() => setOpenPopup(-1)} 
 									trigger={
-										<Button animated='fade' compact size='mini' circular inverted color='violet'>
+										<Button animated='fade' compact size='mini' circular inverted color='blue'>
 											<Button.Content visible>{client.firstName} {client.lastName}</Button.Content>
-											<Button.Content hidden>Realtor {client.firstName}</Button.Content>
+											<Button.Content hidden>Client {client.firstName}</Button.Content>
 										</Button>
 									} 
 									flowing

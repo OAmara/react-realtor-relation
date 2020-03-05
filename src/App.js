@@ -25,30 +25,38 @@ function App(props) {
 			firstName: 'Barrack', lastName: 'Obama'
 	}]
 	let randomName = Math.floor(Math.random() * names.length)
+
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
+
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
 	const [isClient, setIsCLient] = useState(false)// ***Set to null, true/false for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
+
 	// This will be filled with info from both register froms!
 	// Commented fields below prevents uncontrolled input warning when inserted. Seperate states with fields would be needed for each form.
 	const [registerForm, setRegisterForm] = useState({
 		// email: "", username: "", lastName: "", recoveryAnswer: "", firstName: "", password: "", recoveryQuestion: ""
 	})
+
 	// Chat threads/ messages
 	const [chatThreads, setChatThreads] = useState({})
+
 	// Open/Close logic for Search Modals
 	const [toggleNewSearchModal, setToggleNewSearchModal] = useState(false)
 	const [toggleEditSearchModal, setToggleEditSearchModal] = useState(false)
 
+	// search form body from client's newSearchFormModal
 	const [searchBody, setSearchBody] = useState({})
+
 	// property to universally activate functions within child components. Requires defaultActivate() call in child to revert to default.
 	// important: always revert to falsy value.
 	// Usage:
 		// RealtorContainer/ClientList. activation --> 'refresh list'
 		// in routes & used with createClientSearch. activation --> 'redirect search index'
 	const [activate, setActivate] = useState(undefined)
+
 
 	/* -- toggle child component functionality -- */
 
@@ -376,8 +384,6 @@ function App(props) {
   	);
 }
 // Example of useParams to be implemented //--> shows params on page
-// function ComponentName() {
-//   let { firstName, lastName } = useParams();	return(<h2>Hello {firstName} {lastName}!</h2>)
-// } 
+// function ComponentName() { let { firstName, lastName } = useParams();	return(<h2>Hello {firstName} {lastName}!</h2>) } 
 
 export default App;

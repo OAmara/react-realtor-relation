@@ -2,24 +2,22 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Segment, Header, Grid } from  'semantic-ui-react'
 
-const links = { width: 450, height: 350 }
 const profileStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/dMlvXWD.png'})`, backgroundSize: 'cover',}
 const realtorListStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/obYScyd.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 const realtorStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/8xG8w0F.png'})`, backgroundSize: 'cover',}
 const newSearchStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/3IIQwnO.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 const searchListStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/Fg7ZXna.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+const messageOptionsStyle = { width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/bXqY1xD.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 
 export default function ClientContainer(props) {
 
-	/* -- 
-
+	/*
 	EditSearchFormModal --> accessible in SearchList
 
 	// need calls to: Edit, Delete
 
 	SearchList --> Where button is to open EditSearchFormModal, deleteSearch
-
-	 -- */
+	*/
 
 	return(
 		<React.Fragment>
@@ -63,7 +61,7 @@ export default function ClientContainer(props) {
 				<Grid.Column>
 					{/* Create Component here to view all realtor's messaging with and to change message options(like read/sent...booleans in models)*/}
 					<Link to='/clients'>
-						<Segment raised circular disabled color='violet' style={links}>
+						<Segment raised circular disabled color='violet' style={messageOptionsStyle}>
 							<Header as='h1' dividing block inverted color='violet'>Messaging Options</Header>
 						</Segment>
 					</Link>
