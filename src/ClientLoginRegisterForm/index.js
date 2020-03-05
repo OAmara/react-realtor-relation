@@ -72,7 +72,7 @@ export default function ClientLoginRegisterForm(props) {
 												required
 												type='text'
 												name='username'
-												placeholder='Enter Email'
+												placeholder='Enter Username'
 												value={props.registerForm.username}
 												onChange={props.handleRegisterFormChange}
 											/>
@@ -128,13 +128,13 @@ export default function ClientLoginRegisterForm(props) {
 												required
 												type='text'
 												name='recoveryAnswer'
-												placeholder='"Country Road"'
+												placeholder='"Sweet Home Alabama"'
 												value={props.registerForm.recoveryAnswer}
 												onChange={props.handleRegisterFormChange}
 											/>
 										</Form.Field>
 									</Form.Group>
-									<Button size='tiny' color={'vk'} floated='right' animated='vertical' type='Submit'>
+									<Button size='tiny' color={'twitter'} floated='right' animated='vertical' type='Submit'>
 										<Button.Content visible>Register</Button.Content>
 										<Button.Content hidden><Icon name='paper plane' /></Button.Content>
 									</Button>

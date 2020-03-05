@@ -45,10 +45,10 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 	/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */
 	return(
 		<div className="Bottom-Sticky">
-			<Menu stackable borderless fluid widths={(chatThreads.length > 0)?chatThreads.length+2:null} inverted  /*tabular*/ attached='bottom' size='mini'>
+			<Menu stackable borderless fluid widths={(chatThreads.length > 2)?chatThreads.length+2:null} inverted  /*tabular*/ attached='bottom' size='mini'>
 				<Menu.Item>
-					<Button animated color='violet' size='large'>
-						<Button.Content visible>Say Hi Here!</Button.Content>
+					<Button compact animated color='violet' size='large'>
+						<Button.Content visible>Say Hi!</Button.Content>
 						<Button.Content hidden><Icon name='mail'/><Icon name='long arrow alternate right'/></Button.Content>
 					</Button>:
 				</Menu.Item>
@@ -130,7 +130,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 								>
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
-											<Header sub textAlign='center' block/*dividing*/ color='violet' as='h3'><Image circular src='https://react.semantic-ui.com/images/avatar/large/matthew.png'/>{client.firstName} {client.lastName}</Header>
+											<Header sub textAlign='center' block/*dividing*/ color='blue' as='h3'><Image circular src='https://react.semantic-ui.com/images/avatar/large/matthew.png'/>{client.firstName} {client.lastName}</Header>
 												<Segment size='mini' className='top-overflow'>
 												{
 													(messages.length > 0)

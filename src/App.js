@@ -28,7 +28,7 @@ function App(props) {
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(true)// ***Set to null, true/false for testing
+	const [isClient, setIsCLient] = useState(false)// ***Set to null, true/false for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 	// This will be filled with info from both register froms!
@@ -43,8 +43,8 @@ function App(props) {
 	const [toggleEditSearchModal, setToggleEditSearchModal] = useState(false)
 
 	const [searchBody, setSearchBody] = useState({})
-	// property to universally activate functions within child components. Requires a callback in child to revert to default.
-	// important: always revert to falsy value. Can specify specific usage by changing to value to trigger function in child component.
+	// property to universally activate functions within child components. Requires defaultActivate() call in child to revert to default.
+	// important: always revert to falsy value.
 	// Usage:
 		// RealtorContainer/ClientList. activation --> 'refresh list'
 		// in routes & used with createClientSearch. activation --> 'redirect search index'
@@ -129,7 +129,6 @@ function App(props) {
 					'Content-Type': 'application/json'
 				},
 			})
-
 			const registerJson = await registerResponse.json()
 			console.log(registerJson);
 
@@ -140,6 +139,8 @@ function App(props) {
 				} else if (whichForm === 'realtor') {
 					setIsCLient(false)
 				}
+				// resets register forms
+				setRegisterForm({})
 			}
 		} catch(err) {
 			if(err) {
@@ -165,7 +166,6 @@ function App(props) {
 					'Content-Type': 'application/json'
 				},
 			})
-
 			const loginJson = await loginResponse.json()
 			console.log(loginJson);
 
@@ -176,6 +176,8 @@ function App(props) {
 				} else if (whichForm === 'realtor') {
 					setIsCLient(false)
 				}
+				// resets forms
+				setLoginForm({})
 			}
 		} catch(err) {
 			if(err) {
@@ -197,7 +199,7 @@ function App(props) {
 			const logoutResponse = await fetch(apiUrl)
 			const logoutJson = await logoutResponse.json()
 
-			// set all state back to default
+			// set all state back to default // comment out for testing
 			if(logoutResponse.status === 200) {
 				console.log(logoutJson.message);
 				setIsCLient(null)
@@ -264,7 +266,6 @@ function App(props) {
  			if(messageResponse.status === 201){
  				chatList()
  			}
-
 		} catch(err) {
 			console.error(err)
 		}
@@ -307,21 +308,18 @@ function App(props) {
 					setSearchBody({})
 				}
 			}
-
-
-			//Then clear state for searchBody...
-
 		} catch(err) {
 			console.error(err)
 		}
 	}
 
-
+	// Component mounted, updated, will update hook function
 	useEffect(() => {
 		document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
 	})
 
-	/* -- State Changing Functions -- */
+
+	/* -- Auth State Changing Functions -- */
 	// these can be replaced by using global variables for state such as loggedInUser
 
 	// Change/setLoggedInUser
@@ -335,6 +333,8 @@ function App(props) {
 	}
 
 	console.log(loggedInUser);
+	// Note: If anything needs to be visible universaly, include in routes component.
+		// example: Chat/messaging Footer, Nav Header. Look at NewSearchFormModal as a good example.
   	return (
 		<div className='App'>
 	  		<Router >
@@ -375,11 +375,9 @@ function App(props) {
     	</div>
   	);
 }
-
-// Example of useParams to be implemented
+// Example of useParams to be implemented //--> shows params on page
 // function ComponentName() {
-//   let { firstName, lastName } = useParams();			//--> sets param for that route?
-//   return(<h2>Hello {firstName} {lastName}!</h2>)		//--> shows params on page
-// }
+//   let { firstName, lastName } = useParams();	return(<h2>Hello {firstName} {lastName}!</h2>)
+// } 
 
 export default App;

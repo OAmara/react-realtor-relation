@@ -21,202 +21,202 @@ export default function Routes(props) {
 				/* Client Logged In */
 				(props.isClient === true) 
 				? 
-				<React.Fragment>
-					{/* Automatically Redirects to /clients when isClient===true */}
-					<Redirect to='/clients'/>
-					{// condition to redirect to Search List after search is created
-						(props.activate === 'redirect search index')
-						?
-						<Redirect to='/clients/searches/index'/>
-						:
-						null
-					}
-					<Sticky>
-						<Menu stackable borderless fluid size='mini'>
-							<Menu.Item>
-								<Link to='/clients'>
-									<Button animated='fade'>
-										<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
-										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='blue' name='home' /></Button.Content>
+					<React.Fragment>
+						{/* Automatically Redirects to /clients when isClient===true */}
+						<Redirect to='/clients'/>
+						{// condition to redirect to Search List after search is created
+							(props.activate === 'redirect search index')
+							?
+								<Redirect to='/clients/searches/index'/>
+							:
+							null
+						}
+						<Sticky>
+							<Menu stackable borderless fluid size='mini'>
+								<Menu.Item>
+									<Link to='/clients'>
+										<Button animated='fade'>
+											<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
+											<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='blue' name='home' /></Button.Content>
+										</Button>
+									</Link>
+								</Menu.Item>
+								<Menu.Item>
+									<Link to='/clients/realtor-list'>
+										<Button animated='fade'>
+											<Button.Content visible>Realtor List</Button.Content>
+											<Button.Content hidden>Realtor <Icon color='orange' name='list' /></Button.Content>
+										</Button>
+									</Link>
+								</Menu.Item>
+								<Menu.Item>
+									<Link to='/clients/my-realtor'>
+										<Button animated='fade'>
+											<Button.Content visible>My Realtor</Button.Content>
+											<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='violet' name='handshake outline' /></Button.Content>
+										</Button>
+									</Link>
+								</Menu.Item>
+								<Menu.Item>
+									{/* Opens SearchList */}
+									<Link to='/clients/searches/index'>
+										<Button animated='fade'>
+											<Button.Content visible>Search List</Button.Content>
+											<Button.Content hidden>Search <Icon color='green' name='list' /></Button.Content>
+										</Button>
+									</Link>
+								</Menu.Item>
+								<Menu.Item>
+									{/* Opens SearchList */}
+									<Link >
+										{/*Open NewSearchFormModal*/}
+										<Button onClick={() => props.openSearchModals('open new modal')} animated='fade'>
+											<Button.Content visible>New Search</Button.Content>
+											<Button.Content hidden>New <Icon color='teal' name='home' /></Button.Content>
+										</Button>
+									</Link>
+								</Menu.Item>
+								<Menu.Item position='right'>
+									<Header color='blue' as='h6' textAlign='center'>
+										<Icon color='black' name='settings'/>
+										Options
+										<Dropdown>
+											<Dropdown.Menu>
+												<Dropdown.Item>Account</Dropdown.Item>
+												<Dropdown.Item>Hide Chat</Dropdown.Item>
+												<Dropdown.Item>Delete Chat Thread</Dropdown.Item>
+											</Dropdown.Menu>
+										</Dropdown>
+									</Header>
+								</Menu.Item>
+								<Menu.Item position='right'>
+									<Button animated onClick={props.logout}>
+										<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>
+										<Button.Content hidden>Out-<Icon color='red' name='sign-out'/></Button.Content>
 									</Button>
-								</Link>
-							</Menu.Item>
-							<Menu.Item>
-								<Link to='/clients/realtor-list'>
-									<Button animated='fade'>
-										<Button.Content visible>Realtor List</Button.Content>
-										<Button.Content hidden>Realtor <Icon color='orange' name='list' /></Button.Content>
-									</Button>
-								</Link>
-							</Menu.Item>
-							<Menu.Item>
-								<Link to='/clients/my-realtor'>
-									<Button animated='fade'>
-										<Button.Content visible>My Realtor</Button.Content>
-										<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='violet' name='handshake outline' /></Button.Content>
-									</Button>
-								</Link>
-							</Menu.Item>
-							<Menu.Item>
-								{/* Opens SearchList */}
-								<Link to='/clients/searches/index'>
-									<Button animated='fade'>
-										<Button.Content visible>Search List</Button.Content>
-										<Button.Content hidden>Search <Icon color='green' name='list' /></Button.Content>
-									</Button>
-								</Link>
-							</Menu.Item>
-							<Menu.Item>
-								{/* Opens SearchList */}
-								<Link >
-									{/*Open NewSearchFormModal*/}
-									<Button onClick={() => props.openSearchModals('open new modal')} animated='fade'>
-										<Button.Content visible>New Search</Button.Content>
-										<Button.Content hidden>New <Icon color='teal' name='home' /></Button.Content>
-									</Button>
-								</Link>
-							</Menu.Item>
-							<Menu.Item position='right'>
-								<Header color='blue' as='h6' textAlign='center'>
-									<Icon color='black' name='settings'/>
-									Options
-									<Dropdown>
-										<Dropdown.Menu>
-											<Dropdown.Item>Account</Dropdown.Item>
-											<Dropdown.Item>Hide Chat</Dropdown.Item>
-											<Dropdown.Item>Delete Chat Thread</Dropdown.Item>
-										</Dropdown.Menu>
-									</Dropdown>
-								</Header>
-							</Menu.Item>
-							<Menu.Item position='right'>
-								<Button animated onClick={props.logout}>
-									<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>
-									<Button.Content hidden>Out-<Icon color='red' name='sign-out'/></Button.Content>
-								</Button>
-							</Menu.Item>
-							<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
-						</Menu>
-					</Sticky>
+								</Menu.Item>
+								<Image className='Realtor-Logo' src={props.logo} avatar floated='right' size='tiny'/>
+							</Menu>
+						</Sticky>
 
-	  				<Switch>
-	  					<Route path='/clients/searches/index'>
-	  						<SearchList
-	  							openSearchModals={props.openSearchModals}
-	  							activate={props.activate}
-	  							defaultActivate={props.defaultActivate}
-	  						/>
-	  					</Route>
+		  				<Switch>
+		  					<Route path='/clients/searches/index'>
+		  						<SearchList
+		  							openSearchModals={props.openSearchModals}
+		  							activate={props.activate}
+		  							defaultActivate={props.defaultActivate}
+		  						/>
+		  					</Route>
 
-	  					<Route path='/clients/my-realtor'>
-	  						<CurrentRealtorModal
+		  					<Route path='/clients/my-realtor'>
+		  						<CurrentRealtorModal
 
-	  						/>
-	  					</Route>
+		  						/>
+		  					</Route>
 
-		  				<Route path='/clients/realtor-list'>
-	  						<RealtorList 
-	  							loggedInUser={props.loggedInUser}
-	  							updateLoggedInUser={props.updateLoggedInUser}
-	  							terminateContract={props.terminateContract}
-	  							chatList={props.chatList}
-	  							chatThreads={props.chatThreads}
-	  						/>
-		  				</Route>
+			  				<Route path='/clients/realtor-list'>
+		  						<RealtorList 
+		  							loggedInUser={props.loggedInUser}
+		  							updateLoggedInUser={props.updateLoggedInUser}
+		  							terminateContract={props.terminateContract}
+		  							chatList={props.chatList}
+		  							chatThreads={props.chatThreads}
+		  						/>
+			  				</Route>
 
-		  				<Route path='/clients'>
-	  						<ClientContainer 
-								loggedInUser={props.loggedInUser}
-								logo={props.logo}
-								isClient={props.isClient}
-								chatThreads={props.chatThreads}
-								openSearchModals={props.openSearchModals}
-							/>
-						</Route>
-		  			</Switch>
-		  			{/* ChatContainer... Exists In All Components listed in switch above */}
-		  			<NewSearchFormModal
-		  				toggleNewSearchModal={props.toggleNewSearchModal}
-		  				toggleOpenSearchModals={props.toggleOpenSearchModals}
-		  				openSearchModals={props.openSearchModals}
-		  				closeSearchModals={props.closeSearchModals}
-		  				createClientSearch={props.createClientSearch}
-		  				activate={props.activate}
-		  				handleChange={props.handleChange}
-						searchBody={props.searchBody}
-		  			/>
-					<ChatContainer
-						chatList={props.chatList}
-						chatThreads={props.chatThreads}
-						isClient={props.isClient}
-						createMessage={props.createMessage}
-					/>
-	  			</React.Fragment>
+			  				<Route path='/clients'>
+		  						<ClientContainer 
+									loggedInUser={props.loggedInUser}
+									logo={props.logo}
+									isClient={props.isClient}
+									chatThreads={props.chatThreads}
+									openSearchModals={props.openSearchModals}
+								/>
+							</Route>
+			  			</Switch>
+			  			{/* ChatContainer... Exists In All Components listed in switch above */}
+			  			<NewSearchFormModal
+			  				toggleNewSearchModal={props.toggleNewSearchModal}
+			  				toggleOpenSearchModals={props.toggleOpenSearchModals}
+			  				openSearchModals={props.openSearchModals}
+			  				closeSearchModals={props.closeSearchModals}
+			  				createClientSearch={props.createClientSearch}
+			  				activate={props.activate}
+			  				handleChange={props.handleChange}
+							searchBody={props.searchBody}
+			  			/>
+						<ChatContainer
+							chatList={props.chatList}
+							chatThreads={props.chatThreads}
+							isClient={props.isClient}
+							createMessage={props.createMessage}
+						/>
+		  			</React.Fragment>
   				:
 
   				/* Realtor Logged In */
   				(props.isClient === false)
   				?
-  				<React.Fragment>
-  					{/* Automatically Redirects to /clients when isClient===true */}
-					<Redirect to='/realtors/home'/>
-					<Sticky>
-						<Menu>
-							<Menu.Item>
-			  					<Link to='/realtors/home'>
-			  						<Button animated='fade'>
-			  							<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
-			  							<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='red' name='home' /></Button.Content>
-			  						</Button>
-			  					</Link>
-			  				</Menu.Item>
-			  				<Menu.Item>
-			  					<Link to='/realtors/client-list'>
-			  						<Button animated='fade'>
-			  							<Button.Content visible>Client List</Button.Content>
-			  							<Button.Content hidden>Client <Icon color='orange' name='list' /></Button.Content>
-			  						</Button>
-			  					</Link>
-			  				</Menu.Item>
-			  				<Menu.Item position='right'>
-			  					<Button animated onClick={props.logout}>
-			  						<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>
-			  						<Button.Content hidden>Out-<Icon color='red' name='sign-out'/></Button.Content>
-			  					</Button>
-			  				</Menu.Item>
-			  				<Image className='Realtor-Logo' src={props.realtorLogo} floated='right' size='tiny'/>
-			  			</Menu>
-			  		</Sticky>
+	  				<React.Fragment>
+	  					{/* Automatically Redirects to /clients when isClient===true */}
+						<Redirect to='/realtors/home'/>
+						<Sticky>
+							<Menu stackable borderless fluid size='mini'>
+								<Menu.Item>
+				  					<Link to='/realtors/home'>
+				  						<Button animated='fade'>
+				  							<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
+				  							<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='violet' name='home' /></Button.Content>
+				  						</Button>
+				  					</Link>
+				  				</Menu.Item>
+				  				<Menu.Item>
+				  					<Link to='/realtors/client-list'>
+				  						<Button animated='fade'>
+				  							<Button.Content visible>Client List</Button.Content>
+				  							<Button.Content hidden>Client <Icon color='orange' name='list' /></Button.Content>
+				  						</Button>
+				  					</Link>
+				  				</Menu.Item>
+				  				<Menu.Item position='right'>
+				  					<Button animated onClick={props.logout}>
+				  						<Button.Content visible>Log-<Icon color='black' name='sign-out'/></Button.Content>
+				  						<Button.Content hidden>Out-<Icon color='red' name='sign-out'/></Button.Content>
+				  					</Button>
+				  				</Menu.Item>
+				  				<Image className='Realtor-Logo' src={props.realtorLogo} floated='right' size='tiny'/>
+				  			</Menu>
+				  		</Sticky>
 
-  					<Switch>
-  						<Route path='/realtors/client-list'>
-  						 	<ClientList 
-	  							loggedInUser={props.loggedInUser}
-	  							updateLoggedInUser={props.updateLoggedInUser}
-	  							terminateContract={props.terminateContract}
-	  							chatList={props.chatList}
-	  							chatThreads={props.chatThreads}
-	  							activate={props.activate}
-	  							defaultActivate={props.defaultActivate}
-	  						/>
-	  					</Route>
+	  					<Switch>
+	  						<Route path='/realtors/client-list'>
+	  						 	<ClientList 
+		  							loggedInUser={props.loggedInUser}
+		  							updateLoggedInUser={props.updateLoggedInUser}
+		  							terminateContract={props.terminateContract}
+		  							chatList={props.chatList}
+		  							chatThreads={props.chatThreads}
+		  							activate={props.activate}
+		  							defaultActivate={props.defaultActivate}
+		  						/>
+		  					</Route>
 
-		  				<Route path='/realtors/home'>
-		  					<RealtorContainer
-			  					isClient={props.isClient}
-			  					loggedInUser={props.loggedInUser}
-			  					logo={props.realtorLogo}
-			  				/>
-		  				</Route>
-		  			</Switch>
-		  			{/* ChatContainer Exists In All Components listed in switch above */}
-					<ChatContainer
-						chatList={props.chatList}
-						chatThreads={props.chatThreads}
-						isClient={props.isClient}
-						createMessage={props.createMessage}
-					/>
-	  			</React.Fragment>
+			  				<Route path='/realtors/home'>
+			  					<RealtorContainer
+				  					isClient={props.isClient}
+				  					loggedInUser={props.loggedInUser}
+				  					logo={props.realtorLogo}
+				  				/>
+			  				</Route>
+			  			</Switch>
+			  			{/* ChatContainer Exists In All Components listed in switch above */}
+						<ChatContainer
+							chatList={props.chatList}
+							chatThreads={props.chatThreads}
+							isClient={props.isClient}
+							createMessage={props.createMessage}
+						/>
+		  			</React.Fragment>
   				:
 
   				/* User !Logged In */
@@ -260,7 +260,7 @@ export default function Routes(props) {
 	   						<div className='Realtor-Link'>
 				  				<Link to='/realtors'>
 						  			<Divider fitted horizontal>Realtor's Login Here:
-							  			<Button compact fluid onClick={props.resetForms} color={'twitter'} animated='fade' className='Link'>
+							  			<Button compact fluid onClick={props.resetForms} color={'violet'} animated='fade' className='Link'>
 							  				<Button.Content visible>Realtor Portal</Button.Content>
 							  				<Button.Content hidden><Icon name='briefcase' /></Button.Content>
 							  			</Button>

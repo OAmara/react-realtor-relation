@@ -8,7 +8,7 @@ export default function RealtorContainer(props) {
 
 	return(
 		<React.Fragment>
-			<Header as='h1' color='red' textAlign='center'>Welcome {props.loggedInUser.firstName}</Header>
+			<Header as='h1' color='violet' textAlign='center'>Welcome {props.loggedInUser.firstName}</Header>
 			<Link>
 				<Segment circular style={links}>
 					<h1>{props.loggedInUser.firstName}'s Profile</h1>

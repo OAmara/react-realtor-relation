@@ -13,19 +13,11 @@ export default function ClientContainer(props) {
 
 	/* -- 
 
-	NewSearchFormModal --> Needs to be accessed anywhere... 
-		//what else is currently accessible anywhere?? ClientContianer is!!
-
-
 	EditSearchFormModal --> accessible in SearchList
 
-	// need calls to: Create, Edit, Delete, List
+	// need calls to: Edit, Delete
 
-	SearchList --> Where button is to open EditSearchFormModal, deleteSearch, new search
-
-	searchContainer holds: new
-
-
+	SearchList --> Where button is to open EditSearchFormModal, deleteSearch
 
 	 -- */
 
