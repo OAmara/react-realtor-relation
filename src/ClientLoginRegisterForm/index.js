@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Label, Input, Button, Image, Segment, Grid, Divider, Icon } from 'semantic-ui-react'
+import { Form, Label, Input, Button, Image, Segment, Grid, Divider, Icon, Header } from 'semantic-ui-react'
 
 // Place styles here to overwrite semantic. If overwrite does not work, try utilizing {Styled Components}
 // ^ read docs for install and implementation.
@@ -138,7 +138,7 @@ export default function ClientLoginRegisterForm(props) {
 										<Button.Content visible>Register</Button.Content>
 										<Button.Content hidden><Icon name='paper plane' /></Button.Content>
 									</Button>
-									<h2>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find a Realtor!</h2>
+									<Header as='h2' disabled color='blue'>Hello {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName || props.loggedInUser.lastName)}, let's find a Realtor!</Header>
 								</Segment>
 							</Form>
 						</Segment>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Label, Button, Image, Grid, Segment, Icon } from 'semantic-ui-react'
+import { Form, Input, Label, Button, Image, Grid, Segment, Icon, Header } from 'semantic-ui-react'
 
 export default function RealtorLoginRegisterForm(props) {
 
@@ -9,7 +9,7 @@ export default function RealtorLoginRegisterForm(props) {
 			<Grid columns={2}>
 				{/* Register Form Field */}
 				<Grid.Column className='Realtor-Register-Form'>
-					<Segment raised size='tiny' color='blue'>
+					<Segment raised size='tiny' color='red'>
 						<Form size='mini' onSubmit={(e) => props.handleAllFormSubmission(e, 'register', 'realtor')}>
 							<Form.Group widths='equal'>
 								<Form.Field>
@@ -183,7 +183,7 @@ export default function RealtorLoginRegisterForm(props) {
 								<Button.Content visible>Register</Button.Content>
 								<Button.Content hidden><Icon name='paper plane' /></Button.Content>
 							</Button>
-						<h2>Welcome {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, are you a Realtor?</h2>
+						<Header as='h2' disabled color='red'>Welcome {(props.registerForm.firstName || props.loggedInUser.firstName)} {(props.registerForm.lastName?props.registerForm.lastName:props.loggedInUser.lastName)}, are you a Realtor?</Header>
 						</Form>
 					</Segment>
 				</Grid.Column>

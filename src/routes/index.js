@@ -96,7 +96,7 @@ export default function Routes(props) {
 	  				<Switch>
 	  					<Route path='/clients/searches/index'>
 	  						<SearchList
-
+	  							openSearchModals={props.openSearchModals}
 	  						/>
 	  					</Route>
 
@@ -158,7 +158,7 @@ export default function Routes(props) {
 			  					<Link to='/realtors/home'>
 			  						<Button animated='fade'>
 			  							<Button.Content visible>{props.loggedInUser.firstName}'s Home</Button.Content>
-			  							<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='blue' name='home' /></Button.Content>
+			  							<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='red' name='home' /></Button.Content>
 			  						</Button>
 			  					</Link>
 			  				</Menu.Item>

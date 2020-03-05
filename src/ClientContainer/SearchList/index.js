@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Header, Button, Segment, Icon, Grid } from  'semantic-ui-react'
 
-export default function SearchList() {
+export default function SearchList(props) {
 
 	// set search list from searches index fetch
 	const [searches, setSearches] = useState({})
@@ -68,7 +68,7 @@ export default function SearchList() {
 				:
 				<Header as='h2' textAlign='center'>Come here to see a list of your searches</Header>
 			}
-			<Button color='teal'>Start A New Search</Button>
+			<Button onClick={() => props.openSearchModals('open new modal')} color='teal'>Start A New Search</Button>
 		</React.Fragment>
 	)
 }

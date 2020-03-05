@@ -39,7 +39,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 		<div className="Bottom-Sticky">
 			<Menu>
 				<Menu.Item>
-					<Header as='h4' dividing color='violet'>Chat:</Header>
+					<Header as='h4' dividing color='violet'>Chats:</Header>
 				</Menu.Item>
 				{
 					(chatThreads.length > 0 && isClient === true)
@@ -98,10 +98,59 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 					:
 					(chatThreads.length > 0 && isClient === false)
 					?
-						<Button size='massive'>I work!</Button>
-						//	https://react.semantic-ui.com/images/avatar/large/matthew.png
+						chatThreads.map(({_id, client, messages}) => (
+						 	<div key={_id}>
+								<Popup className='Popup' trigger={<Button size='mini' circular inverted color='violet'>{client.firstName} {client.lastName}</Button>} flowing hoverable>
+									<Grid centered divided columns={1}>
+										<Grid.Column textAlign='center'>
+											<Header sub textAlign='center' block/*dividing*/ as='h3'><Image circular src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />{client.firstName} {client.lastName}</Header>
+												<Segment size='mini' className='top-overflow'>
+												{
+												(messages.length > 0)
+												?
+													messages.map(({_id, body, isSenderClient}) => (
+														!isSenderClient
+														?
+															<Segment stacked size='mini' className='Client-Message' key={_id}>
+																<Button onClick={null} animated='fade' floated='right' size='mini'>
+																	<Button.Content visible>{body}</Button.Content>
+																	<Button.Content hidden>
+																		<Icon color='red' name='delete'/>{body}
+																	</Button.Content>
+																</Button>
+															</Segment>
+														:
+															<p className='Realtor-Message'>{body}</p>
+													))
+												:
+													<p>Say hi to {client.firstName}!</p>
+												}
+												</Segment>
+												{// Also write conditions for message[?].isClient === true then color='blue', textAlign='right'....
+												// (messages.length > 0)
+												// ?
+												// <p>{messages[0].body}</p>
+												// :
+												// null
+												}
+												<Form onSubmit={() => handleMessageSubmit(_id)}>
+												<Input
+													size='mini'
+													type='text'
+													name='body'
+													placeholder='...'
+													value={messageBody.body}
+													onChange={handleMessageChange}
+												/>
+												<Button type='Submit' size='mini' icon='telegram plane' inverted color='blue' compact></Button>
+												</Form>
+										</Grid.Column>
+									</Grid>
+								</Popup>
+						 	</div>
+						))
 					:
-					<p>Message Threads will be listed Here</p>
+					<Header as='h5' textAlign='center'>Message Threads Will Be Listed Here</Header>
 					 //next ternary for if isClient === false
 				}
 				<Menu.Item position='right'>

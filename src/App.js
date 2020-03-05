@@ -26,7 +26,7 @@ function App(props) {
 	// user info retrieved from API on login/ register
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(null)// ***Set to null, true/false for testing
+	const [isClient, setIsCLient] = useState(false)// ***Set to null, true/false for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 	// This will be filled with info from both register froms!
@@ -316,7 +316,7 @@ function App(props) {
 
 
 	useEffect(() => {
-		 document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
+		document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
 	})
 
 	/* -- State Changing Functions -- */
