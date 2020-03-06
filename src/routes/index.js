@@ -162,6 +162,13 @@ export default function Routes(props) {
 	  				<React.Fragment>
 	  					{/* Automatically Redirects to /clients when isClient===true */}
 						<Redirect to='/realtors/home'/>
+						{// condition to redirect to /realtor/client-searches after client's searches are retrieved
+							(props.activate === 'redirect realtors client searches')
+							?
+								<Redirect to='/resltors/client-searches'/>
+							:
+							null
+						}
 						<Sticky>
 							<Menu stackable borderless fluid size='mini'>
 								<Menu.Item>
@@ -232,6 +239,7 @@ export default function Routes(props) {
 		  						<ClientSearchList
 		  							loggedInUser={props.loggedInUser}
 		  							isClient={props.isClient}
+		  							realtorClientSearches={props.realtorClientSearches}
 		  						/>
 		  					</Route>
 

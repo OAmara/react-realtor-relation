@@ -50,11 +50,15 @@ function App(props) {
 	// search form body from client's newSearchFormModal
 	const [searchBody, setSearchBody] = useState({})
 
+	// Realtor's Client's Searches
+	const [realtorClientSearches, setRealtorClientSearches] = useState({})
+
 	// property to universally activate functions within child components. Requires defaultActivate() call in child to revert to default.
 	// important: always revert to falsy value.
 	// Usage:
 		// RealtorContainer/ClientList. activation --> 'refresh list'
 		// in routes & used with createClientSearch. activation --> 'redirect search index'
+		// in routes & used with getRealtorClientSearches. activation --> 'redirect realtors client searches'
 	const [activate, setActivate] = useState(undefined)
 
 
@@ -348,12 +352,12 @@ function App(props) {
 					'Content-Type': 'application/json'
 				},
 			})
-			console.log('\n\n\n\tSearches response for Realtor Client: ', searchesResponse);
 			const searchesJson = await searchesResponse.json()
-			console.log('\n\n\tSearchesJson for Realtor Client: ', searchesJson);
+			console.log(searchesJson.message);
 
 			if(searchesJson.status === 200) {
-				console.log('\n\n\t\nI WORK !!!!!!!!!!!!!!!!\n');
+				setRealtorClientSearches(searchesJson.data)
+
 				// make sure client list is updated in realtor first?
 				// redirect to ClientSearchList Component
 			}
@@ -407,7 +411,7 @@ function App(props) {
 					/* client/realtor logos */
 					logo={mainLogo}
 					realtorLogo={realtorLogo}
-					/* strictly children methods to update (should be global) variables*/
+					/* strictly children methods to update (should be global) variables..*/
 					updateLoggedInUser={updateLoggedInUser}
 					chatList={chatList}
 					terminateContract={terminateContract}
@@ -422,6 +426,7 @@ function App(props) {
 					searchBody={searchBody}
 					deleteMessage={deleteMessage}
 					getRealtorClientSearches={getRealtorClientSearches}
+					realtorClientSearches={realtorClientSearches}
 	  			/>
 	  		</Router>
     	</div>
