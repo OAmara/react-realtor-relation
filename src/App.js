@@ -241,6 +241,7 @@ function App(props) {
 		}
 	}
 
+	// retrieves list of chats and saves to state
 	const chatList = async () => {
 		try {
 			const chatResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/',{
@@ -336,8 +337,8 @@ function App(props) {
 			 console.log(messageJson.message)
 
 			 if(messageJson.status === 200) {
-			 	console.log('\n\n\nI work!!!!')
-			 	console.log('delete This if works!: ', messageJson.message)
+			 	// update chats in state to display
+			 	chatList()
 			 }
 
 			console.log('\n\nchatId in deleteMessage func in app.js: ', chatId)
