@@ -150,6 +150,7 @@ export default function Routes(props) {
 							chatThreads={props.chatThreads}
 							isClient={props.isClient}
 							createMessage={props.createMessage}
+							deleteMessage={props.deleteMessage}
 						/>
 		  			</React.Fragment>
   				:
@@ -239,6 +240,7 @@ export default function Routes(props) {
 							chatThreads={props.chatThreads}
 							isClient={props.isClient}
 							createMessage={props.createMessage}
+							deleteMessage={props.deleteMessage}
 						/>
 		  			</React.Fragment>
   				:

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Segment, Sticky, Form, Label, Menu, Input, Button, Grid, Popup, Header, Icon, Image } from 'semantic-ui-react'
 import './index.css'
 
-export default function ChatContainer({chatList, chatThreads, isClient, createMessage, loggedInUser}) {
+export default function ChatContainer({chatList, chatThreads, isClient, createMessage, loggedInUser, deleteMessage}) {
 
 	// chat message body
 	const [messageBody, setMessageBody] = useState({body: ''})
@@ -139,7 +139,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 															!isSenderClient
 															?
 																<Segment vertical size='mini' className='Client-Message' key={_id}>
-																	<Button compact onClick={null} animated='fade' floated='right' inverted size='mini'>
+																	<Button compact onClick={() => deleteMessage(chatThreads[i]._id ,_id)} animated='fade' floated='right' inverted size='mini'>
 																		<Button.Content visible><Header as='h5' color='violet' textAlign='left'>{body}<Header.Subheader><smaill><small>{new Date().toLocaleTimeString('en-US')}</small></smaill></Header.Subheader></Header></Button.Content>
 																		<Button.Content hidden>
 																			<Icon color='red' name='delete'/>{body}

@@ -321,6 +321,35 @@ function App(props) {
 		}
 	}
 
+	const deleteMessage = async (chatId, messageId) => {
+		try{
+			 const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/' + chatId + '/' + messageId, {
+			 	credentials: 'include',
+			 	method: 'DELETE',
+			 	headers: {
+			 		'Content-Type': 'application/json'
+			 	},
+			 })
+			 console.log('\n\n\n\tmessageResponse: ', messageResponse)
+			 const messageJson = await messageResponse.json()
+			 console.log('\n\n\n\tmessageJson: ', messageJson)
+			 console.log(messageJson.message)
+
+			 if(messageJson.status === 200) {
+			 	console.log('\n\n\nI work!!!!')
+			 	console.log('delete This if works!: ', messageJson.message)
+			 }
+
+			console.log('\n\nchatId in deleteMessage func in app.js: ', chatId)
+			console.log('\n\nmessageId in deleteMessage in app.js: ', messageId)
+
+			// set to getChatThreads after success status in Json response
+
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
 	// Component mounted, updated, will update hook function
 	useEffect(() => {
 		document.title = 'ReState: ' + (registerForm.firstName || loggedInUser.firstName) + ' ' + (registerForm.lastName || loggedInUser.lastName)
@@ -378,6 +407,7 @@ function App(props) {
 					createClientSearch={createClientSearch}
 					handleChange={handleChange}
 					searchBody={searchBody}
+					deleteMessage={deleteMessage}
 	  			/>
 	  		</Router>
     	</div>
