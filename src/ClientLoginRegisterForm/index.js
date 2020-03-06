@@ -50,7 +50,11 @@ export default function ClientLoginRegisterForm(props) {
 						<Segment size='mini' raised color='grey'>
 							<Form onSubmit={
 								// recoveryQuestion default on submission, due to select not defaulting unless changed.
-								props.registerForm.recoveryQuestion ? props.registerForm.recoveryQuestion : props.registerForm.recoveryQuestion='Where were you born?',
+								props.registerForm.recoveryQuestion
+								?
+									props.registerForm.recoveryQuestion
+								:
+								props.registerForm.recoveryQuestion='Where were you born?',
 								(e) => props.handleAllFormSubmission(e, 'register', 'client')
 							}>
 								<Segment size='small' stacked color='blue'>

@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
-import { Modal, Header, Form, Button, Input } from  'semantic-ui-react'
+import React from 'react'
+import { Modal, Header, Form, Button } from  'semantic-ui-react'
 
 
 export default function NewSearchFormModal(props) {
 
-	console.log(props.searchBody)
 	return(
 		<React.Fragment>
 			<Modal open={props.toggleNewSearchModal} closeIcon={true} onClose={() => props.closeSearchModals('close new modal')} >
 				
-				<Header as='h4'>Create A New Search:<Header as='h3' textAlign='center' color='red'>{props.searchBody.name}</Header></Header>
+				<Header as='h4'>Create A New Search:<Header as='h2' textAlign='center' color='teal'>{props.searchBody.name}</Header></Header>
 				<Modal.Content>
 					<Form className="NewFormModal" onSubmit={() => props.createClientSearch(props.searchBody)}>
 						<Form.Group widths='equal'>

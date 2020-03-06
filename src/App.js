@@ -30,7 +30,7 @@ function App(props) {
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(false)// ***Set to null, true/false for testing
+	const [isClient, setIsCLient] = useState(null)// ***Set to null. try: true/false(client, realtor) for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 
@@ -138,7 +138,7 @@ function App(props) {
 				},
 			})
 			const registerJson = await registerResponse.json()
-			console.log(registerJson);
+			console.log(registerJson.message);
 
 			if(registerJson.status === 201) {
 				setLoggedInUser(registerJson.data)
@@ -175,7 +175,7 @@ function App(props) {
 				},
 			})
 			const loginJson = await loginResponse.json()
-			console.log(loginJson);
+			console.log(loginJson.message);
 
 			if (loginJson.status === 200) {
 				setLoggedInUser(loginJson.data)
@@ -258,8 +258,6 @@ function App(props) {
 
 	const createMessage = async (messageBody, chatId) => {
 		try{
-			console.log('body in createMessage: ', messageBody);
-			console.log('clientId in createMessage: ', chatId);
  			const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/messages/' + chatId, {
  				credentials: 'include',
  				method: 'POST',
@@ -268,9 +266,8 @@ function App(props) {
  					'Content-Type': 'application/json'
  				},
  			})
- 			console.log('messageResponse in createMessage: ', messageResponse);
  			const messageJson = await messageResponse.json()
- 			console.log('messageJson in createMessage: ', messageJson);
+ 			console.log('messageJson in createMessage: ', messageJson.message);
  
  			if(messageResponse.status === 201){
  				chatList()
@@ -295,7 +292,6 @@ function App(props) {
 	// Creates New Search for Client
 	const createClientSearch = async (searchBody) => {
 		try{
-			console.log('\n\nThis is the body that we are using to create search: ', searchBody)
 			const searchResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/searches/', {
 				credentials: 'include',
 				method: 'POST',

@@ -68,7 +68,7 @@ export default function Routes(props) {
 								</Menu.Item>
 								<Menu.Item>
 									{/* Opens SearchList */}
-									<Link >
+									<Link>
 										{/*Open NewSearchFormModal*/}
 										<Button onClick={() => props.openSearchModals('open new modal')} animated='fade'>
 											<Button.Content visible>New Search</Button.Content>

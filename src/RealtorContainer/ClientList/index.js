@@ -13,6 +13,7 @@ export default function ClientList(props) {
 				'credentials': 'include'
 			})
 			const foundClientsJson = await foundClientsResponse.json()
+			console.log(foundClientsJson.message);
 
 			if(foundClientsResponse.status === 200) {
 				setClients(foundClientsJson.data)
@@ -34,7 +35,6 @@ export default function ClientList(props) {
 		getClients()
 	}, [])
 
-	console.log('clients state: ', clients);
 	return(
 		<React.Fragment>
 			<Header as='h2' textAlign='center'>{props.loggedInUser.firstName} {props.loggedInUser.lastName}'s Clients</Header>

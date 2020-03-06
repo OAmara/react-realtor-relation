@@ -45,7 +45,7 @@ export default function ClientContainer(props) {
 					</Link>
 				</Grid.Column>
 				<Grid.Column>
-					<Link>
+					<Link to='/clients/searches/index'>
 						<Segment raised circular color='green' style={searchListStyle}>
 							<Header as='h1' dividing block inverted color='green'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader>Search List</Header>
 						</Segment>

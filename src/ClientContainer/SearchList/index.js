@@ -11,13 +11,10 @@ export default function SearchList(props) {
 			const searchesResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/searches/index', {
 				credentials: 'include'
 			})
-
-			console.log(searchesResponse);
 			const searchesJson = await searchesResponse.json()
-			console.log(searchesJson);
+			console.log(searchesJson.message);
 
 			if(searchesJson.status === 200) {
-				console.log(searchesJson.message);
 				setSearches(searchesJson.data)
 			}
 		} catch(err) {
@@ -36,7 +33,6 @@ export default function SearchList(props) {
 		getSearches()
 	},[])
 
-		console.log(searches);
 	return(
 		<React.Fragment>
 			<Header as='h2' textAlign='center' dividing color='black'>See Your List of Searches</Header>

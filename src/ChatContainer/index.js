@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Segment, Sticky, Form, Label, Menu, Input, Button, Grid, Popup, Header, Icon, Image } from 'semantic-ui-react'
+import { Segment, Form, Menu, Input, Button, Grid, Popup, Header, Icon, Image } from 'semantic-ui-react'
 import './index.css'
 
 export default function ChatContainer({chatList, chatThreads, isClient, createMessage, loggedInUser, deleteMessage}) {
@@ -13,7 +13,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 
 
 	useEffect(() => {
-		 chatList()
+		chatList()
 	},[])
 
 
@@ -27,20 +27,6 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 		createMessage(messageBody, chatId)
 		setMessageBody({body: ''})
 	}
-
-	let popupIndex = -1
-	function togglePopup(index) {
-		popupIndex += (index + 1)
-	}
-
-	function closePopup(index) {
-		if(popupIndex > -1) {
-			popupIndex -= (index + 1)
-		}
-	}
-
-	console.log('\n\nchatThreads in ChatContainer: ', chatThreads);
-	console.log(messageBody);
 
 	/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */
 	return(
@@ -57,7 +43,6 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 					?
 						chatThreads.map(({_id, realtor, messages}, i) => (
 						 	<Menu.Item key={_id}>
-						 		{console.log(i)}
 								<Popup 
 									className='Popup' 
 									eventsEnabled={true} open={(openPopup === i)?true:false} on='click' onOpen={() => setOpenPopup(i)} onClose={() => setOpenPopup(-1)} 

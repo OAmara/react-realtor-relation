@@ -20,7 +20,7 @@ export default function RealtorList(props) {
 			const realtorsResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/realtors/list')
 
 			const realtorsJson = await realtorsResponse.json()
-			console.log('\nrealtorsJson: ', realtorsJson);
+			console.log(realtorsJson.message);
 			if(realtorsResponse.status === 200) {
 				setRealtors(realtorsJson.data)
 			}
@@ -46,10 +46,9 @@ export default function RealtorList(props) {
 				let updateUser = props.loggedInUser
 				updateUser.currentRealtor = []
 				updateUser.currentRealtor.push(contractJson.data)
-				console.log(updateUser);
+				console.log('user will be updated to this: ', updateUser);
 				props.updateLoggedInUser(updateUser)
 			}
-			console.log(props.loggedInUser);
 			getRealtors()
 		} catch(err) {
 			console.error(err)
@@ -65,9 +64,8 @@ export default function RealtorList(props) {
 					'Content-Type': 'application/json'
 				},
 			})
-			console.log(chatResponse);
 			const chatJson = await chatResponse.json()
-			console.log(chatJson);
+			console.log(chatJson.message);
 
 			props.chatList()
 		} catch(err) {
