@@ -30,7 +30,7 @@ function App(props) {
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(true)// ***Set to null. try: true/false(client, realtor) for testing
+	const [isClient, setIsCLient] = useState(null)// ***Set to null. try: true/false(client, realtor) for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 
@@ -278,7 +278,7 @@ function App(props) {
  				},
  			})
  			const messageJson = await messageResponse.json()
- 			console.log('messageJson in createMessage: ', messageJson.message);
+ 			console.log(messageJson.message);
  
  			if(messageResponse.status === 201){
  				chatList()
@@ -349,7 +349,6 @@ function App(props) {
 	// Realtor retrieves specific client's searches
 	const getRealtorClientSearches = async (clientId) => {
 		try{
-			console.log('\n\nClients ID for searhces: ', clientId);
 			const searchesResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/searches/index/' + clientId, {
 				credentials: 'include',
 				method: 'POST',
@@ -384,14 +383,15 @@ function App(props) {
 	// Change/setLoggedInUser
 	function updateLoggedInUser(updatedUser) {
 		// may need to update api if utilizable content/ sensitive info is being displayed here.
-		console.log('\n\ncurrent loggedInUser info: ', loggedInUser);
-		console.log('^\nChange loggedInUser to this: ', updatedUser);
+		// TESTING:
+		// console.log('\n\ncurrent loggedInUser info: ', loggedInUser);
+		// console.log('^\nChange loggedInUser to this: ', updatedUser);
 
 		// let updateUser = updatedUser
 		setLoggedInUser(updatedUser)
 	}
-
-	console.log(loggedInUser);
+	// TESTING:
+	// console.log(loggedInUser);
 	// Note: If anything needs to be visible universaly, include in routes component.
 		// example: Chat/messaging Footer, Nav Header. Look at NewSearchFormModal as a good example.
   	return (

@@ -38,7 +38,7 @@ const messageOptionsStyle = { width: 450, height: 350, backgroundImage: `url(${'
 					</Link>
 				</Grid.Column>
 				<Grid.Column>
-					<Link to='/clients/my-realtor'>
+					<Link onClick={() => props.openSearchModals('my realtor modal')}>
 						<Segment raised circular color='violet' style={realtorStyle}>
 							<Header as='h1' block dividing inverted color='violet'><Header.Subheader>{props.loggedInUser.firstName}'s</Header.Subheader>Realtor</Header>
 						</Segment>

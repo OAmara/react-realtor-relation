@@ -18,10 +18,10 @@ export default function ClientSearchList({activate, defaultActivate, realtorClie
  					<Grid columns={2}>
  					{
  						realtorClientSearches.map(({_id, name, zipcode, sqrft, upperPrice, lowerPrice}) => (
- 							<Grid.Column>
- 								<Segment raised key={_id}>
+ 							<Grid.Column key={_id}>
+ 								<Segment raised>
  									<Segment stacked color='green'>
- 										<Button onClick={null} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
+ 										<Button onClick={null} animated='fade' inverted circular color={'twitter'} size='tiny' floated='right'>
  											<Button.Content visible>Leave a Note</Button.Content>
  											<Button.Content hidden>
  												<Icon name='list'/>

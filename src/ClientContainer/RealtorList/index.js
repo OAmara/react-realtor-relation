@@ -87,8 +87,8 @@ export default function RealtorList(props) {
 					(realtors.length>0)
 					?
 						realtors.map(({_id, firstName, lastName, email, phoneNumber, companyName, street1, city, state, zipcode, websiteURL, companyPhone}) => (
-							<Grid.Column>
-								<Segment raised key={_id}>
+							<Grid.Column key={_id}>
+								<Segment raised>
 									<Segment raised color='orange'>
 										{
 											// first condition is used for testing since cannot use .length if undefined...

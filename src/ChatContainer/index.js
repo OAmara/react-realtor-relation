@@ -127,7 +127,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 															?
 																<Segment vertical size='mini' className='Client-Message' key={_id}>
 																	<Button compact onClick={() => deleteMessage(chatThreads[i]._id ,_id)} animated='fade' floated='right' inverted size='mini'>
-																		<Button.Content visible><Header as='h5' color='violet' textAlign='left'>{body}<Header.Subheader><smaill><small>{new Date().toLocaleTimeString('en-US')}</small></smaill></Header.Subheader></Header></Button.Content>
+																		<Button.Content visible><Header as='h5' color='violet' textAlign='left'>{body}<Header.Subheader><small><small>{new Date().toLocaleTimeString('en-US')}</small></small></Header.Subheader></Header></Button.Content>
 																		<Button.Content hidden>
 																			<Icon color='red' name='delete'/>{body}
 																		</Button.Content>
