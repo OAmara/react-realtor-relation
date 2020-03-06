@@ -30,7 +30,7 @@ function App(props) {
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(null)// ***Set to null. try: true/false(client, realtor) for testing
+	const [isClient, setIsCLient] = useState(true)// ***Set to null. try: true/false(client, realtor) for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 
