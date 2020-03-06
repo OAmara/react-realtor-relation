@@ -2,15 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Segment, Header, Grid } from  'semantic-ui-react'
 
+
+export default function ClientContainer(props) {
+
 const profileStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/dMlvXWD.png'})`, backgroundSize: 'cover',}
 const realtorListStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/obYScyd.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 const realtorStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/8xG8w0F.png'})`, backgroundSize: 'cover',}
 const newSearchStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/3IIQwnO.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 const searchListStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/Fg7ZXna.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 const messageOptionsStyle = { width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/bXqY1xD.png'})`, backgroundSize: 'cover', opacity: '0.9'}
-
-export default function ClientContainer(props) {
-
 	/*
 	EditSearchFormModal --> accessible in SearchList
 

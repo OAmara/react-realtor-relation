@@ -30,7 +30,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 
 	/*  Incorporate Semantic-UI: Popup for chat message threads to display messages w/ scroll */
 	return(
-		<div className="Bottom-Sticky">
+		<div className="Chat-Footer">
 			<Menu stackable borderless fluid widths={(chatThreads.length > 2)?chatThreads.length+2:null} attached='bottom' size='mini'>
 				<Menu.Item>
 					<Button compact animated color={(isClient=== true)?'blue':'violet'} size='large'>
@@ -53,10 +53,11 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 										</Button>
 									} 
 									flowing
+									size='mini'
 								>
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
-											<Header sub textAlign='center' block/*dividing*/ color='violet' as='h3'><Image circular src='https://i.imgur.com/T60FXNN.jpg?1'/>{realtor.firstName} {realtor.lastName}</Header>
+											<Header sub textAlign='center' block/*dividing*/ color='violet' size='tiny'><Image circular src='https://i.imgur.com/T60FXNN.jpg?1'/>{realtor.firstName} {realtor.lastName}</Header>
 												<Segment size='mini' className='top-overflow'>
 												{
 												(messages.length > 0)
@@ -112,10 +113,11 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 										</Button>
 									} 
 									flowing
+									size='mini'
 								>
 									<Grid centered divided columns={1}>
 										<Grid.Column textAlign='center'>
-											<Header sub textAlign='center' block/*dividing*/ color='blue' as='h3'><Image circular src='https://react.semantic-ui.com/images/avatar/large/matthew.png'/>{client.firstName} {client.lastName}</Header>
+											<Header sub textAlign='center' block/*dividing*/ color='blue' size='tiny'><Image circular src='https://react.semantic-ui.com/images/avatar/large/matthew.png'/>{client.firstName} {client.lastName}</Header>
 												<Segment size='mini' className='top-overflow'>
 												{
 													(messages.length > 0)

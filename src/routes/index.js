@@ -12,6 +12,7 @@ import ClientList from '../RealtorContainer/ClientList'
 import CurrentRealtorModal from '../ClientContainer/CurrentRealtorModal'
 import NewSearchFormModal from '../ClientContainer/NewSearchFormModal'
 import SearchList from '../ClientContainer/SearchList'
+import ClientSearchList from '../RealtorContainer/ClientSearchList'
 
 export default function Routes(props) {
 	return(
@@ -183,10 +184,10 @@ export default function Routes(props) {
 				  					</Link>
 				  				</Menu.Item>
 				  				<Menu.Item>
-									<Link to='/realtors/client/searches'>
+									<Link to='/realtors/client-searches'>
 										<Button animated='fade'>
 											<Button.Content visible>Client's Search</Button.Content>
-											<Button.Content hidden>Client's <Icon color='green' name='list' /></Button.Content>
+											<Button.Content hidden>Client's <Icon color='green' name='find' /></Button.Content>
 										</Button>
 									</Link>
 								</Menu.Item>
@@ -223,6 +224,14 @@ export default function Routes(props) {
 		  							chatThreads={props.chatThreads}
 		  							activate={props.activate}
 		  							defaultActivate={props.defaultActivate}
+		  							getRealtorClientSearches={props.getRealtorClientSearches}
+		  						/>
+		  					</Route>
+
+		  					<Route path='/realtors/client-searches'>
+		  						<ClientSearchList
+		  							loggedInUser={props.loggedInUser}
+		  							isClient={props.isClient}
 		  						/>
 		  					</Route>
 

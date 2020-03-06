@@ -43,7 +43,7 @@ export default function ClientList(props) {
 				?
 					clients.map(({_id, firstName, lastName, email, zipcode, currentRealtor}) => (
 						<Segment raised key={_id}>
-							<Segment stacked color='orange'>
+							<Segment stacked color='blue'>
 								<Button onClick={() => props.terminateContract(_id)} animated='fade' inverted color={'youtube'} size='tiny' floated='right'>
 									<Button.Content visible>Terminate Client</Button.Content>
 									<Button.Content hidden>
@@ -55,9 +55,9 @@ export default function ClientList(props) {
 								{// insert logic to not be able to create a message thread with realtor if already created, or maybe when clicked it will open modal containing chat??
 									(props.loggedInUser)
 									?
-									<Button onClick={null} animated circular inverted color='orange' floated='right' size='huge'>
-										<Button.Content visible><Icon name='mail'/></Button.Content>
-										<Button.Content hidden>Say Hi!</Button.Content>
+									<Button onClick={() => props.getRealtorClientSearches(_id)} animated circular inverted color='green' floated='right' size='massive'>
+										<Button.Content visible><Icon name='find'/></Button.Content>
+										<Button.Content hidden>Searches</Button.Content>
 									</Button>
 									:
 									<Button>Bye</Button>

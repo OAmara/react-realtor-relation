@@ -30,7 +30,7 @@ function App(props) {
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(null)// ***Set to null. try: true/false(client, realtor) for testing
+	const [isClient, setIsCLient] = useState(false)// ***Set to null. try: true/false(client, realtor) for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 
@@ -241,6 +241,7 @@ function App(props) {
 		}
 	}
 
+	// (chats are created in RealtorList)
 	// retrieves list of chats and saves to state
 	const chatList = async () => {
 		try {
@@ -256,6 +257,7 @@ function App(props) {
 		}
 	}
 
+	// creates message in chat thread
 	const createMessage = async (messageBody, chatId) => {
 		try{
  			const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/messages/' + chatId, {
@@ -277,11 +279,28 @@ function App(props) {
 		}
 	}
 
-	// Chat function to delete a message
-		//
-	// ^ Should both these be in Chat Container??
-		//
+	const deleteMessage = async (chatId, messageId) => {
+		try{
+			 const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/' + chatId + '/' + messageId, {
+			 	credentials: 'include',
+			 	method: 'DELETE',
+			 	headers: {
+			 		'Content-Type': 'application/json'
+			 	},
+			 })
+			 const messageJson = await messageResponse.json()
+			 console.log(messageJson.message)
 
+			 if(messageJson.status === 200) {
+			 	// update chats in state to display
+			 	chatList()
+			 }
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
+	// change for client's search form
 	function handleChange(e) {
 		setSearchBody({
 			...searchBody,
@@ -318,26 +337,31 @@ function App(props) {
 		}
 	}
 
-	const deleteMessage = async (chatId, messageId) => {
+	// Realtor retrieves specific client's searches
+	const getRealtorClientSearches = async (clientId) => {
 		try{
-			 const messageResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/chats/' + chatId + '/' + messageId, {
-			 	credentials: 'include',
-			 	method: 'DELETE',
-			 	headers: {
-			 		'Content-Type': 'application/json'
-			 	},
-			 })
-			 const messageJson = await messageResponse.json()
-			 console.log(messageJson.message)
+			console.log('\n\nClients ID for searhces: ', clientId);
+			const searchesResponse = await fetch(process.env.REACT_APP_MEN_API_URL + '/api/v1.0/searches/index/' + clientId, {
+				credentials: 'include',
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+			})
+			console.log('\n\n\n\tSearches response for Realtor Client: ', searchesResponse);
+			const searchesJson = await searchesResponse.json()
+			console.log('\n\n\tSearchesJson for Realtor Client: ', searchesJson);
 
-			 if(messageJson.status === 200) {
-			 	// update chats in state to display
-			 	chatList()
-			 }
+			if(searchesJson.status === 200) {
+				console.log('\n\n\t\nI WORK !!!!!!!!!!!!!!!!\n');
+				// make sure client list is updated in realtor first?
+				// redirect to ClientSearchList Component
+			}
 		} catch(err) {
 			console.error(err)
 		}
 	}
+
 
 	// Component mounted, updated, will update hook function
 	useEffect(() => {
@@ -397,6 +421,7 @@ function App(props) {
 					handleChange={handleChange}
 					searchBody={searchBody}
 					deleteMessage={deleteMessage}
+					getRealtorClientSearches={getRealtorClientSearches}
 	  			/>
 	  		</Router>
     	</div>

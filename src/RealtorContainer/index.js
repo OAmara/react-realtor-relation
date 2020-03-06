@@ -29,7 +29,7 @@ export default function RealtorContainer(props) {
 					</Link>
 				</Grid.Column>
 				<Grid.Column>
-					<Link to='/realtors/client/searches'>
+					<Link to='/realtors/client-searches'>
 						<Segment raised circular color='green' style={clientSearchStyle}>
 							<Header as='h1' block dividing inverted color='green'>Client's Search</Header>
 						</Segment>
