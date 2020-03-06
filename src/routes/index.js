@@ -51,8 +51,9 @@ export default function Routes(props) {
 									</Link>
 								</Menu.Item>
 								<Menu.Item>
-									<Link to='/clients/my-realtor'>
-										<Button animated='fade'>
+									<Link>
+										{/* Opens CurrentRealtorModel  */}
+										<Button onClick={() => props.openSearchModals('my realtor modal')} animated='fade'>
 											<Button.Content visible>My Realtor</Button.Content>
 											<Button.Content hidden>{props.loggedInUser.firstName}'s <Icon color='violet' name='handshake outline' /></Button.Content>
 										</Button>
@@ -109,12 +110,6 @@ export default function Routes(props) {
 		  						/>
 		  					</Route>
 
-		  					<Route path='/clients/my-realtor'>
-		  						<CurrentRealtorModal
-
-		  						/>
-		  					</Route>
-
 			  				<Route path='/clients/realtor-list'>
 		  						<RealtorList 
 		  							loggedInUser={props.loggedInUser}
@@ -136,6 +131,13 @@ export default function Routes(props) {
 							</Route>
 			  			</Switch>
 			  			{/* ChatContainer... Exists In All Components listed in switch above */}
+  						<CurrentRealtorModal
+  							loggedInUser={props.loggedInUser}
+  							isClient={props.isClient}
+  							toggleMyRealtorModal={props.toggleMyRealtorModal}
+  							openSearchModals={props.openSearchModals}
+  							closeSearchModals={props.closeSearchModals}
+  						/>
 			  			<NewSearchFormModal
 			  				toggleNewSearchModal={props.toggleNewSearchModal}
 			  				toggleOpenSearchModals={props.toggleOpenSearchModals}

@@ -30,7 +30,7 @@ function App(props) {
 	const [loggedInUser, setLoggedInUser] = useState(names[randomName])
 
 	// determines if User is a Client or Realtor: Used as loggedIn authentication if not null.(true=client routes, false=realtor routes)
-	const [isClient, setIsCLient] = useState(false)// ***Set to null. try: true/false(client, realtor) for testing
+	const [isClient, setIsCLient] = useState(null)// ***Set to null. try: true/false(client, realtor) for testing
 	//* This will be filled with information posted from all login forms!
 	const [loginForm, setLoginForm] = useState({})
 
@@ -46,6 +46,7 @@ function App(props) {
 	// Open/Close logic for Search Modals
 	const [toggleNewSearchModal, setToggleNewSearchModal] = useState(false)
 	const [toggleEditSearchModal, setToggleEditSearchModal] = useState(false)
+	const [toggleMyRealtorModal, setToggleMyRealtorModal] = useState(false)
 
 	// search form body from client's newSearchFormModal
 	const [searchBody, setSearchBody] = useState({})
@@ -75,6 +76,8 @@ function App(props) {
 			setToggleNewSearchModal(true)
 		} else if (str === 'open edit modal') {
 			setToggleEditSearchModal(true)
+		} else if (str === 'my realtor modal') {
+			setToggleMyRealtorModal(true)
 		}
 	}
 
@@ -84,6 +87,8 @@ function App(props) {
 			setToggleNewSearchModal(false)
 		} else if(str === 'close edit modal') {
 			setToggleEditSearchModal(false)
+		} else if(str === 'close realtor modal') {
+			setToggleMyRealtorModal(false)
 		}
 	}
 
@@ -419,6 +424,7 @@ function App(props) {
 					defaultActivate={defaultActivate}
 					toggleEditSearchModal={toggleEditSearchModal}
 					toggleNewSearchModal={toggleNewSearchModal}
+					toggleMyRealtorModal={toggleMyRealtorModal}
 					openSearchModals={openSearchModals}
 					closeSearchModals={closeSearchModals}
 					createClientSearch={createClientSearch}

@@ -10,7 +10,7 @@ export default function NewSearchFormModal(props) {
 				
 				<Header as='h4'>Create A New Search:<Header as='h2' textAlign='center' color='teal'>{props.searchBody.name}</Header></Header>
 				<Modal.Content>
-					<Form className="NewFormModal" onSubmit={() => props.createClientSearch(props.searchBody)}>
+					<Form onSubmit={() => props.createClientSearch(props.searchBody)}>
 						<Form.Group widths='equal'>
 							<Form.Input
 								size={'large'}

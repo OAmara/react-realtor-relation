@@ -8,8 +8,6 @@ export default function ClientSearchList({activate, defaultActivate, realtorClie
 		defaultActivate()
 	}
 
-	console.log(realtorClientSearches);
-
 	return(
 		<React.Fragment>
  			<Header as='h2' textAlign='center' dividing color='black'>{(realtorClientSearches.length > 0)?realtorClientSearches[0].client.firstName + ' ' + realtorClientSearches[0].client.lastName + `'s`:null} Searches</Header>
@@ -47,8 +45,6 @@ export default function ClientSearchList({activate, defaultActivate, realtorClie
  				<Header as='h2' color='green' textAlign='center'>Click on Client's Search in Client List to View Their Search</Header>
  			}
  			<Link to='/realtors/client-list'><Button color='green'>View a Different Client's Search</Button></Link>
- 
- 			
 		</React.Fragment>
 	)
 }
