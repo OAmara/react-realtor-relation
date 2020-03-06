@@ -5,7 +5,7 @@ import { Segment, Header, Grid } from  'semantic-ui-react'
 	const profileStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/dMlvXWD.png'})`, backgroundSize: 'cover',}
 	const clientListStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/obYScyd.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 	const clientSearchStyle = {width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/Fg7ZXna.png'})`, backgroundSize: 'cover', opacity: '0.9'}
-	const messageOptionsStyle = { width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/bXqY1xD.png'})`, backgroundSize: 'cover', opacity: '0.9'}
+	const messageOptionsStyle = { width: 450, height: 350, backgroundImage: `url(${'https://i.imgur.com/feNs9DJ.png'})`, backgroundSize: 'cover', opacity: '0.9'}
 
 export default function RealtorContainer(props) {
 
