@@ -58,7 +58,7 @@ function App(props) {
 	// Usage:
 		// RealtorContainer/ClientList. activation --> 'refresh list'
 		// in routes & used with createClientSearch. activation --> 'redirect search index'
-		// in routes & used with getRealtorClientSearches. activation --> 'redirect realtors client searches'
+		// in routes & used with getRealtorClientSearches. activation --> 'redirect realtors/client-searches'
 	const [activate, setActivate] = useState(undefined)
 
 
@@ -357,7 +357,7 @@ function App(props) {
 
 			if(searchesJson.status === 200) {
 				setRealtorClientSearches(searchesJson.data)
-
+				setActivate('redirect realtors/client-searches')
 				// make sure client list is updated in realtor first?
 				// redirect to ClientSearchList Component
 			}
