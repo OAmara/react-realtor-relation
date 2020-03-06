@@ -80,7 +80,7 @@ export default function ChatContainer({chatList, chatThreads, isClient, createMe
 														isSenderClient
 														?
 															<Segment vertical size='mini' className='Client-Message' key={_id}>
-																<Button compact onClick={null} animated='fade' floated='right' inverted size='mini'>
+																<Button compact onClick={() => deleteMessage(chatThreads[i]._id ,_id)} animated='fade' floated='right' inverted size='mini'>
 																	<Button.Content visible><Header as='h5' color='blue' textAlign='left'>{body}<Header.Subheader><small><small>{new Date().toLocaleTimeString('en-US')}</small></small></Header.Subheader></Header></Button.Content>
 																	<Button.Content hidden>
 																		<Icon color='red' name='delete'/>{body}

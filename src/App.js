@@ -331,21 +331,13 @@ function App(props) {
 			 		'Content-Type': 'application/json'
 			 	},
 			 })
-			 console.log('\n\n\n\tmessageResponse: ', messageResponse)
 			 const messageJson = await messageResponse.json()
-			 console.log('\n\n\n\tmessageJson: ', messageJson)
 			 console.log(messageJson.message)
 
 			 if(messageJson.status === 200) {
 			 	// update chats in state to display
 			 	chatList()
 			 }
-
-			console.log('\n\nchatId in deleteMessage func in app.js: ', chatId)
-			console.log('\n\nmessageId in deleteMessage in app.js: ', messageId)
-
-			// set to getChatThreads after success status in Json response
-
 		} catch(err) {
 			console.error(err)
 		}
