@@ -43,7 +43,7 @@ function App(props) {
 	// Chat threads/ messages
 	const [chatThreads, setChatThreads] = useState({})
 
-	// Open/Close logic for Search Modals
+	// Open/Close logic for Search Modals, My Realtor Modal
 	const [toggleNewSearchModal, setToggleNewSearchModal] = useState(false)
 	const [toggleEditSearchModal, setToggleEditSearchModal] = useState(false)
 	const [toggleMyRealtorModal, setToggleMyRealtorModal] = useState(false)

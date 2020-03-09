@@ -1,68 +1,63 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PRESENTATION:
 
-## Available Scripts
+*Realtor to use —
+	Email: 	(CREATE A VERY VERY OBVIOUS TESTING ACCOUNT FOR USERS)
+	Password: 	CRUD HOMES
+////————————————////
+— INTRODUCTION —
+* 	S.E. class, project working on for last 2 weeks.
 
-In the project directory, you can run:
+* 	ReState - Real Estate App
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+— INSPIRATION — 
+* “Who Here Has Bought a Home Before Utilizing a Real Estate Agent?”
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* “Typically -	“Find an Agent”
+				“Interview, Chat to get to know you”
 
-### `npm test`
+	“They conduct the search and just give you access to the results.”
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+	“Intention:	“Give Client’s the power to choose an Agent without hassle”
+				“Conduct Searches that are shared with Agents”
+———————————————————————————
 
-### `npm run build`
+— WALK THROUGH —
+:: CLIENT PROTAL ::
+* Engage Audience:	Create a Client account
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Nav explanation!
+		My Realtor Button —> we need to find a realtor
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+* Engage Audience:	Create a Search	
+		Create a Dummy Search —> (3-4)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Realtor List —> Start a chat, Hire a Realtor. Hire a different Realtor.
+		My Realtor Button —> (Our Realtor)
 
-### `npm run eject`
+* *End Client Portal with performing chats and deletions of messages with Realtors
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+:: REALTOR PORTAL ::
+* Sign into —->    Thiago@c.com
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* (Looks at Nav, explain looks similar, everything entirely new)
+* Message Clients, delete some messages!
+* Look at clients, Terminate a Client (Morgan Free Man)
+* Look at different Client Searches
+* Chat with clients?
+————————————————————————————
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+— PROUD OF WHAT — 
+* Does not Appear so, but Everything created twice.
+	-	Some routes or features are created for both client and realtor by using conditionals.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Present walk through of ChatContainer Footer and flow of conditionals
+    * Saves space in using the same route and functions to create a chat and message, delete layout
 
-## Learn More
+* Utilized React Hooks, App.js nearly source of truth that holds most variable properties. Everything routes through Route Component from App.js
+————————————————————————————
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+— UPCOMING FEATURES —
+	-	3rd Party API to generate listings based on search
+	-	Google maps to display realtors on map based on provided location.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
